@@ -1,0 +1,81 @@
+
+<?php include 'templats/header.php';
+	include 'templats/navbar.php';
+	?>
+
+<img src="reception.jpg" alt="image" width="100%" height="45%">
+	<div class="container" id="content">
+	<div class="loginicon">
+		<div class="row">
+		<div class="  col-md-3 col-sm-6"><!-- col-lg-12 Starts -->
+<div class="form-group" ><!-- form-group Starts -->
+<div><img  src="newpatinte.jpg" alt="">
+	  <a href="NewPatinte.php" class="col-md-12 "> New Patient </a></div>
+
+</div><!-- form-group Ends -->
+		
+	  
+	<div class="form-group" ><!-- form-group Starts -->
+<div>
+		<img  src="oldpatinte.jpg" alt="">
+		<a href="oldpatient.php"> Old Patient </a>
+			</div>
+
+</div><!-- form-group Ends -->
+    </div>
+		<div class="  col-md-3 col-sm-6"><!-- col-lg-12 Starts -->	
+
+
+		<div class="form-group" ><!-- form-group Starts -->
+	
+
+    <div><img  src="searchday.jpg" alt="">
+		 <a href="Today's dates.php">  
+			 Today's dates </a></div>
+
+</div><!-- form-group Ends -->
+		<div class="form-group" ><!-- form-group Starts -->
+	
+
+ <div><img  src="box.jpg" alt="">
+       <a href="Treasury.php">
+		    Treasury </a></div>
+
+</div><!-- form-group Ends -->
+			</div>
+		 <div class="  col-md-6 col-sm-6"><!-- col-lg-12 Starts -->		
+<div class="form-group" ><!-- form-group Starts -->
+	
+<div><img  src="searchicon.jpg" alt="">
+		<a href="Search the appointment.php"> Search the appointment</a></div>
+
+</div><!-- form-group Ends -->
+			</div>
+		
+ </div>
+	    </div>
+		
+
+  
+    
+</div>
+	
+
+
+
+    
+ 
+
+    <footer class="footer" id="content">
+
+
+    </footer>
+ <script src="js/jquery-3.4.1.min.js"></script>
+         <script src="js/bootstrap.min.js"></script>
+    <script src="js/fontawesome.min.js"></script> 
+        <script src="js/myjs.js."></script> 
+     
+        
+
+</body>
+</html>

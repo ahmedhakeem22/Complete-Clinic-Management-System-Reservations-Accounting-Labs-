@@ -1,0 +1,456 @@
+/*تعديل على الصفحة كاملا*/
+body{ 
+    background: #f0f6f5;
+    font-family: sans-serif;
+    font-size: 14px;
+line-height: 1.4;
+    color:#333;
+    overflow-x: hidden;
+    
+}
+/*تعديل على الشريط العلوي لصفحة*/
+.top{ 
+    max-height: 41px;
+    background: #343a40;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    color: aqua;
+    
+}
+
+.top .offer a{
+    color: black;
+    }
+
+
+.top ul.menu .btn {
+    text-transform: uppercase;
+    margin-left: -50px;
+color: aliceblue;
+}
+
+.top a {
+    color: #e0a800;
+    
+    
+    
+}
+.top a:hover {
+    color: blue;
+    text-decoration: none;
+}
+.top ul.menu{
+    margin: 0;
+    list-style: none;
+    padding-top: 5px;
+    font-size: 13px;
+    text-align: right;
+    float: left;
+}
+.top ul.menu >li{
+    display: inline-block;    
+}
+
+.top ul.menu >li+li:before{
+   content: "|\00a0"  ;
+    padding: 0 3px;
+}
+
+.content{
+    margin-top: 5px;
+
+    margin-bottom: 10px;
+  
+}
+
+/*تعديل على الشريط الناف بار*/
+.imgicon{
+	width: 50px;
+	height: 50px;
+}
+.imgicon img{
+	width: 100%;
+	height: 100%;
+}
+#navbarDropdown{
+    font-size:14;
+    font-family: fantasy;
+    color: #ffc107;
+
+}
+#navyellow1{
+   color: #ffc107;
+    font-size: 15px;
+     font-family: fantasy;
+}
+#navyellow2{
+   color: #ffc107;
+    font-size: 15px;
+     font-family: fantasy;
+}
+.namealign{
+    color: whitesmoke;
+    padding-left: 5px;
+}
+.navdrob{
+	background:#343a40;	
+}
+.navdrob a{
+	color: #e0a800;
+}
+/* Cart page Styles */
+.shopstyle{
+	text-align: center;	
+	padding-top: 5px;
+
+	
+}
+.shopstyle .single{
+	padding-bottom: 5px;
+	padding-top: 3px;
+	
+	
+}
+.shopstyle .product {
+	color: black;
+	border: solid 1px #e0a800 ;
+	padding-bottom: 3px;
+	background: #343a40;
+	padding-right: 3px;
+	
+	
+}
+.shopstyle .product .labelcolor{
+	
+	text-align: right;
+	color: aqua;
+	padding: 3px 5px 5px 0;
+	height: 80px;
+	width: 100%; 
+	overflow: auto;
+
+}
+.shopstyle .product .labelcolor #list{
+	list-style-type: none;
+	
+}
+.shopstyle .product .labelcolor #list li{
+	float: left;
+	width: 100%;
+	text-align: right;
+text-overflow: ellipsis;
+	
+	overflow-x: auto;
+	
+}
+.shopstyle .product .labelcolor #list li>a{
+ 
+	text-decoration: none;
+	font-weight: bold;
+    font-size: 10px;
+	
+}
+
+
+.shopstyle .product .text{
+	color:#e0a800;
+	
+	
+}
+
+.shopstyle .product .text h3 {
+	height:60px;	
+}
+.shopstyle .product .text h3>a{
+font-size: 20px;
+color: whitesmoke;
+font-style: italic;
+font-stretch:condensed;
+font-weight: bold;
+}
+.shopstyle .product .img-responsive {
+	padding-left: 3px;
+    height: 250px;
+    max-height: 250px;
+    min-height: 250px;
+    width: 100%;
+    max-width: 100%;
+}
+
+/*التعديل على الترند*/
+.shopstyle1{
+	text-align: center;	
+	padding-top: 5px;	
+}
+.shopstyle1 .single1{
+	padding-bottom: 5px;
+	padding-top: 3px;
+	
+	
+}
+.shopstyle1 .product1 {
+	color: black;
+	border: solid 1px white ;
+	padding-bottom: 3px;
+	background: whitesmoke;
+	padding-right: 3px;
+	
+	
+}
+.shopstyle1 .product1 .labelcolor1{
+	
+	text-align: right;
+	color: brown;
+	padding: 3px 5px 5px 0;
+	height: 80px;
+	width: 100%; 
+	overflow: auto;
+}
+.shopstyle1 .product1 .labelcolor1 #list{
+	list-style-type: none;
+	
+}
+.shopstyle1 .product1 .labelcolor1 #list>li{
+	float: left;
+	width: 100%;
+	text-align: right;
+text-overflow: ellipsis;
+	
+	overflow-x: auto;
+	
+}
+.shopstyle1 .product1 .labelcolor1 #list li>a{
+ 
+	text-decoration: none;
+	
+	
+}
+
+
+.shopstyle1 .product1 .text{
+	color:brown;
+	
+	
+}
+
+.shopstyle1 .product1 .text h3 {
+	height:60px;	
+}
+.shopstyle1 .product1 .text h3>a{
+font-size: 20px;
+color: black;
+font-style: italic;
+font-stretch:condensed;
+}
+.shopstyle1 .product1 .img-responsive {
+	padding-left: 3px;
+    height: 250px;
+    max-height: 250px;
+    min-height: 250px;
+    width: 100%;
+    max-width: 100%;
+}
+
+
+
+/*تعديل على الشريط الكارو سل*/
+.bd-example{
+	padding: 5px;
+}
+.caroimg{
+
+	height:150px;
+}
+.caroimg img{
+	
+	height: 100%;
+}
+.carousel-inner{
+	width:auto;
+	min-height: 120px;
+}
+.carousel-inner .carousel-item img {
+    width:auto;
+    min-height:100px;
+	height: auto;
+}
+/*تعديل على شريط المميزات*/
+.advbody{
+    background: #343a40;
+    color: aqua;
+    text-align: center;
+    width: 205px;
+	height: 120px;
+	padding-bottom: 3px;
+	padding-top: 3px;
+	border: solid 1px #e0a800;
+	overflow-x: hidden;
+	overflow-y: auto;
+	
+ 
+}
+.advbody h3 {
+	font-stretch: condensed;
+	width: inherit;
+	font-size: 1.25rem;
+	
+}
+.advbody h3>a{
+    color: #e0a800;
+    font-size: 22;
+	font-weight: bold;
+	text-align: center;
+}
+.advantages{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+}
+#advtextcolor:hover{
+   text-decoration: none;
+}
+.fa{
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+/*تعديل على السلايد*/
+.gametext{
+    color:white;
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+#programtext{
+    color:black;
+    
+}
+/*تعديل على الفوتر*/
+.footercolor{
+    color:  #e0a800;
+}
+#footer .row .col a{
+    color: aquamarine;
+    text-decoration: none;
+}
+
+#footer{
+    background: #343a40;
+    margin-top: 20px;
+    padding: 10px 0;
+    
+}
+#footer ul{
+    list-style: none;
+    padding-left: 0;
+    
+}
+#footer hr{
+    background: #e0a800;
+    
+}
+/*تعديل علىبردكرامب*/
+.breadcrumb{
+   background-color:white;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    padding: 7px 14px;
+    
+}
+.breadcrumb a{
+    color: #e0a800;
+}
+/*تعديل على صفحه التسجيل في الموقع*/
+
+.inputcontent{
+    margin-left: 600px;
+   
+    
+}
+.emaliinput input{
+    width: auto;
+     border-radius: 3px;
+    margin: 0;
+
+background-color: palegoldenrod;
+    padding: 5px;
+    border: 1px solid #e0a800;
+    display: block;
+    margin-bottom: 5px;
+    align-items: center;
+    
+}
+/*htmlالتسجيل في الموقع*/
+#boxalign{
+   padding-top: 10px;
+}
+/*التعديل على شريط الاصفحات*/
+.pagin{
+	text-align: center;
+	padding-left: -5px;
+overflow: auto;
+}
+.pagin a{
+	background:#343a40;
+	float: left;
+	padding: 10px 10px ;
+	text-decoration: none;
+	border: 1px solid #e0a800;
+	color: aqua;
+	
+    
+}
+.pagin a:active{
+	background-color:lightgoldenrodyellow;
+}
+/*htmlاستعاده كلمه المرور*/
+.forgetpass{
+
+	color: brown;
+	padding-bottom: 3px;
+	padding-top: 3px;
+}
+.forgetinput{
+	padding-top: 20px;
+}
+/*تعديل على صفحة appandgame*/
+.appandgame{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}
+.appandgame img{
+	width: 100%;
+	height: auto;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+/*تعديل على صفحة whereto*/
+.technical{
+	font-weight: bold;
+}
+.technical >h1{
+	font-size: 20px;
+	color: brown;
+	font-weight: bold;
+	font-style: italic;
+}
+.technical >h3{
+	font-size: 13px;
+	color: black;
+	font-weight: bold;
+	font-style: italic;
+}
+.technical >p{
+	font-size: 13px;
+	color: green;
+}
+
+
+
+
+
+
+
+

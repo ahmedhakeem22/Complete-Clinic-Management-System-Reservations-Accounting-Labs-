@@ -1,0 +1,1018 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.imagetop{
+    width:100% ; height:45%;
+}
+.linetop{
+    position: fixed;
+    background-color: #333333;
+    width: 100%;
+    height: 60px;
+}
+a:link{
+    color: white;
+    text-decoration: none;
+  }
+
+.login{
+
+    left: 80%;
+    top: 8px;
+    text-decoration-line: none;
+    text-underline-position: unset;
+    text-decoration: white;
+    font-family: Arial, 'lucida sans Unicode';
+}
+
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(18, 158, 37);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.newpatinte{
+    position: absolute; height: 56px; width: 260px; top: 81%; right: 6%;
+}
+
+.icon1{
+    position:absolute; width: 300px; height: auto; top:57%; right: 10.2%;
+}
+.icon2{
+  position:absolute; width: 300px; height: auto; top:57%; right: 26%;
+}
+.icon3{
+  position:absolute; width: 300px; height: auto; top:57%; right: 42.3%;
+}
+.icon4{
+  position:absolute; width: 300px; height: auto; top:57%; right: 58.7%;
+}
+.icon5{
+  position:absolute; width: 300px; height: auto; top:57%; right: 75%;
+}
+
+.btn2 {
+    position: absolute;
+    background-color: #45b4bf;
+    color: white;
+    right: 28.3%;
+    top: 86.4%;
+    padding: 16px 20px;
+    border: 10px;
+    width: 170px;
+    height: 35px;
+    opacity: 0.9;
+    border-radius: 25px;
+  }
+    .btn2 a {
+    position: absolute;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  left: 17%;
+  top: 30%;
+  color: white;
+
+}
+.btn2:hover {
+    opacity: 1;
+    background: #2e99a3;
+  }
+.btn5 {
+    position: absolute;
+    background-color: #e2af2c;
+    color: white;
+    right: 77%;
+    top: 86.4%;
+    padding: 16px 20px;
+    border: 10px;
+    width: 170px;
+    height: 35px;
+    opacity: 0.9;
+    border-radius: 25px;
+  }
+    .btn5 a {
+    position: absolute;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  left: 25%;
+  top: 30%;
+  color: white;
+
+}
+.btn5:hover {
+    opacity: 1;
+    background:#daa215;
+  }
+.btn4 {
+    position: absolute;
+    background-color: #53a49d;
+    color: white;
+    right: 61%;
+    top: 86.4%;
+    padding: 16px 20px;
+    border: 10px;
+    width: 170px;
+    height: 35px;
+    opacity: 0.9;
+    border-radius: 25px;
+  }
+    .btn4 a {
+    position: absolute;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  left: 12%;
+  top: 30%;
+  color: white;
+
+}
+.btn4:hover {
+    opacity: 1;
+    background:#39928b;
+  }
+.btn3 {
+    position: absolute;
+    background-color: ca73cd;
+    color: white;
+    right: 44.5%;
+    top: 86.4%;
+    padding: 16px 20px;
+    border: 10px;
+    width: 170px;
+    height: 35px;
+    opacity: 0.9;
+    border-radius: 25px;
+  }
+    .btn3 a {
+    position: absolute;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  left: 13%;
+  top: 10%;
+  color: white;
+  text-align: center;
+
+}
+.btn3:hover {
+    opacity: 1;
+    background:#b250b6;
+  }
+
+.btn {
+    position: absolute;
+    background-color: #45bf4b;
+    color: white;
+    right: 12.5%;
+    top: 86.4%;
+    padding: 16px 20px;
+    border: 10px;
+    width: 170px;
+    height: 35px;
+    opacity: 0.9;
+    border-radius: 25px;
+  }
+  .btn a {
+      position: absolute;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    left: 15%;
+    top: 30%;
+    color: white;
+
+  }
+  .btn:hover {
+    opacity: 1;
+    background: #28972d;
+  }
+  
+  .bordernew{
+    position: absolutelo;
+    border-style: hidden;
+    border-color: rgb(39, 73, 144) ;
+    top: auto;
+    width:100%;
+    height: auto;
+    border-color: rgb(39, 73, 144);
+  }
+
+
+  .submitnew{
+      position: absolute;
+      top: 350px;
+      width: 10%;
+      height: auto;
+      padding: 15px;
+      left: 70%;
+      background-color: rgb(39, 73, 144);
+      color: white;
+      cursor: pointer;
+  }
+
+ .tablenew1{
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+     font-size:17px;
+     align-self: start;
+     text-align: inherit;
+     padding: 16PX;
+     width: 100%;
+     height: auto;
+  
+ }
+ .tablenew1 input{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     color: rgb(8, 0, 128);
+     background-color: rgb(246, 246, 246);
+     margin: 5;
+     padding: 7px;
+     width: 100%;
+     height: auto;
+     font-size: 17px;
+     text-align: left;
+}
+
+.buttondelete{
+    position: absolute;
+    top: 350px;
+    width: 10%;
+    height: auto;
+    padding: 15px;
+    left: 60%;
+    background-color: rgb(149, 4, 4);
+    color: white;
+}
+
+.line {
+  position: absolute;
+  background-color: rgb(167, 167, 167);
+  width: 100%;
+  height: auto;
+  text-align: center;
+  top: 1700px;
+}
+
+
+/* search عن موعد */
+
+
+.h1img{
+  position: relative; text-align: center; top:10px;
+}
+
+
+
+#myInput {
+  background-image: url('iconsearch1.jpg');
+  background-position: 5px 7px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  width: 100%;
+  left: 25%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+
+
+
+/* Doctor.html*/
+
+.btnjalsa {
+  position: absolute;
+  background-color: #45bf4b;
+  color: white;
+  right: 8%;
+  top: 85.5%;
+  padding: 16px 20px;
+  border: 10px;
+  width: 170px;
+  height: 35px;
+  opacity: 0.9;
+  border-radius: 25px;
+}
+.btnjalsa a {
+    position: absolute;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  left: 15%;
+  top: 30%;
+  color: white;
+
+}
+.btnjalsa:hover {
+  opacity: 1;
+  background: #28972d;
+}
+.addjalsa{
+
+  position:absolute; width: 80%px; height: 30%; top:56%; right: 7%;
+
+}
+
+/* new session */
+
+.borderjalsa{
+  position: absolute;
+  border-style: hidden;
+  background-color: rgb(238, 238, 238);
+border-radius: 30px;
+  background-color: rgb(223, 223, 223);
+  border-color: #45bf4b ;
+  left:0%;
+  top: 50%;
+  padding: 10px 10px;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: left;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+.borderjalsa textarea {
+
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: auto;
+  overflow: auto;
+}
+
+
+
+
+
+
+.borderjalsa2{
+  position: absolute;
+  border-style: hidden;
+  border-radius: 30px;
+  border-color: #aaaaaa ;
+  left: 0%;
+  top: 60%;
+  padding: 25px 25px;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: left;
+  background-color: rgb(238, 238, 238);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+}
+.borderjalsa2 textarea {
+
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  resize: none; 
+  border-radius: 5px;
+}
+
+.submitjalsa{
+  position: absolute;
+  top: 1550px;
+  width: 220px;
+  height: 65px;
+  left: 40%;
+  background-color: rgb(39, 73, 144);
+  color: white;
+  cursor: pointer;
+}
+
+
+.submitblood{
+  position: absolute;
+  top: 1550px;
+  width: 220px;
+  height: 65px;
+  left: 80%;
+  background-color: rgb(39, 73, 144);
+  color: white;
+  cursor: pointer;
+}
+.submitnafsi{
+  position: absolute;
+  top: 1550px;
+  width: 220px;
+  height: 65px;
+  left: 60%;
+  background-color: rgb(39, 73, 144);
+  color: white;
+  cursor: pointer;
+}
+
+.addrashada{
+  position: absolute;
+  top: 1550px;
+  width: 220px;
+  height: 65px;
+  left: 25%;
+  background-color: rgb(39, 73, 144);
+  color: white;
+  text-align: center;
+  font: outline;
+  position: absolute;
+}
+
+
+
+
+
+
+/* Home */
+.home{
+  width: 100%;
+   height: auto;
+}
+.home1{
+  width:100%;
+  height:45%;
+}
+.home img {
+width: 1500px;
+}
+.home1 img {
+width: 100%;
+}
+
+/* pharmcey*/
+
+
+
+
+.choose{
+  position:absolute; width: 80%px; height: 30%; top:50%; right: 7%;
+}
+
+.buy {
+  position: absolute;
+  background-color: #45b4bf;
+  color: white;
+  left: 810px;
+  top: 79%;
+  padding: 16px 20px;
+  border: 10px;
+  width: 170px;
+  height: 35px;
+  opacity: 0.9;
+  border-radius: 25px;
+}
+  .buy a {
+  position: absolute;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-size: 25px;
+left: 17%;
+top: 30%;
+color: white;
+
+}
+.buy:hover {
+  opacity: 1;
+  background: #2e99a3;
+}
+
+.store {
+  position: absolute;
+  background-color: ca73cd;
+  color: white;
+  left: 280px;
+  top: 79%;
+  padding: 16px 20px;
+  border: 10px;
+  width: 170px;
+  height: 35px;
+  opacity: 0.9;
+  border-radius: 25px;
+}
+  .store a {
+  position: absolute;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-size: 25px;
+left: 13%;
+top: 10%;
+color: white;
+text-align: center;
+
+}
+.store:hover {
+  opacity: 1;
+  background:#b250b6;
+}
+
+.sale {
+  position: absolute;
+  background-color: #45bf4b;
+  color: white;
+  left: 1350px;
+  top: 79%;
+  padding: 16px 20px;
+  border: 10px;
+  width: 170px;
+  height: 35px;
+  opacity: 0.9;
+  border-radius: 25px;
+}
+.sale a {
+    position: absolute;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  left: 15%;
+  top: 30%;
+  color: white;
+
+}
+.sale:hover {
+  opacity: 1;
+  background: #28972d;
+}
+
+
+
+#myInputpharm {
+  background-image: url('iconsearch1.jpg');
+  background-position: 5px 7px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  width: 100%;
+  left: 25%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+
+#myTablepharm {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTablepharm th, #myTablepharm td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTablepharm tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTablepharm tr.headerpharm, #myTablepharm tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+/* login page */
+
+.box{
+  position: absolute;
+  width:500px;
+  top: 10%;
+  height: 300px;
+  transform: translate(-50%,50%);
+  margin-top: 50px;
+  right: 50%;
+  left: 50%;
+  text-align: center;
+  border: none;
+  color: white;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.774);
+  border-radius: 10px;
+}
+
+.box h2{
+color: rgb(238, 238, 238);
+  text-align: center;
+  margin: 0 0 30px;
+}
+.box .inputbox{
+  position: relative;
+}
+.box .inputbox input{
+width: 100%;
+padding: 20px 0;
+font-size: 16px;
+color: white;
+letter-spacing: 1px;
+margin-bottom: 40px;
+border: none;
+border-bottom: 1px solid coral;
+outline: none;
+background: transparent;
+}
+
+
+.box .inputbox label{
+position: absolute;
+top:0;
+left: 0;
+letter-spacing: 2px;
+font-size: 25px;
+color: rgb(238, 238, 238);
+pointer-events: none;
+transition: 1.4s;
+}
+.box .inputbox input:focus ~ label,
+.box .inputbox input:valid ~ label{
+top: -18px;
+left: 0;
+color: cyan;
+font-size: 20px;
+}
+.box input[type="submit"]{
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  background: coral;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+
+/* lab page*/
+.boxlab{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  position: absolute;
+  width: 100%;
+height: auto;
+  top: 20%;
+  transform: translate(-50%,50%);
+  margin-top: 50px;
+  right: 50%;
+  left: 50%;
+  text-align: center;
+  border: none;
+  color: rgb(24, 0, 0);
+  box-sizing: border-box;
+  background: rgba(199, 199, 199, 0.774);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.boxlab h2{
+color: rgb(238, 238, 238);
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+.boxlab .inputcheckbox{
+  border-bottom: 1px solid rgb(148, 9, 21);
+position: relative;
+width: 100%;
+}
+
+.boxlab .inputcheckbox label{
+  top:0;
+  left: 0;
+  font-size: 27px;
+  color: rgb(26, 0, 0);
+}
+
+.boxlab input[type="send"]{
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  background: coral;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* صفحة المختبر  lab2*/
+
+#myTable2{
+  position: absolute;
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  overflow: scroll;
+  
+}
+
+#myTable2 th, #myTable td {
+  text-align: center;
+  padding: 12px;
+  
+}
+
+#myTable2 tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable2 tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+#mytable2 tr td {
+text-align: center;
+}
+
+
+
+
+/* الصننننندوق*/
+
+.invojalsa{
+  position:absolute; width: 300px; height: auto; top:57%; right: 10.2%;
+}
+
+.invoblood{
+  position:absolute; width: 300px; height: auto; top:57%; right: 42.3%;
+}
+
+.invonafsi{
+  position:absolute; width: 300px; height: auto; top:57%; right: 75%;
+}
+
+
+.btninvonafsi {
+    position: absolute;
+    background-color: #e2af2c;
+    color: white;
+    right: 77%;
+    top: 86.4%;
+    padding: 16px 20px;
+    border: 10px;
+    width: 170px;
+    height: 35px;
+    opacity: 0.9;
+    border-radius: 25px;
+  }
+    .btninvonafsi a {
+    position: absolute;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  text-align: center;
+  color: white;
+  right: 2%;
+  top: 10%;
+
+}
+.btninvonafsi:hover {
+    opacity: 1;
+    background:#daa215;
+  }
+
+.btninvoblood {
+    position: absolute;
+    background-color: ca73cd;
+    color: white;
+    right: 44.5%;
+    top: 86.4%;
+    padding: 16px 20px;
+    border: 10px;
+    width: 170px;
+    height: 35px;
+    border-radius: 25px;
+  }
+    .btninvoblood a {
+    position: absolute;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  right: 22%;
+  text-align: center;
+  color: white;
+
+}
+.btninvoblood:hover {
+    opacity: 1;
+    background:#b250b6;
+  }
+
+.btninvojalsa {
+    position: absolute;
+    background-color: #45bf4b;
+    color: white;
+    right: 12.5%;
+    top: 86.4%;
+    padding: 16px 20px;
+    border: 10px;
+    width: 170px;
+    height: 35px;
+    border-radius: 25px;
+  }
+  .btninvojalsa a {
+      position: absolute;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    text-align: center;
+    color: white;
+
+  }
+  .btninvojalsa:hover {
+    opacity: 1;
+    background: #28972d;
+  }
+  
+
+
+
+/*
+
+
+
+#myInputapp {
+  background-image: url('iconsearch1.jpg');
+  background-position: 5px 7px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  width: 20%;
+  left: 25%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+
+#myTableapp {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTableapp th, #myTableapp td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTableapp tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTableapp tr.headerapp, #myTableapp tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+
+
+
+#myInputtoday {
+  background-image: url('iconsearch1.jpg');
+  background-position: 5px 7px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  width: 20%;
+  left: 25%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+
+#myTabletoday {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTabletoday th, #myTabletoday td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTabletoday tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTabletoday tr.headertoday, #myTabltoday tr:hover {
+  background-color: #f1f1f1;
+}
+
+*/
+
+@media screen and (max-width:1024px) {
+
+  .header , .main , .footer ,.home{
+    width: 100%;
+    height: auto;
+  }
+    
+}
+@media screen and (max-width:768px) { 
+
+  .header , .main , .footer{
+    width: 100%;
+    height: auto;
+  }
+  
+ }
+@media screen and (max-width:640px) { 
+
+  .header , .main , .footer{
+    width: 60%;
+    height: auto;
+  }
+  
+ }
+@media screen and (max-width:480px) { 
+  .header , .main , .footer{
+    
+      width: 70%;
+      height: auto;
+      font-size: 12px;
+    
+  }
+ }
+@media screen and (max-width:320px) { 
+  .header , .main , .footer {
+    
+      width: 40%;
+      height: auto;
+      font-size: 10px;
+
+  }
+ }

@@ -1,0 +1,123 @@
+<html>
+
+<head>
+      <title> Medicines purchases </title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" href="icon1.png" type="image/png" sizes="16x16">
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <title> Home </title>
+      <script src=""></script>
+  </head>
+
+
+<body> 
+      <header class="header"> 
+
+            <div class="linetop">
+            <div class="login">
+            <a href="login.html">  <h2> Login </h2> </a>
+            </div>
+            </div>
+            <div class="">
+
+            </div>
+
+      </header>
+
+<main class="main">
+
+ <div>
+      <img src="search.jpg" alt="image" width="100%" height="47%">
+      <h1 class="h1img">
+        Medicines purchases</h1>
+
+
+      <form action="/action_page.php">
+            <input style="position: relative; top: 20px; width: 42%;" class="searchinapp" type="search" id="myInput" name="gsearch" placeholder=" Search Medicines purchases.." >
+            <input style="position: relative; top: 20px; left: 25%; height: 43px;width: 100px; background-color: #b476b6; color: white;  " type="submit"  >
+          </form>
+
+ </div>
+
+<div>
+
+      <img src="search.jpg" alt="image" width="100%" height="47%" style="top:2300px; position: absolute;">
+      <h1></h1>
+
+</div>
+
+
+
+<table id="myTable">
+  <tr class="header">
+    <th style="width:5%;" > ID </th>
+    <th style="width:12%;">Product Name</th>
+    <th style="width:12%">Purchasing price</th>
+    <th style="width:12%">selling price</th>
+    <th style="width:12%">Quantity</th>
+    <th style="width:12%;">Production Date</th>
+    <th style="width:12%;">Expiry date</th>
+    <th style="width:12%;" >Provider name</th>
+    <th style="width:12%;" >date of purchase</th>
+   
+  </tr>
+
+  <tr>
+        <td> 101 </td>
+        <td>panadol</td>
+        <td> 1000 </td>
+        <td> 2000</td>
+        <td>50</td>
+        <td>2019/3/18</td>
+        <td>2022/3/18</td>
+        <td>ahmed</td>
+        <td>2019/3/22</td>
+  </tr>
+  
+</table>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+
+
+
+
+</main>
+
+     
+
+<footer class="footer">
+
+      <div class="line">
+
+            <h1> Dr. Omar Al-Khursani Clinic </h1>
+
+      </div>
+
+</footer>
+
+
+
+
+</body>
+</html>

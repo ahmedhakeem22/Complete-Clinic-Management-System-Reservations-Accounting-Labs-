@@ -1,0 +1,384 @@
+<?php include 'templats/header.php';
+       include 'templats/navbar.php';
+       
+	?>
+       <html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
+<script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
+</head>
+
+           
+                  <img src="Bloodtest.jpg" alt="image" width="100%" height="auto">
+
+
+
+
+                    <main>
+
+
+<!--
+<form class="needs-validation" novalidate>
+  <select class="mdb-select validate md-form" multiple searchable="Search here..">
+    <option value="" disabled selected>Choose your country</option>
+    <option value="1">USA</option>
+    <option value="2">Germany</option>
+    <option value="3">France</option>
+    <option value="4">Poland</option>
+    <option value="5">Japan</option>
+  </select>
+  <button class="btn btn-default btn-sm">Submit</button>
+</form>
+-->
+
+             <div class="boxlab" style="top:205px; " >
+
+                  <table cellspacing="15" cellpadding="0" >
+
+       <form  action="blood_choosen_dctor_pdf.php" method="get">
+<tr>
+              <td> 
+                    <div style="right:400px;">
+     Patinte ID  :   <input type="number" id="Patinte" name="pat_id" required />
+        Patinte Name  :  <input type="input" id="Patinte" name="fname" required />
+                      </div>
+
+         </td>
+              </tr>
+</table>
+
+<style>
+input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    background:white;
+    border-radius:5px;
+    border:1px solid green;
+        cursor: pointer;
+
+}
+input[type='checkbox']:checked {
+    background: red;
+}
+</style>
+
+<div class="form-group" style="font-size:22px; font-family:Tahoma; "  ><!-- form-group Starts -->
+
+
+<lable style="color:red; font-size:22px; " > HAEMATOLOGY </lable>
+
+<table cellspacing="0" cellpadding="0"  class="table table-white table-striped table-bordered table-hover table-active " >
+
+<tr>
+<td>
+
+               <input type="checkbox" name="test[]" value="1" > C B C </input>
+
+     <select id="choices-multiple-remove-button" placeholder=" C B C -  ???????" multiple>
+
+ <option name="test[]" value="101">HB </option>
+<option name="test[]" value="102">wbc </option>
+
+        </select> 
+        
+
+
+
+
+
+
+
+<input type="checkbox" name="test[]" value="2" > Platelats  </input>
+
+       <input type="checkbox" name="test[]" value="3" > ESR   </input>
+
+       <input type="checkbox" name="test[]" value="4" >  Malaria  </input>
+       
+       <input type="checkbox" name="test[]" value="7" > CT </input>
+
+       <input type="checkbox" name="test[]" value="8" > PT </input>
+        
+        <input type="checkbox" name="test[]" value="9" > BT </input>
+
+       <input type="checkbox" name="test[]" value="10" > Reticulocyte </input>
+
+       <input type="checkbox" name="test[]" value="11" > Sickling test </input>
+              <input type="checkbox" name="test[]" value="12" >  PTT </input>
+
+       
+       <input type="checkbox" name="test[]" value="13" > D_Dimer  </input>
+       </td>
+        </tr>
+
+
+<pre></pre>
+<tr>
+<td>
+
+<lable style="color:red; font-size:22px; "> BIOCHEMEISTRY </lable>
+
+<pre></pre>
+
+
+       <input type="checkbox" name="test[]" value="14" > F.B.S   </input>
+
+       <input type="checkbox" name="test[]" value="15" >  R.B.S </input>
+
+       <input type="checkbox" name="test[]" value="16" > P.PBS  </input>
+
+       <input type="checkbox" name="test[]" value="17" > HBA 1C  </input>
+       
+       <input type="checkbox" name="test[]" value="18" > KFT </input>
+
+<div class="row d-flex justify-content-center ">
+    <div class="col-md-2">
+     <select id="choices-multiple-remove-button" placeholder=" K F T -  ???????" multiple>
+<option name="test[]" value="104">Urea</option>
+<option name="test[]" value="105">Creatinine</option>
+</select>
+        </div>
+</div>
+
+<div class="row d-flex justify-content-center ">
+    <div class="col-md-2">
+
+       <input type="checkbox" name="test[]" value="19" > LFT </input>
+     <select id="choices-multiple-remove-button" placeholder=" L F T -  ???????" multiple>
+<option name="test[]" value="106">S.Got</option>
+<option name="test[]" value="107">S.Gpt</option>
+<option name="test[]" value="108">Total Bilirubin</option>
+<option name="test[]" value="109">Dirict Bilirubin </option>
+</select>
+      </div>
+</div>
+
+       <input type="checkbox" name="test[]" value="20" >ALK.Phospats </input>
+
+       <input type="checkbox" name="test[]" value="21" > Albumin</input>
+
+       <input type="checkbox" name="test[]" value="22" > Electrolytes  </input>
+
+<div class="row d-flex justify-content-center ">
+    <div class="col-md-2">
+
+     <select id="choices-multiple-remove-button" placeholder=" Electrolytes -  ???????" multiple>
+
+<option name="test[]" value="110"> Ca++ </option>
+<option name="test[]" value="111">K+</option>
+<option name="test[]" value="112">Na+</option>
+<option name="test[]" value="113"> Cl+ </option>
+<option name="test[]" value="114">Mg++</option>
+</select>
+            </div>
+</div>
+
+<pre></pre>
+
+
+<div class="row d-flex justify-content-center ">
+    <div class="col-md-2">
+
+       <input type="checkbox" name="test[]" value="23" > Cardiac Enzyme  </input>
+     <select id="choices-multiple-remove-button" placeholder=" Electrolytes -  ???????" multiple>
+<option name="test[]" value="115"> C.K </option>
+<option name="test[]" value="116">CK-MB</option>
+<option name="test[]" value="117">L.D.H</option>
+</select>
+            </div>
+</div>
+
+
+<div class="row d-flex justify-content-center ">
+    <div class="col-md-2">
+
+       <input type="checkbox" name="test[]" value="24" > Lipid  </input>
+       
+     <select id="choices-multiple-remove-button" placeholder=" Electrolytes -  ???????" multiple>
+<option name="test[]" value="118"> Cholesterol </option>
+<option name="test[]" value="119">Triglyceride</option>
+<option name="test[]" value="120">LDL</option>
+<option name="test[]" value="121">HDL</option>
+
+</select>
+           </div>
+</div>
+
+       <input type="checkbox" name="test[]" value="25" >  Uricacid </input>
+
+       <input type="checkbox" name="test[]" value="39" >  T.Patinte </input>
+
+</td>
+</tr>
+<pre></pre>
+<tr>
+<td>
+
+<lable style="color:red; font-size:22px; "> SEROLOGY </lable>
+
+<pre></pre>
+
+       <input type="checkbox" name="test[]" value="26" > ASO  </input>
+
+       <input type="checkbox" name="test[]" value="27" > C.R.P  </input>
+       
+       <input type="checkbox" name="test[]" value="28" > RF </input>
+
+       <input type="checkbox" name="test[]" value="29" > Widal Test </input>
+
+       <input type="checkbox" name="test[]" value="30" > Brucella A+M </input>
+
+       <input type="checkbox" name="test[]" value="31" > BLOOD Group </input>
+
+       <input type="checkbox" name="test[]" value="32" > TB  </input>
+       
+       <div class="row d-flex justify-content-center ">
+    <div class="col-md-2">
+
+       <input type="checkbox" name="test[]" value="33" > Viral Marker  </input>
+     <select id="choices-multiple-remove-button" placeholder=" Electrolytes -  ???????" multiple>
+
+<option name="test[]" value="122"> HIV </option>
+<option name="test[]" value="123">HCV</option>
+<option name="test[]" value="124">HBS.AG</option>
+</select>
+           </div>
+</div>
+
+       <input type="checkbox" name="test[]" value="36" >  VDRL   </input>
+
+       <input type="checkbox" name="test[]" value="37" > H.PYLORI RB </input>
+       
+       <input type="checkbox" name="test[]" value="38" > H.PYLORI AG </input>
+
+
+   </td>
+   </tr>
+
+<pre></pre>
+
+<tr>
+<td>
+
+<lable style="color:red; font-size:22px; " > Drugs </lable>
+<pre></pre>
+
+     <input type="checkbox" name="test[]" value="40" > Ethanol  </input>
+
+       <input type="checkbox" name="test[]" value="41" > Dihjepam  </input>
+       
+       <input type="checkbox" name="test[]" value="42" > Marijuana </input>
+
+       <input type="checkbox" name="test[]" value="43" > Tramedol </input>
+
+       <input type="checkbox" name="test[]" value="44" > Heroin </input>
+
+       <input type="checkbox" name="test[]" value="45" > Pethidine </input>
+
+       <input type="checkbox" name="test[]" value="46" > Cocaine  </input>
+
+              <input type="checkbox" name="test[]" value="47" > Amphetamine  </input>
+
+</td>
+</tr>
+
+       <pre></pre>
+
+       <tr>
+       <td>
+<lable style="color:red; font-size:22px; " > Harmones </lable>
+<pre></pre>
+
+<input type="checkbox" name="test[]" value="48" > T3  </input>
+
+       <input type="checkbox" name="test[]" value="49" > T4  </input>
+       
+       <input type="checkbox" name="test[]" value="50" > TSH </input>
+
+       <input type="checkbox" name="test[]" value="51" > Prolactin </input>
+
+       <input type="checkbox" name="test[]" value="52" > PSA </input>
+
+       <input type="checkbox" name="test[]" value="53" > PS3 </input>
+
+</td>
+</tr>
+
+    </div>
+    </div>
+                    <tr>
+<td  >
+    <button type="submit"  aria-placeholder="Add" name="add_sess" class="btn btn-success" style="width:250px;" > SAVE </button>
+</td>
+</tr>
+
+</form>
+                    </table>
+
+                    <!--
+<style>
+.mt-100 {
+    margin-top: 100px
+}
+
+body {
+    background: #00B4DB;
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+    background: linear-gradient(to right, #0083B0, #00B4DB);
+    color: #514B64;
+    min-height: 100vh
+}
+</style>
+-->
+
+
+      </main>
+
+
+      <footer>
+
+        <!--
+<p id="demo"></p>
+
+            <script>
+            var d = new Date();
+            document.getElementById("demo").innerHTML = d;
+            </script>
+        -->    
+            
+
+      </footer>
+
+      
+
+</body>
+
+
+
+
+
+</html>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+         <script src="js/bootstrap.min.js"></script>
+    <script src="js/fontawesome.min.js"></script> 
+        <script src="js/myjs.js."></script>
+
+        <script>
+ $(document).ready(function(){
+
+ var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+ removeItemButton: true,
+ maxItemCount:5,
+ searchResultLimit:5,
+ renderChoiceLimit:5
+ });
+
+
+ });
+        </script> 
