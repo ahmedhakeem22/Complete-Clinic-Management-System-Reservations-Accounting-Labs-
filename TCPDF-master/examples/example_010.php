@@ -78,17 +78,17 @@ class MC_TCPDF extends TCPDF {
 	public function ChapterBody($file, $mode=false) {
 		$this->selectColumn();
 		// get esternal file content
-		$content = file_get_contents($file, false);
+		$conntent = file_get_contents($file, false);
 		// set font
 		$this->setFont('times', '', 9);
 		$this->setTextColor(50, 50, 50);
 		// print content
 		if ($mode) {
 			// ------ HTML MODE ------
-			$this->writeHTML($content, true, false, true, false, 'J');
+			$this->writeHTML($conntent, true, false, true, false, 'J');
 		} else {
 			// ------ TEXT MODE ------
-			$this->Write(0, $content, '', 0, 'J', true, 0, false, true, 0);
+			$this->Write(0, $conntent, '', 0, 'J', true, 0, false, true, 0);
 		}
 		$this->Ln();
 	}

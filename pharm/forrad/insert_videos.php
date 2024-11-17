@@ -115,7 +115,7 @@ video Url Example : navy-blue-t-shirt
 
 $get_p_cats = "select * from product_categories";
 
-$run_p_cats = mysqli_query($con,$get_p_cats);
+$run_p_cats = mysqli_query($conn,$get_p_cats);
 
 while ($row_p_cats=mysqli_fetch_array($run_p_cats)) {
 
@@ -152,7 +152,7 @@ echo "<option value='$p_cat_id' >$p_cat_title</option>";
 
 $get_cat = "select * from categories ";
 
-$run_cat = mysqli_query($con,$get_cat);
+$run_cat = mysqli_query($conn,$get_cat);
 
 while ($row_cat=mysqli_fetch_array($run_cat)) {
 
@@ -396,7 +396,7 @@ move_uploaded_file($temp_name3,"video_images/$video_img3");
 
 $insert_video = "insert into videos (p_cat_id,cat_id,date,video_title,video_url,video_img1,video_img2,video_img3,video_price,video_psp_price,video_desc,video_features,video_video,video_keywords,video_label,status) values ('$video_cat','$cat',NOW(),'$video_title','$video_url','$video_img1','$video_img2','$video_img3','$video_price','$psp_price','$video_desc','$video_features','$video_video','$video_keywords','$video_label','$status')";
 
-$run_video = mysqli_query($con,$insert_video);
+$run_video = mysqli_query($conn,$insert_video);
 
 if($run_video){
 

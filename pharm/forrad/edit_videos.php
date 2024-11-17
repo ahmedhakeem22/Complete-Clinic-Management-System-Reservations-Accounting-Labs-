@@ -8,7 +8,7 @@ $edit_id = $_GET['edit_videos'];
 
 $get_p = "select * from videos where video_id='$edit_id'";
 
-$run_edit = mysqli_query($con,$get_p);
+$run_edit = mysqli_query($conn,$get_p);
 
 $row_edit = mysqli_fetch_array($run_edit);
 
@@ -55,7 +55,7 @@ $p_video = $row_edit['video_video'];
 
 $get_p_cat = "select * from product_categories where p_cat_id='p_cat'";
 
-$run_p_cat = mysqli_query($con,$get_p_cat);
+$run_p_cat = mysqli_query($conn,$get_p_cat);
 
 $row_p_cat = mysqli_fetch_array($run_p_cat);
 
@@ -63,7 +63,7 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
 $get_cat = "select * from categories where cat_id='cat'";
 
-$run_cat = mysqli_query($con,$get_cat);
+$run_cat = mysqli_query($conn,$get_cat);
 
 $row_cat = mysqli_fetch_array($run_cat);
 
@@ -176,7 +176,7 @@ video Url Example : navy-blue-t-shirt
 
 $get_p_cats = "select * from product_categories";
 
-$run_p_cats = mysqli_query($con,$get_p_cats);
+$run_p_cats = mysqli_query($conn,$get_p_cats);
 
 while ($row_p_cats=mysqli_fetch_array($run_p_cats)) {
 
@@ -213,7 +213,7 @@ echo "<option value='$p_cat_id' >$p_cat_title</option>";
 
 $get_cat = "select * from categories ";
 
-$run_cat = mysqli_query($con,$get_cat);
+$run_cat = mysqli_query($conn,$get_cat);
 
 while ($row_cat=mysqli_fetch_array($run_cat)) {
 
@@ -483,7 +483,7 @@ move_uploaded_file($temp_name3,"video_images/$video_img3");
 
 $update_video = "update videos set p_cat_id='$video_cat',cat_id='$cat',date=NOW(),video_title='$video_title',video_url='$video_url',video_img1='$video_img1',video_img2='$video_img2',video_img3='$video_img3',video_price='$video_price',video_psp_price='$psp_price',video_desc='$video_desc',video_features='$video_features',video_video='$video_video',video_keywords='$video_keywords',video_label='$video_label',status='$status' where video_id='$p_id'";
 
-$run_video = mysqli_query($con,$update_video);
+$run_video = mysqli_query($conn,$update_video);
 
 if($run_video){
 

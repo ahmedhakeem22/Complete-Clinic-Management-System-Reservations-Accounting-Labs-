@@ -34,7 +34,7 @@ $buy_price = 'buy_price'.[$i];
 $insert_med = "INSERT INTO buy_invpice(date_buy,delegate,name_med,countity,expired_date,sale_price,buy_price) values ('$date','$delegate','$name_med','$countity','$expired_date','$sale_price','$buy_price')";    
 
 
-$run_video = mysqli_query($con,$insert_med);
+$run_video = mysqli_query($conn,$insert_med);
 if($run_video){
 
 echo "<script>alert('medicines has been inserted successfully')</script>";
@@ -53,7 +53,7 @@ echo "<script>window.open('index.php','_self')</script>";
  
 <?php
  
-    $r=mysqli_query($con,"select id_med,name_med,opcity,parcode from mediciness");
+    $r=mysqli_query($conn,"select id_med,name_med,opcity,parcode from mediciness");
 
 
 ?>

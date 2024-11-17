@@ -1,9 +1,9 @@
 <?php
 
-$con = mysqli_connect("localhost","root","","najmdb");
-	mysqli_set_charset($con,'utf8');
+$conn = mysqli_connect("localhost","root","","najmdb");
+	mysqli_set_charset($conn,'utf8');
 
-if (!$con) {
+if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 

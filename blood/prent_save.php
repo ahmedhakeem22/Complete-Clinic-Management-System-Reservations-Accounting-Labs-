@@ -182,7 +182,7 @@ $pdf->Cell(140,8,'',0,0,'C',0);
     }
 
 
-  $contant=0;
+  $conntant=0;
 
   if(!empty($pat_hb) || !empty($pat_wbc) || !empty($pat_neutrophil) || !empty($pat_lymphocyte) || !empty($pat_monocyte) || !empty($pat_esoinophil) ||  !empty($pat_platelats) || !empty($pat_esr) || !empty($pat_malaria) || !empty($pat_ct) || !empty($pat_pt) || !empty($pat_ptc) || !empty($pat_inr) || !empty($pat_bt) ||  !empty($pat_reticulocyte) || !empty($pat_sickling) || !empty($pat_ptt) || !empty($pat_pttc) ||  !empty($pat_d_dimer)  )
   {
@@ -195,11 +195,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 
 /*
@@ -218,10 +218,10 @@ if(empty($pat_hb))
 else
 {
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -266,11 +266,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -286,10 +286,10 @@ if(empty($pat_wbc))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -334,11 +334,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -357,10 +357,10 @@ if(empty($pat_neutrophil))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -405,11 +405,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -425,10 +425,10 @@ if(empty($pat_lymphocyte))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -468,11 +468,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
   }
   $pdf->Ln(2);
@@ -488,10 +488,10 @@ if(empty($pat_monocyte))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -536,11 +536,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 }
@@ -556,10 +556,10 @@ if(empty($pat_esoinophil))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -599,11 +599,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
     
   
@@ -623,10 +623,10 @@ if(empty($pat_platelats))
 }
 else{
 
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -671,11 +671,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(100,100,100);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 }
@@ -690,10 +690,10 @@ if(empty($pat_esr))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -738,11 +738,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(100,50,80);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 }
@@ -761,10 +761,10 @@ if(empty($pat_malaria))
 }
 else{
 
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -809,11 +809,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 }
@@ -830,10 +830,10 @@ if(empty($pat_ct))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -878,11 +878,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 
@@ -899,10 +899,10 @@ if(empty($pat_pt))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -947,11 +947,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 }
@@ -967,10 +967,10 @@ if(empty($pat_ptc))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1015,11 +1015,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 }
@@ -1036,10 +1036,10 @@ if(empty($pat_inr))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1084,11 +1084,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 }
@@ -1105,10 +1105,10 @@ if(empty($pat_bt))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1153,11 +1153,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 
@@ -1174,10 +1174,10 @@ if(empty($pat_reticulocyte))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1222,11 +1222,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 
@@ -1244,10 +1244,10 @@ if(empty($pat_sickling))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1292,11 +1292,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 
@@ -1315,10 +1315,10 @@ if(empty($pat_ptt))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1363,11 +1363,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 }
@@ -1383,10 +1383,10 @@ if(empty($pat_pttc))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1431,11 +1431,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 }
@@ -1451,10 +1451,10 @@ if(empty($pat_d_dimer))
 
 }
 else{
-  $contant=$contant+1;
-if($contant==16){
+  $conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1499,11 +1499,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'HAEMATOLOGY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
   
 
@@ -1531,11 +1531,11 @@ $pdf->Ln();
      
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 
 if(empty($pat_fbs))
@@ -1544,10 +1544,10 @@ if(empty($pat_fbs))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1592,11 +1592,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -1613,10 +1613,10 @@ if(empty($pat_rbs))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1661,11 +1661,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -1684,10 +1684,10 @@ if(empty($pat_p_pbs))
 else{
 
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1732,11 +1732,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -1755,10 +1755,10 @@ if(empty($pat_hba))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1803,11 +1803,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -1826,10 +1826,10 @@ if(empty($pat_urea))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1874,11 +1874,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -1895,10 +1895,10 @@ if(empty($pat_creatinine))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -1943,11 +1943,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -1964,10 +1964,10 @@ if(empty($pat_s_got))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -2012,11 +2012,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -2033,10 +2033,10 @@ if(empty($pat_s_gpt))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -2081,11 +2081,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -2101,10 +2101,10 @@ if(empty($pat_total_bilirubin))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -2144,11 +2144,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
   }
     $pdf->Ln(2);
@@ -2164,10 +2164,10 @@ if(empty($pat_dirict_bilirubin))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -2207,11 +2207,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
   }
       $pdf->Ln(2);
@@ -2228,10 +2228,10 @@ if(empty($pat_alk_phospats))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -2274,11 +2274,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
     $pdf->Ln(2);
@@ -2293,10 +2293,10 @@ if(empty($pat_albumin))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -2341,11 +2341,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
     $pdf->Ln(2);
@@ -2360,10 +2360,10 @@ if(empty($pat_ca))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -2403,11 +2403,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
   }
       $pdf->Ln(2);
@@ -2424,10 +2424,10 @@ if(empty($pat_k))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -2472,11 +2472,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
     $pdf->Ln(2);
@@ -2493,10 +2493,10 @@ if(empty($pat_na))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -2541,11 +2541,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
     $pdf->Ln(2);
@@ -2563,10 +2563,10 @@ if(empty($pat_cl))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -2611,11 +2611,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
     $pdf->Ln(2);
@@ -2631,10 +2631,10 @@ if(empty($pat_mg))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -2674,11 +2674,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
   }
       $pdf->Ln(2);
@@ -2694,10 +2694,10 @@ if(empty($pat_ck))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -2737,11 +2737,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
   }
       $pdf->Ln(2);
@@ -2757,10 +2757,10 @@ if(empty($pat_ck_mb))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -2800,11 +2800,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
   }
       $pdf->Ln(2);
@@ -2821,10 +2821,10 @@ if(empty($pat_ldh))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -2869,11 +2869,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
     $pdf->Ln(2);
@@ -2890,10 +2890,10 @@ if(empty($pat_cholesterol))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -2938,11 +2938,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
     $pdf->Ln(2);
@@ -2959,10 +2959,10 @@ if(empty($pat_triglyceride))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3007,11 +3007,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
     $pdf->Ln(2);
@@ -3028,10 +3028,10 @@ if(empty($pat_ldl))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3076,11 +3076,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3096,10 +3096,10 @@ if(empty($pat_hdl))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -3139,11 +3139,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
   }
     $pdf->Ln(2);
@@ -3161,10 +3161,10 @@ if(empty($pat_uricacid))
 }
 else{
   
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3209,11 +3209,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3229,10 +3229,10 @@ if(empty($pat_t_patinte))
 
 }
 else{
-  $contant=$contant+1;
-  if($contant==16){
+  $conntant=$conntant+1;
+  if($conntant==16){
  
-    $contant=0;
+    $conntant=0;
     $pdf-> AddPage();
   
   
@@ -3272,11 +3272,11 @@ else{
          
     $pdf->SetFillColor(214, 234, 248);
     $pdf->Cell(186,8,'BIOCHEMEISTRY ',1,1,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Cell(62,8,' Test ',1,0,'C','true');
     $pdf->Cell(62,8,' Result ',1,0,'C','true');
     $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-    $contant=$contant+1;
+    $conntant=$conntant+1;
     $pdf->Ln();
   }
     $pdf->Ln(2);
@@ -3302,11 +3302,11 @@ $pdf->Ln();
      
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 
 if(empty($pat_aso))
@@ -3314,10 +3314,10 @@ if(empty($pat_aso))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3362,11 +3362,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3381,10 +3381,10 @@ if(empty($pat_crp))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3429,11 +3429,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3448,12 +3448,12 @@ if(empty($pat_rf))
 
 }
 else{
-$contant=$contant+1;
+$conntant=$conntant+1;
 
 
-if($contant==16){
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3498,11 +3498,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3517,10 +3517,10 @@ if(empty($pat_salmon_o))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3565,11 +3565,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3587,10 +3587,10 @@ if(empty($pat_salmon_h))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3635,11 +3635,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3658,10 +3658,10 @@ if(empty($pat_salmon_a))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3706,11 +3706,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3728,10 +3728,10 @@ if(empty($pat_salmon_b))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3776,11 +3776,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3798,12 +3798,12 @@ if(empty($pat_brucella_a))
 
 }
 else{
-$contant=$contant+1;
+$conntant=$conntant+1;
 
 
-if($contant==16){
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3848,11 +3848,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3870,12 +3870,12 @@ if(empty($pat_brucella_m))
 
 }
 else{
-$contant=$contant+1;
+$conntant=$conntant+1;
 
 
-if($contant==16){
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3920,11 +3920,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -3943,10 +3943,10 @@ if(empty($pat_blood_group))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -3991,11 +3991,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
   $pdf->Ln(2);
@@ -4010,10 +4010,10 @@ if(empty($pat_tb))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4058,11 +4058,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4077,10 +4077,10 @@ if(empty($pat_hiv))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4125,11 +4125,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4146,10 +4146,10 @@ if(empty($pat_hcv))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4194,11 +4194,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4215,10 +4215,10 @@ if(empty($pat_hbs_ag))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4263,11 +4263,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4284,10 +4284,10 @@ if(empty($pat_vdrl))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4332,11 +4332,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4353,10 +4353,10 @@ if(empty($pat_h_pylori_rb))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4401,11 +4401,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4422,10 +4422,10 @@ if(empty($pat_h_pylori_ag))
 
 }
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4470,11 +4470,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'SEROLOGY ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4497,11 +4497,11 @@ if(!empty($pat_ethanol) || !empty($pat_dlhjpam) || !empty($pat_marijuana) ||  !e
        
   $pdf->SetFillColor(214, 234, 248);
   $pdf->Cell(186,8,'DRUGS ',1,1,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Cell(62,8,' Test ',1,0,'C','true');
   $pdf->Cell(62,8,' Result ',1,0,'C','true');
   $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-  $contant=$contant+1;
+  $conntant=$conntant+1;
   $pdf->Ln();
 if(empty($pat_ethanol))
 {
@@ -4509,10 +4509,10 @@ if(empty($pat_ethanol))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4557,11 +4557,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'DRUGS ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4576,10 +4576,10 @@ if(empty($pat_dlhjpam))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4624,11 +4624,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'DRUGS ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4644,10 +4644,10 @@ if(empty($pat_marijuana))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4692,11 +4692,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'DRUGS ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4711,10 +4711,10 @@ if(empty($pat_tramedol))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4758,11 +4758,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'DRUGS ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4777,10 +4777,10 @@ if(empty($pat_heroin))
 }
 
 else{
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4825,11 +4825,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'DRUGS ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4845,10 +4845,10 @@ if(empty($pat_pethidine))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4893,11 +4893,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'DRUGS ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4913,10 +4913,10 @@ if(empty($pat_cocaine))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -4961,11 +4961,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'DRUGS ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -4981,10 +4981,10 @@ if(empty($pat_amphetamine))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5029,11 +5029,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'DRUGS ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Ln(2);
@@ -5059,7 +5059,7 @@ if(!empty($pat_t3) || !empty($pat_t4) || !empty($pat_tsh) || !empty($pat_prolact
 
 
 $pdf->Ln();
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
   
         $pdf->Image('img.png',10,10,-300);
@@ -5094,11 +5094,11 @@ $pdf->Cell(140,8,'',0,0,'C',0);
 $pdf->Ln();
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 
 
@@ -5108,10 +5108,10 @@ if(empty($pat_t3))
 }
 else{
 
-$contant=$contant+1;
-if($contant>=12){
+$conntant=$conntant+1;
+if($conntant>=12){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5155,11 +5155,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+8;
+$conntant=$conntant+8;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'          T3',0,0,'C',0);
@@ -5174,10 +5174,10 @@ if(empty($pat_t4))
 }
 else{
 
-$contant=$contant+1;
-if($contant>=12){
+$conntant=$conntant+1;
+if($conntant>=12){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5222,11 +5222,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+8;
+$conntant=$conntant+8;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'          T4',0,0,'C',0);
@@ -5241,10 +5241,10 @@ if(empty($pat_tsh))
 }
 else{
 
-$contant=$contant+1;
-if($contant>=12){
+$conntant=$conntant+1;
+if($conntant>=12){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5289,11 +5289,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+8;
+$conntant=$conntant+8;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'          TSH',0,0,'C',0);
@@ -5307,10 +5307,10 @@ if(empty($pat_prolactin))
 }
 
 else{
-$contant=$contant+8;
-if($contant>=12){
+$conntant=$conntant+8;
+if($conntant>=12){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5355,11 +5355,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+2;
+$conntant=$conntant+2;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'          Prolactin',0,0,'C',0);
@@ -5373,10 +5373,10 @@ if(empty($pat_psa))
 }
 else{
 
-$contant=$contant+1;
-if($contant==12){
+$conntant=$conntant+1;
+if($conntant==12){
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5421,11 +5421,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'          PSA Free',0,0,'C',0);
@@ -5439,11 +5439,11 @@ if(empty($pat_ps3))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5488,11 +5488,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'         PSA Total',0,0,'C',0);
@@ -5506,11 +5506,11 @@ if(empty($pat_vitb))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5555,11 +5555,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'          Vit-B12',0,0,'C',0);
@@ -5573,11 +5573,11 @@ if(empty($pat_vitd))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5622,11 +5622,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'          Vit-D3',0,0,'C',0);
@@ -5640,11 +5640,11 @@ if(empty($pat_ca153))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5689,11 +5689,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'          CA 153',0,0,'C',0);
@@ -5707,11 +5707,11 @@ if(empty($pat_ca125))
 }
 else{
 
-$contant=$contant+1;
-if($contant==16){
+$conntant=$conntant+1;
+if($conntant==16){
  
  
-  $contant=0;
+  $conntant=0;
   $pdf-> AddPage();
 
 
@@ -5756,11 +5756,11 @@ $pdf->Ln();
        
 $pdf->SetFillColor(214, 234, 248);
 $pdf->Cell(186,8,'HARMONES ',1,1,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Cell(62,8,' Test ',1,0,'C','true');
 $pdf->Cell(62,8,' Result ',1,0,'C','true');
 $pdf->Cell(62,8,' Reference Values ',1,0,'C','true');
-$contant=$contant+1;
+$conntant=$conntant+1;
 $pdf->Ln();
 }
 $pdf->Cell(62,8,'          CA 125',0,0,'C',0);

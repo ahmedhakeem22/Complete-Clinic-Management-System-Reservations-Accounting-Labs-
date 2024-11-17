@@ -45,7 +45,7 @@ $med_name=$_POST['med_name'];
 
 
 
-     $s=mysqli_query($con,"select fname from patinte where pat_id = $pat_id");
+     $s=mysqli_query($conn,"select fname from patinte where pat_id = $pat_id");
 
 
      while($row =mysqli_fetch_array($s)){
@@ -72,7 +72,7 @@ $pdf->Cell(15,8,'تاريخ',1,0,'C','true');
 $pdf->Cell(35,8,$date,1,1,'C','true');
         $pdf->Ln(10);
 /*
-$a = mysqli_query($con, " select usee from medical where pat_id=$pat_id ");
+$a = mysqli_query($conn, " select usee from medical where pat_id=$pat_id ");
 
 while ($row = mysqli_fetch_array($a)){
     

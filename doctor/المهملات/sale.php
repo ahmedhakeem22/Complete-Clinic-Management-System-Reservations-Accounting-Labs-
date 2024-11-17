@@ -47,7 +47,7 @@ echo $mysqli->error;
 $pat_id=$_POST['pat_id'];
 $med_name=$_POST['med_name'];
 
-     $s=mysqli_query($con,"select fname from patinte where pat_id = $pat_id");
+     $s=mysqli_query($conn,"select fname from patinte where pat_id = $pat_id");
 
 
      while($row =mysqli_fetch_array($s)){

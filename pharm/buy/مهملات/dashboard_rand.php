@@ -29,7 +29,7 @@ $num_rand=0;
     $insert_med_inv = "INSERT INTO invoice_pharm(date_invo,num_rand,decrip) values ('$date','$num_rand','$decrip')";    
 
 
-    $run_video = mysqli_query($con,$insert_med_inv);
+    $run_video = mysqli_query($conn,$insert_med_inv);
     
     if($run_video){
     
@@ -41,7 +41,7 @@ $num_rand=0;
   if(isset($_GET['add'])){
 
 
-    $id_inv=mysqli_query($con,"select id from invoice_pharm wher num_rand=$num_rand and date_invo='$date' ");
+    $id_inv=mysqli_query($conn,"select id from invoice_pharm wher num_rand=$num_rand and date_invo='$date' ");
 $row =mysqli_fetch_array($id_inv);
 echo $row['id'];
     echo 'najm';
@@ -65,7 +65,7 @@ echo $row['id'];
     $insert_med = "INSERT INTO invoice_pharm_buy(date_buy,name_delegate,exp_date,price_buy,price_sale) values ('$date','$delegate','$expired_date','$buy_price','$sale_price')";    
     
     
-    $run_video = mysqli_query($con,$insert_med);
+    $run_video = mysqli_query($conn,$insert_med);
     
     if($run_video){
     
@@ -93,7 +93,7 @@ $buy_price = $val['buy_price'];
 $insert_med = "INSERT INTO buy_invpice(date_buy,delegate,name_med,countity,expired_date,sale_price,buy_price) values ('$date','$delegate','$name_med','$countity','$expired_date','$sale_price','$buy_price')";    
 
 
-$run_video = mysqli_query($con,$insert_med);
+$run_video = mysqli_query($conn,$insert_med);
 if($run_video){
 
 echo "<script>alert('medicines has been inserted successfully')</script>";
@@ -220,7 +220,7 @@ function myFunction() {
 
 <?php 
 /*
-    $r=mysqli_query($con,"select id_med,name_med,type,parcode,opcity from mediciness");
+    $r=mysqli_query($conn,"select id_med,name_med,type,parcode,opcity from mediciness");
 
 */
 

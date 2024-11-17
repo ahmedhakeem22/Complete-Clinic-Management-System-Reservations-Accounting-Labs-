@@ -94,7 +94,7 @@ function test_input($data) {
 
         $behav=$_POST['behav'];
 
-        $conscien=$_POST['conscien'];
+        $connscien=$_POST['conscien'];
 
         $mood=$_POST['mood'];
 
@@ -122,7 +122,7 @@ function test_input($data) {
         $stmt = $conn->prepare("INSERT INTO session (pat_id,date_now,date_pev,date_next,main_com,period_ill,sex_hist,person_hist,curr_hist,last_hist,fam_hist,work_hist,basic_dig,type_dig,diff_dig,appear,behav,conscien,mood,killer,thin_shep,thin_con,percep,memory,ability,fores,degree)
         VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         
-        $stmt->bind_param("sssssssssssssssssssssssssss",$pat_id,$pat_date,$date_pev,$date_next,$main_com,$period_ill,$sex_hist,$person_hist,$curr_hist,$last_hist,$fam_hist,$work_hist,$basic_dig,$type_dig,$diff_dig,$appear,$behav,$conscien,$mood,$killer,$thin_shep,$thin_con,$percep,$memory,$ability,$fores,$degree) ;
+        $stmt->bind_param("sssssssssssssssssssssssssss",$pat_id,$pat_date,$date_pev,$date_next,$main_com,$period_ill,$sex_hist,$person_hist,$curr_hist,$last_hist,$fam_hist,$work_hist,$basic_dig,$type_dig,$diff_dig,$appear,$behav,$connscien,$mood,$killer,$thin_shep,$thin_con,$percep,$memory,$ability,$fores,$degree) ;
         $stmt->execute();
         /*
         if ($conn->query($sql) === TRUE) {

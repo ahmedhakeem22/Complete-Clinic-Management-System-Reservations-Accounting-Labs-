@@ -403,9 +403,9 @@ foreach ($testFiles as $file => $type) {
             }
 
             // Now we convert each page of the PDF into PNG
-            $conversionDir = $outputDir . basename($file, '.php') . DIRECTORY_SEPARATOR;
-            $pngFiles1 = $pdfTools->convertToPng($outputFile1, $conversionDir . 'ref');
-            $pngFiles2 = $pdfTools->convertToPng($outputFile2, $conversionDir . 'cmp');
+            $connversionDir = $outputDir . basename($file, '.php') . DIRECTORY_SEPARATOR;
+            $pngFiles1 = $pdfTools->convertToPng($outputFile1, $connversionDir . 'ref');
+            $pngFiles2 = $pdfTools->convertToPng($outputFile2, $connversionDir . 'cmp');
 
             if (count($pngFiles1) !== count($pngFiles2)) {
                 $differences[] = $file . ' (CONTENT)';

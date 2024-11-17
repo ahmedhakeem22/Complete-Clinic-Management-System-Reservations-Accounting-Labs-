@@ -51,13 +51,13 @@ Log in
 
 if(isset($_POST['b_name'])){
 
-$admin_email = mysqli_real_escape_string($con,$_POST['b_name']);
+$admin_email = mysqli_real_escape_string($conn,$_POST['b_name']);
 
-$admin_pass = mysqli_real_escape_string($con,$_POST['b_pass']);
+$admin_pass = mysqli_real_escape_string($conn,$_POST['b_pass']);
 
 $get_admin = "select * from ph_buy_admin where b_name='$admin_email' AND b_pass='$admin_pass'";
 
-$run_admin = mysqli_query($con,$get_admin);
+$run_admin = mysqli_query($conn,$get_admin);
 
 $count = mysqli_num_rows($run_admin);
 

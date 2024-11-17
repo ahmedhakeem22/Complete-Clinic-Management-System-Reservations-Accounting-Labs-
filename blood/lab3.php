@@ -179,7 +179,7 @@ if (empty($_POST["pat_id"])) {
 
 $insert_blood_test = "insert into blood_test (pat_id,hb,wbc,neutrophil,lymphocyle,monocyte,eosinophil,rbs,urea,creatinine,s_got,s_gpt,total_bilirubin,direct_briliubin,aso,crp,rf,salrnonolls_o,salrnonolls_h,salrnonolls_a,salrnonolls_b,marijuana,amphetamin,cocaine,heroin,pt,ptt,inr,esr,malari,cholestrol,triglyceride,hdl,ldl,ca,k,na,h_pylorl,hiv,hbs_ag,hcv) values ('$pat_id','$pat_hb','$pat_wbc','$pat_neutrophil','$pat_lymphocyle','$pat_monocyte','$pat_eosinophil','$pat_rbs','$pat_urea','$pat_creatinine','$pat_s_got','$pat_s_gpt','$pat_total_bilirubin','$pat_direct_briliubin','$pat_aso','$pat_crp','$pat_rf','$pat_salrnonolls_o','$pat_salrnonolls_h','$pat_salrnonolls_a','$pat_salrnonolls_b','$pat_marijuana','$pat_amphetamin','$pat_cocaine','$pat_heroin','$pat_pt','$pat_ptt','$pat_inr','$pat_esr','$pat_malari','$pat_cholestrol','$pat_triglyceride','$pat_hdl','$pat_ldl','$pat_ca' ,'$pat_k','$pat_na','$pat_h_pylorl','$pat_hiv','$pat_hbs_ag','$pat_hcv')";
 
-$run_blood_test = mysqli_query($con,$insert_blood_test);
+$run_blood_test = mysqli_query($conn,$insert_blood_test);
 
 if($run_blood_test){
 

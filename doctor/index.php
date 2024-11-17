@@ -20,7 +20,7 @@ $admin_session = $_SESSION['a_name'];
 
 $get_admin = "select * from admin  where a_name='$admin_session'";
 
-$run_admin = mysqli_query($con,$get_admin);
+$run_admin = mysqli_query($conn,$get_admin);
 
 $row_admin = mysqli_fetch_array($run_admin);
 

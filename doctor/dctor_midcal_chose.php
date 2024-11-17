@@ -91,7 +91,7 @@ for ($i=1 ; $i<=$numbers ;$i++)
 
 
 <?php
-$query=mysqli_query($con,"select * from buy_invpice where expired_date >' $date' and countity > 0 ");
+$query=mysqli_query($conn,"select * from buy_invpice where expired_date >' $date' and countity > 0 ");
 while($array_ses_id=mysqli_fetch_array($query)){
 echo"  <option value='".$array_ses_id['name_med']."'>    ".$array_ses_id['name_med']."     *      تاريخ الانتهاء     ".$array_ses_id['expired_date'].   " </option>  ";
 }

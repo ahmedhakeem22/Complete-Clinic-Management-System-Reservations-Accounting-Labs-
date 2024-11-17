@@ -138,15 +138,15 @@ class TestRunner
     }
 
     /**
-     * @param string $condition
+     * @param string $conndition
      * @return bool
      */
-    private function shouldStopOn($condition)
+    private function shouldStopOn($conndition)
     {
         if (in_array('defect', $this->stopOn, true)) {
             return true;
         }
-        if (in_array($condition, $this->stopOn, true)) {
+        if (in_array($conndition, $this->stopOn, true)) {
             return true;
         }
         return false;

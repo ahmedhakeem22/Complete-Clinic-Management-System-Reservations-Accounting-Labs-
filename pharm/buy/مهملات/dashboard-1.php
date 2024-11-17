@@ -38,7 +38,7 @@ $buy_price = $_POST['buy_price'];
 $insert_med = "INSERT INTO buy_invpice(date_buy,delegate,name_med,countity,expired_date,sale_price,buy_price) values ('$date','$delegate','$name_med','$countity','$expired_date','$sale_price','$buy_price')";    
 
 
-$run_video = mysqli_query($con,$insert_med);
+$run_video = mysqli_query($conn,$insert_med);
 
 if($run_video){
 
@@ -55,7 +55,7 @@ echo "<script>window.open('index.php','_self')</script>";
  
 <?php
  
-    $r=mysqli_query($con,"select id_med,name_med,opcity,parcode from mediciness");
+    $r=mysqli_query($conn,"select id_med,name_med,opcity,parcode from mediciness");
 
 */
 ?>
@@ -114,7 +114,7 @@ while($row =mysqli_fetch_array($r)){
 <select name="name_med">
 <?php
 
-$query=mysqli_query($con,"select * from mediciness");
+$query=mysqli_query($conn,"select * from mediciness");
 while($id_med=mysqli_fetch_array($query)){
   echo "<option value='".$id_med['id_med']."'>".$id_med['name_med']."</option>";
 

@@ -8,11 +8,11 @@ $username = "root";
 $password = "";
 
 // Create connection
-$con = mysqli_connect($servername, $username, $password);
+$conn = mysqli_connect($servername, $username, $password);
 
 
 
-    mysqli_select_db($con,"najmdb");
+    mysqli_select_db($conn,"najmdb");
 
     
         
