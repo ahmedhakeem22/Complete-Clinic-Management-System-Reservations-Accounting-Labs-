@@ -4,7 +4,7 @@ include 'templats/header.php';
 include 'templats/navbar.php';
 
 // تضمين ملف الاتصال بقاعدة البيانات من المسار المحدد
-include 'C:/Users/Zainon/Herd/htdocs/includes/db.php';
+include '../includes/db.php';
 
 // تهيئة متغير معرّف المريض
 $pat_idd = 0;
