@@ -1,7 +1,7 @@
 
 <?php
-//require_once('TCPDF-master/tcpdf.php');
-require_once('TCPDF-master/tcpdf.php');
+
+require_once('../TCPDF-master/tcpdf.php');
 
 
 $servername = "127.0.0.1";
@@ -135,17 +135,6 @@ $pat_rf=$_GET['rf'];
 
 $run_blood_test = mysqli_query($conn,$insert_blood_test);
 
-/*  if($run_blood_test){
-
-echo "<script>alert('blood_test has been inserted successfully')</script>";
-///echo "<script>window.open('lab2.php','_self')</script>";
-  }
-  
-else{
-    echo "<script>alert(' ERROR ')</script>";
-    echo "<script>window.open('lab2.php','_self')</script>";
-  }
-  */
 
      $s=mysqli_query($conn,"select fname,age,gander,phone from patinte where pat_id=$pat_id");
 

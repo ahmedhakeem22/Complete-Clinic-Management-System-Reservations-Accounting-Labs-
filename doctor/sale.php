@@ -1,6 +1,6 @@
 <?php
-//require_once('TCPDF-master/tcpdf.php');
-require_once('TCPDF-master/tcpdf.php');
+
+require_once('../TCPDF-master/tcpdf.php');
 
 
 $pdf= new TCPDF('p','mm','A4',true,'UTF-8',false);

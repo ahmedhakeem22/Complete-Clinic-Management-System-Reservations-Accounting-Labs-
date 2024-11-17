@@ -1,7 +1,7 @@
 <?php 
 
 
-require_once('TCPDF-master/tcpdf.php');
+require_once('../TCPDF-master/tcpdf.php');
 
 $pdf =new TCPDF('p','mm','A4','UTF-8');
 $pdf-> AddPage();

@@ -1,7 +1,7 @@
 <?php 
 
 
-require_once('TCPDF-master/tcpdf.php');
+require_once('../TCPDF-master/tcpdf.php');
 
 //concect db 
 $servername = "127.0.0.1";
