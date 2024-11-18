@@ -3,14 +3,7 @@
 require_once('../TCPDF-master/tcpdf.php');
 
 
-
-
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-
-$conn = mysqli_connect($servername, $username, $password);
-mysqli_select_db($conn,"najmdb");
+include '../includes/db.php';
 
 
 

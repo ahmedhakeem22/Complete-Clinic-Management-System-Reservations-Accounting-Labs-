@@ -10,14 +10,8 @@ $pdf-> AddPage();
 
         $pdf->Image('img_back_pdf.png',10,10,-300);
 
-include 'includes/db.php';
+  include '../includes/db.php';
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "najmdb";
-
-$mysqli = new mysqli($servername, $username, $password ,$dbname);
 
  date_default_timezone_set("Asia/Aden");
 $date=   date("Y-m-d ");               
@@ -30,10 +24,6 @@ function test_input($data) {
 
 
 
-
-if ($mysqli->connect_errno)
-    die("Connection failed: " .$mysqli->connect_error);
- 
 
 $pat_id=$_POST['pat_id'];
 $med_name=$_POST['med_name'];

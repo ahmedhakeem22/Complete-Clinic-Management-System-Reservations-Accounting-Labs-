@@ -6,14 +6,7 @@ require_once('tcpdf.php');
 $pdf =new TCPDF('p','mm','A4','UTF-8');
 $pdf-> AddPage();
 
-include 'includes/db.php';
-
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "najmdb";
-
-$mysqli = new mysqli($servername, $username, $password ,$dbname);
+include '../includes/db.php';
 
  date_default_timezone_set("Asia/Aden");
 $date=   date("Y-m-d ");               
@@ -25,13 +18,6 @@ function test_input($data) {
   }
 
 
-
-
-if ($mysqli->connect_errno)
-    die("Connection failed: " .$mysqli->connect_error);
- 
-
- 
 
 $s = "INSERT INTO medical (pat_id,med_name,usee,countity,date_t) VALUES ";
 for ($i = 0; $i < $_POST['numbers'] ; $i++) { 
