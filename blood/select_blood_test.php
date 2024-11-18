@@ -2,9 +2,6 @@
 <html>
 <head>
 
-<?php include 'templats/header.php';
-	include 'templats/navbar.php';
-	?>
 
 <title> Select Test </title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -13,42 +10,41 @@
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" >
 
 </head>
-
 <?php
-$servername = "127.0.0.1";
-$username = "root";
-$password = "root";
-$dbname = "najmdb";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password ,$dbname);
+include 'templats/header.php';
+include 'templats/navbar.php';
+include '../includes/db.php'; // استيراد ملف الاتصال بقاعدة البيانات
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-else{
-  
-    date_default_timezone_set("Asia/Aden");
-$pat_date=   date("Y-m-d ");               
+date_default_timezone_set("Asia/Aden");
+$pat_date = date("Y-m-d");
+
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-  }
-
-
-$pat_id=0;
-  if(isset($_GET['select'])){
-$pat_id=$_GET['pat_id'];
- 
-    $s=mysqli_query($conn,"select pat_id,hb,wbc,neutrophil,lymphocyte,monocyte,esoinophil,platelats,esr,malaria,ct,pt,ptc,inr,bt,reticulocyte,sickling,ptt,pttc,d_dimer,fbs,rbs,p_pbs,hba,urea,creatinine,s_got,s_gpt,total_bilirubin,dirict_bilirubin,alk_phospats,albumin,ca,k,na,cl,mg,ck,ck_mb,ldh,cholesterol,triglyceride,ldl,hdl,uricacid,t_patinte,aso,rf,salmon_o,salmon_h,salmon_a,salmon_b,brucella_a,brucella_m,blood_group,tb,hiv,hcv,hbs_ag,vdrl,h_pylori_rb,h_pylori_ag,ethanol,dlhjpam,marijuana,tramedol,heroin,pethidine,cocaine,amphetamine,t3,t4,tsh,prolactin,psa,ps3,vitb,vitd,ca153,ca125,today_date from blood_test where pat_id=$pat_id");
-  }
-
-    $conn->close();
 }
 
+$pat_id = 0;
+if (isset($_POST['select']) && isset($_POST['pat_id'])) {
+    $pat_id = test_input($_POST['pat_id']);
+    $pat_id = mysqli_real_escape_string($conn, $pat_id);
+    
+    $s = mysqli_query($conn, "SELECT * FROM blood_test WHERE pat_id='$pat_id'");
+    
+    if (mysqli_num_rows($s) > 0) {
+        while ($row = mysqli_fetch_array($s)) {
+            echo "<tr>";
+            echo "<td> djgdhgdjhg " . $row['pat_id'] . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "No results found.";
+    }
+}
+
+$conn->close(); // إغلاق الاتصال
 ?>
 
 <body> 	
