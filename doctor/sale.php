@@ -8,7 +8,7 @@ $pdf-> AddPage();
         $pdf->Ln(42);
           $pdf->SetFillColor(165, 225, 166);
 
-        $pdf->Image('img_back_pdf.png',10,10,-300);
+        $pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
 
   include '../includes/db.php';
 

@@ -38,7 +38,7 @@ $pdf =new tcpdf('p','mm','A4','UTF-8');
 $pdf-> AddPage();
 $pdf->SetFont('times','B',12);
 
-$pdf->Image('img_back_pdf.png',10,10,-300);
+$pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
 //$pdf->Image('pic2.jpg',10,2,40);
 
 

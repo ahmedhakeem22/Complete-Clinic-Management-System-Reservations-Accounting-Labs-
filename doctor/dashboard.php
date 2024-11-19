@@ -14,19 +14,19 @@ else {
 
 
 ?>
-<?php include 'templats/header.php';
-	include 'templats/navbar.php';
+<?php include 'includes/templats/header.php';
+	include 'includes/templats/navbar.php';
 	?>
 
       <main >
 <div class="home1">
                   
-                  <img src="home.jpg" alt="image">
+                  <img src="includes/images/home.jpg" alt="image">
       </div>
 
       <div class="home">
 
-                  <img src="backimg.jpg" alt="" >
+                  <img src="includes/images/backimg.jpg" alt="" >
       </div>
       
 
@@ -52,8 +52,8 @@ else {
 </body>
 </html>
 <?php } ?>
-<script src="js/jquery-3.4.1.min.js"></script>
-         <script src="js/bootstrap.min.js"></script>
-    <script src="js/fontawesome.min.js"></script> 
-        <script src="js/myjs.js."></script> 
+<script src="includes/js/jquery-3.4.1.min.js"></script>
+         <script src="includes/js/bootstrap.min.js"></script>
+    <script src="includes/js/fontawesome.min.js"></script> 
+        <script src="includes/js/myjs.js."></script> 
 

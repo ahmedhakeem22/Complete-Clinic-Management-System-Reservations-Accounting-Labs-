@@ -1,5 +1,5 @@
-<?php include 'templats/header.php';
-include 'templats/navbar.php';
+<?php include 'includes/templats/header.php';
+include 'includes/templats/navbar.php';
 ?> 
 
       <main>

@@ -12,7 +12,7 @@ include '../includes/db.php';
 
 <title>Admin Login</title>
 
-<link rel="stylesheet" href="css/bootstrap.min.css" >
+<link rel="stylesheet" href="includes/css/bootstrap.min.css" >
 
 <link rel="stylesheet" href="login.css" >
 

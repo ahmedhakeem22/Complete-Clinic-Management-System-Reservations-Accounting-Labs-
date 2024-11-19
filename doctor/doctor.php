@@ -1,6 +1,6 @@
 
-<?php include 'templats/header.php';
-	include 'templats/navbar.php';
+<?php include 'includes/templats/header.php';
+	include 'includes/templats/navbar.php';
 	?>
 
       <main>
@@ -21,7 +21,7 @@
 		<div class="  col-md-3 col-sm-3"><!-- col-lg-12 Starts -->
 		
 <div class="form-group" ><!-- form-group Starts -->
-<div><img  src="jalsa1.PNG" alt="">
+<div><img  src="includes/images/jalsa1.PNG" alt="">
 	  <a href="newsession.php" class="col-md-12 "> New session </a></div>
 
 </div><!-- form-group Ends -->
@@ -29,7 +29,7 @@
 	  
 	<div class="form-group" ><!-- form-group Starts -->
 <div>
-		<img  src="IMG4.png" alt="">
+		<img  src="includes/images/IMG4.png" alt="">
 		<a href="book_all_out_pdf.php"> مخرجات كشف الصندوق </a>
 			</div>
 
@@ -38,7 +38,7 @@
 		<div class="  col-md-3 col-sm-3"><!-- col-lg-12 Starts -->	
 		<div class="form-group" ><!-- form-group Starts -->
     <div>
-    <img  src="img7.png" alt="">
+    <img  src="includes/images/img7.png" alt="">
 		 <a href="book_nafsy_pdf_ach_db.php">  فواتير الفحوص النفسية </a>
        </div>
       
@@ -46,7 +46,7 @@
 </div><!-- form-group Ends -->
 
 		<div class="form-group" ><!-- form-group Starts -->
- <div> <img  src="IMG5.png" alt="">
+ <div> <img  src="includes/images/IMG5.png" alt="">
        <a href="book_pdf_ach_db.php"> فواتير الجلسات </a>
         </div>
 </div><!-- form-group Ends -->
@@ -54,12 +54,12 @@
 			</div>
             <div class="  col-md-3 col-sm-3"><!-- col-lg-12 Starts -->		
 <div class="form-group" ><!-- form-group Starts -->
-<div><img  src="img9.png" alt="">
+<div><img  src="includes/images/img9.png" alt="">
 		<a href="select_file_pation.php"> تقارير المرضى </a></div>
 
 </div><!-- form-group Ends -->
 <div class="form-group" ><!-- form-group Starts -->
-<div><img  src="img8.png" alt="">
+<div><img  src="includes/images/img8.png" alt="">
 		<a href="book_blood_pdf_ach_db.php"> فواتير فحص الدم</a></div>
 
 </div><!-- form-group Ends -->
@@ -67,7 +67,7 @@
 
 		
     <div class="form-group" ><!-- form-group Starts -->
-<div><img  src="img3.png" alt="">
+<div><img  src="includes/images/img3.png" alt="">
 		<a href="book_out.php"> سند صرف </a>
     </div>
         </div>
@@ -77,7 +77,7 @@
 
 <div class="  col-md-3 col-sm-3"><!-- col-lg-12 Starts -->		
 <div class="form-group" ><!-- form-group Starts -->
-<div><img  src="img3.png" alt="">
+<div><img  src="includes/images/img3.png" alt="">
 		<a href="report_box_all.php"> جميع فواتير الصندوق </a>
     </div>
 </div><!-- form-group Ends -->
@@ -86,14 +86,14 @@
 
 
        <div class="form-group" ><!-- form-group Starts -->
-<div><img  src="img3.png" alt="">
+<div><img  src="includes/images/img3.png" alt="">
 		<a href="provider.php">  دعم المركز  </a>
     </div>
         </div>
 
       <div class="  col-md-3 col-sm-3"><!-- col-lg-12 Starts -->		
 <div class="form-group" ><!-- form-group Starts -->
-<div><img  src="img3.png" alt="">
+<div><img  src="includes/images/img3.png" alt="">
 		<a href="prov_all_pdf.php"> كشف الداعمين </a>
     </div>
 </div><!-- form-group Ends -->
@@ -185,10 +185,10 @@
 
       </footer>
 
-      <script src="js/jquery-3.4.1.min.js"></script>
-         <script src="js/bootstrap.min.js"></script>
-    <script src="js/fontawesome.min.js"></script> 
-        <script src="js/myjs.js."></script> 
+      <script src="includes/js/jquery-3.4.1.min.js"></script>
+         <script src="includes/js/bootstrap.min.js"></script>
+    <script src="includes/js/fontawesome.min.js"></script> 
+        <script src="includes/js/myjs.js."></script> 
      
 
 </body>

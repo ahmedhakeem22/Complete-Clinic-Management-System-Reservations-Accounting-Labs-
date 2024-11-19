@@ -7,7 +7,7 @@ require_once('../TCPDF-master/tcpdf.php');
 $pdf =new TCPDF('p','mm','A4','UTF-8');
 $pdf-> AddPage();
 $pdf->SetFont('freeserif','',16);
-$pdf->Image('img_back_pdf.png',10,10,-300);
+$pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
 
 $pdf->Ln(27);
 

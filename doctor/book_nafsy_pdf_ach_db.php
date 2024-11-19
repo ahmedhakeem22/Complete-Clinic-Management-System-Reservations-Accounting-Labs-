@@ -7,7 +7,7 @@ include '../includes/db.php';
       
 $pdf= new tcpdf('p','mm','A4',true,'UTF-8',false);
 $pdf-> AddPage();
-$pdf->Image('2.png',10,60,189);
+$pdf->Image('includes/images/2.png',10,60,189);
 
       /////////////select from sestion be patione id //////////////
      
@@ -40,7 +40,7 @@ class PDF extends tcpdf{
   $this->setfont('times','B',15);
   
   $this->cell(25);
-  $this->Image('one.png',10,10,30);
+  $this->Image('includes/images/one.png',10,10,30);
   $this->cell(100,10,'',0,1);
   }
   function Footer(){

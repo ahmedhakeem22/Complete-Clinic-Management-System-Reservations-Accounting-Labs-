@@ -1,15 +1,15 @@
 
-<?php include 'templats/header.php';
-	include 'templats/navbar.php';
+<?php include 'includes/templats/header.php';
+	include 'includes/templats/navbar.php';
    
 
 	?>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/includes/css/bootstrap-multiselect.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/includes/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/includes/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/includes/js/bootstrap-multiselect.js"></script>
                            
 
 <form  method="post" action="medi.php">
@@ -208,10 +208,10 @@ function test_input($data) {
 </table>
 </div>
 
-<script src="js/jquery-3.4.1.min.js"></script>
-         <script src="js/bootstrap.min.js"></script>
-    <script src="js/fontawesome.min.js"></script> 
-        <script src="js/myjs.js."></script> 
+<script src="includes/js/jquery-3.4.1.min.js"></script>
+         <script src="includes/js/bootstrap.min.js"></script>
+    <script src="includes/js/fontawesome.min.js"></script> 
+        <script src="includes/js/myjs.js."></script> 
 
 
 

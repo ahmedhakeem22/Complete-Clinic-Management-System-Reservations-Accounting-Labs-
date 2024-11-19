@@ -1,7 +1,7 @@
 
-<?php include 'templats/header.php';
-	include 'templats/navbar.php';
- // include 'css/style.php';
+<?php include 'includes/templats/header.php';
+	include 'includes/templats/navbar.php';
+ // include 'includes/css/style.php';
 	?>
 
   <title> Add Test Blood </title>

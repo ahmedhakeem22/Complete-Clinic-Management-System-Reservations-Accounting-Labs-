@@ -129,7 +129,7 @@ $pdf->SetFont('aealarabiya','',12);
 while($pat_array_ses=mysqli_fetch_array($query)){
   $pdf->AddPage();
 
-$pdf->Image('img_back_pdf.png',10,10,-300);
+$pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
 $pdf->Ln(24);
 $pdf->Ln(24);
 
@@ -172,7 +172,7 @@ $pdf->Ln(24);
   $pdf->Cell(100,8,'',0,1,'C',0);
   
 $pdf->AddPage();
-$pdf->Image('img_back_pdf.png',10,10,-300);
+$pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
   $pdf->Ln(24);
 $pdf->Ln(24);
 
@@ -199,7 +199,7 @@ $pdf->Ln(24);
     $pdf->Cell(100,8,'',0,1,'C',0);
 
     $pdf->AddPage();
-$pdf->Image('img_back_pdf.png',10,10,-300);
+$pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
 $pdf->Ln(24);
 $pdf->Ln(24);
 
@@ -225,7 +225,7 @@ $pdf->Ln(24);
   $pdf->MultiCell(189,24,$pat_array_ses['thin_shep'],'B','R');
     $pdf->Cell(100,8,'',0,1,'C',0);
     $pdf->AddPage();
-    $pdf->Image('img_back_pdf.png',10,10,-300);
+    $pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
   $pdf->Ln(24);
 $pdf->Ln(24);
 
@@ -289,7 +289,7 @@ $I=0;
 while($pat_array_ses=mysqli_fetch_array($query)){
 if ($I==4 || $I==0) {
   $pdf->AddPage();
-  $pdf->Image('img_back_pdf.png',10,10,-300);
+  $pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
   $I=0;
 }
 $I++;
@@ -333,7 +333,7 @@ $pdf->SetFont('aealarabiya','',12);
 while($pat_array_ses=mysqli_fetch_array($query)){
 
   $pdf->AddPage();
-  $pdf->Image('img_back_pdf.png',10,10,-300);
+  $pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
   $pdf->SetFont('aealarabiya','',16);
   $pdf->Ln(24);
 $pdf->Ln(24);

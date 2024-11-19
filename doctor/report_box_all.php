@@ -1,6 +1,6 @@
 <?php 
-include 'templats/header.php';
-include 'templats/navbar.php';
+include 'includes/templats/header.php';
+include 'includes/templats/navbar.php';
 include '../includes/db.php'; // تضمين ملف الاتصال بقاعدة البيانات
 
 ///////////////date system ///////////////////////

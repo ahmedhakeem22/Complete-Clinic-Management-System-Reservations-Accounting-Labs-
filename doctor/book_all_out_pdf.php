@@ -37,7 +37,7 @@ class PDF extends tcpdf{
   $this->setfont('times','B',15);
   
   $this->cell(25);
-  $this->Image('one.png',10,10,30);
+  $this->Image('includes/images/one.png',10,10,30);
   $this->cell(100,10,'',0,1);
   }
   function Footer(){
@@ -51,10 +51,10 @@ class PDF extends tcpdf{
     
 $pdf= new PDF('p','mm','A4',true,'UTF-8',false);
 $pdf-> AddPage();
-$pdf->Image('2.png',10,60,189);
+$pdf->Image('includes/images/2.png',10,60,189);
 
 $pdf->SetFont('aealarabiya','',16);
-$pdf->Image('img_back_pdf.png',10,10,-300);
+$pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
 /*
 
 

@@ -1,5 +1,5 @@
-<?php include 'templats/header.php';
-include 'templats/navbar.php';
+<?php include 'includes/templats/header.php';
+include 'includes/templats/navbar.php';
 include '../includes/db.php';
 
 
@@ -101,11 +101,11 @@ $conn->close();
 
 ?>
 <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/includes/css/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/includes/css/bootstrap.min.css" />
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/includes/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/includes/js/bootstrap-multiselect.js"></script>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
   <main>

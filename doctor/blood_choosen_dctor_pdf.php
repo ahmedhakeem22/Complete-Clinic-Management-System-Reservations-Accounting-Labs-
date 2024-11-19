@@ -48,7 +48,7 @@ $s=mysqli_query($conn,"select fname from patinte where pat_id = $pat_id");
         $pdf->SetFont('freeserif','',14);
  
         
-        $pdf->Image('img_back_pdf.png',10,10,-300);
+        $pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
         
         
         $pdf->Ln(27);

@@ -35,7 +35,7 @@ function test_input($data) {
         $pat_id=$_GET['pat_id'];
         
 
-        $pdf->Image('img_back_pdf.png',10,10,-300);
+        $pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
         
         //$pdf->Image('pic2.jpg',10,2,40);
         
