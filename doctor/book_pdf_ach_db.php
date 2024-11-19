@@ -1,6 +1,6 @@
 <?php 
 
-require 'TCPDF-master/tcpdf.php';
+require '../TCPDF-master/tcpdf.php';
 include '../includes/db.php';
 
     
