@@ -2,7 +2,7 @@
       <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="icon" href="icon1.png" type="image/png" sizes="16x16">
+            <link rel="icon" href="includes/images/icon1.png" type="image/png" sizes="16x16">
             <link rel="stylesheet" type="text/css" href="style1.css">
             <title> مخرجات الصندوق </title>
             <script></script>

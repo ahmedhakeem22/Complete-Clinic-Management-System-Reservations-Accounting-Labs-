@@ -5,20 +5,8 @@ require_once('../TCPDF-master/tcpdf.php');
 
 
 
+include '../includes/db.php';
 
-//concect db 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password);
-
-
-
-    mysqli_select_db($conn,"najmdb");
-
-    
         
 /////////////////////date now //////////////////////
 date_default_timezone_set("Asia/Aden");
@@ -61,7 +49,7 @@ $s=mysqli_query($conn,"select fname from patinte where pat_id = $pat_id");
                 $pdf->Ln();
 
 
-        $pdf->Image('img_back_pdf.png',10,10,-300);
+        $pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
         
         
         //$pdf->Image('pic2.jpg',10,2,40);

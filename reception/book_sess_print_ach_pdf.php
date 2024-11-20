@@ -2,7 +2,7 @@
 // Suppress deprecated and notice warnings temporarily
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
-require 'TCPDF-master/tcpdf.php';
+require_once('../TCPDF-master/tcpdf.php');
 
 // اتصال قاعدة البيانات عبر ملف db.php
 include 'includes/db.php'; // Use a relative path
@@ -47,8 +47,8 @@ if (isset($_GET['pat_id']) && isset($_GET['fname'])) {
     class PDF extends TCPDF {
         // ترويسة الصفحة
         public function Header() {
-            if (file_exists('one.png')) {
-                $this->Image('one.png', 10, 10, 30);
+            if (file_exists('includes/images/one.png')) {
+                $this->Image('includes/images/one.png', 10, 10, 30);
             }
             $this->SetFont('helvetica', 'B', 16);
             $this->Cell(0, 15, 'Invoice - Thank You for Your Visit!', 0, 1, 'C');
@@ -70,8 +70,8 @@ if (isset($_GET['pat_id']) && isset($_GET['fname'])) {
     $pdf->AddPage();
 
     // إضافة صورة إذا كانت موجودة
-    if (file_exists('2.png')) {
-        $pdf->Image('2.png', 10, 60, 189);
+    if (file_exists('includes/images/2.png')) {
+        $pdf->Image('includes/images/2.png', 10, 60, 189);
     }
 
     // إعداد الخطوط

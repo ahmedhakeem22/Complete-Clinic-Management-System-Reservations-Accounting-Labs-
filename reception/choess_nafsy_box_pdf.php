@@ -2,18 +2,7 @@
 
 require_once('../TCPDF-master/tcpdf.php');
 
-
-//concect db 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password);
-
-
-
-    mysqli_select_db($conn,"najmdb");
+include '../includes/db.php';
 
     
         
@@ -70,7 +59,7 @@ $pat_id=$_GET['pat_id'];
             $this->setfont('times','B',15);
             
             $this->cell(25);
-            $this->Image('one.png',10,10,30);
+            $this->Image('includes/images/one.png',10,10,30);
             $this->cell(100,10,'',0,1);
             }
             function Footer(){
@@ -85,10 +74,10 @@ $pat_id=$_GET['pat_id'];
 
 $pdf =new PDF('p','mm','A4','UTF-8');
 $pdf-> AddPage();
-$pdf->Image('2.png',8,60,189);
+$pdf->Image('includes/images/2.png',8,60,189);
 $pdf->SetFont('aealarabiya','B',12);
 
-$pdf->Image('img_back_pdf.png',10,10,-300);
+$pdf->Image('includes/images/img_back_pdf.png',10,10,-300);
 //$pdf->Image('pic2.jpg',10,2,40);
 
 

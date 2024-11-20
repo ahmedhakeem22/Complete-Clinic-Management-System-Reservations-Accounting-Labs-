@@ -2,7 +2,7 @@
       <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="icon" href="icon1.png" type="image/png" sizes="16x16">
+            <link rel="icon" href="includes/images/icon1.png" type="image/png" sizes="16x16">
             <link rel="stylesheet" type="text/css" href="style.css">
             <title> Book a session </title>
             <script src=""></script>
@@ -110,7 +110,7 @@ $conn->close();
 
       
            
-                  <img src="booksession.jpg" alt="image" width="100%" height="auto">
+                  <img src="includes/images/booksession.jpg" alt="image" width="100%" height="auto">
 
 
 <table cellspacing="15" cellpadding="0" >

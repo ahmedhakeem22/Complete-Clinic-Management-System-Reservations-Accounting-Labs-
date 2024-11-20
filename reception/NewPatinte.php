@@ -1,11 +1,11 @@
 <?php 
-include 'templats/header.php';
-include 'templats/navbar.php';
+include 'includes/templates/header.php';
+include 'includes/templates/navbar.php';
 ?>
 
 <?php
 // استدعاء ملف الاتصال بقاعدة البيانات
-include 'C:\Users\Zainon\Herd\htdocs\includes\db.php'; 
+include '../includes/db.php';
 
 // التحقق من الاتصال بقاعدة البيانات
 if ($conn->connect_error) {
@@ -126,7 +126,7 @@ if ($conn->connect_error) {
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
             <main>
                 <div class="newpationimg text-center mb-4">
-                    <img src="newfile.jpg" alt="Image" class="img-fluid">
+                    <img src="includes/images/newfile.jpg" alt="Image" class="img-fluid">
                 </div>
                 <div id="content" class="bordernew">
                     <div class="row g-3">

@@ -1,5 +1,5 @@
 <?php
-include 'C:\Users\Zainon\Herd\htdocs\includes\db.php';
+include '../includes/db.php';
 
 header('Content-Type: application/json; charset=utf-8'); // تحديد نوع المحتوى JSON
 

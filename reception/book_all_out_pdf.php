@@ -1,9 +1,9 @@
 <?php 
 
-require_once('tcpdf.php');
+require_once('../TCPDF-master/tcpdf.php');
 
 // الاتصال بقاعدة البيانات عبر ملف db.php
-include 'C:\Users\Zainon\Herd\htdocs\includes\db.php';
+include '../includes/db.php';
 
 // اختيار قاعدة البيانات
 mysqli_select_db($conn, "najmdb");
@@ -17,7 +17,7 @@ class PDF extends TCPDF {
     function Header() {
         $this->SetFont('times', 'B', 15);
         $this->Cell(25);
-        $this->Image('one.png', 10, 10, 30);
+        $this->Image('includes/images/one.png', 10, 10, 30);
         $this->Cell(100, 10, '', 0, 1);
     }
 
@@ -31,10 +31,10 @@ class PDF extends TCPDF {
 // إنشاء الكائن
 $pdf = new PDF('P', 'mm', 'A4');
 $pdf->AddPage();
-$pdf->Image('2.png', 10, 60, 189);
+$pdf->Image('includes/images/2.png', 10, 60, 189);
 
 $pdf->SetFont('aealarabiya', '', 16);
-$pdf->Image('img_back_pdf.png', 10, 10, -300);
+$pdf->Image('includes/images/img_back_pdf.png', 10, 10, -300);
 $pdf->Ln(27);
 
 // باقي الكود لإعداد البيانات

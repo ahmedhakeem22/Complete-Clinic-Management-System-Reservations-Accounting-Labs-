@@ -1,7 +1,7 @@
 <?php 
-include 'templats/header.php';
-include 'templats/navbar.php';
-include 'C:\Users\Zainon\Herd\htdocs\includes\db.php'; // استدعاء ملف الاتصال بقاعدة البيانات
+include 'includes/templates/header.php';
+include 'includes/templates/navbar.php';
+include '../includes/db.php';
 ?>
 
 <body> 
@@ -71,7 +71,7 @@ include 'C:\Users\Zainon\Herd\htdocs\includes\db.php'; // استدعاء ملف 
     ?>
 
     <main class="main">
-        <img src="oldimg.jpg" alt="image" width="100%" height="45%">
+        <img src="includes/images/oldimg.jpg" alt="image" width="100%" height="45%">
         <div class="">
             <input style="text-align: center;" type="input" id="myInput" onkeyup="myFunction()" placeholder="Search for Patient.." title="Type in a name"/>
 

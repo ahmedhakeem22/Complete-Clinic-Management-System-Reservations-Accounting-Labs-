@@ -1,10 +1,10 @@
-<?php include 'templats/header.php';
-include 'templats/navbar.php';
+<?php include 'includes/templates/header.php';
+include 'includes/templates/navbar.php';
 ?>
 
 <main>
     <div class="image-container">
-        <img src="booksession.jpg" alt="image" class="session-image">
+        <img src="includes/images/booksession.jpg" alt="image" class="session-image">
     </div>
 
     <div class="form-container">

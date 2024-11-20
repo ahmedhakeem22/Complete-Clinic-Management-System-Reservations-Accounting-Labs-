@@ -14,19 +14,19 @@ else {
 
 
 ?>
-<?php include 'templats/header.php';
-	include 'templats/navbar.php';
+<?php include 'includes/templates/header.php';
+	include 'includes/templates/navbar.php';
 	?>
 
       <main >
 <div class="home1">
                   
-                  <img src="home.jpg" alt="image">
+                  <img src="includes/images/home.jpg" alt="image">
       </div>
 
       <div class="home">
 
-                  <img src="backimg.jpg" alt="" >
+                  <img src="includes/images/backimg.jpg" alt="" >
       </div>
       
 

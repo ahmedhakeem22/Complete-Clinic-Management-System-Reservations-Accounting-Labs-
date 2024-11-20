@@ -4,7 +4,7 @@
       <title> Search the appointment </title>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="icon" href="icon1.png" type="image/png" sizes="16x16">
+      <link rel="icon" href="includes/images/icon1.png" type="image/png" sizes="16x16">
       <link rel="stylesheet" type="text/css" href="style.css">
       <title> Home </title>
       <script src=""></script>
@@ -28,7 +28,7 @@
 <main class="main">
 
  <div>
-      <img src="search.jpg" alt="image" width="100%" height="47%">
+      <img src="includes/images/search.jpg" alt="image" width="100%" height="47%">
       <h1 class="h1img">
              Search the appointment </h1>
 
@@ -42,7 +42,7 @@
 
 <div>
 
-      <img src="search.jpg" alt="image" width="100%" height="47%" style="top:2300px; position: absolute;">
+      <img src="includes/images/search.jpg" alt="image" width="100%" height="47%" style="top:2300px; position: absolute;">
       <h1></h1>
 
 </div>

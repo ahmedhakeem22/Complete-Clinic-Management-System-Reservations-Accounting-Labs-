@@ -1,5 +1,5 @@
-<?php include 'templats/header.php';
-	include 'templats/navbar.php';
+<?php include 'includes/templates/header.php';
+	include 'includes/templates/navbar.php';
 	?>
 <html>
  

@@ -1,26 +1,9 @@
-<?php include 'templats/header.php';
-	include 'templats/navbar.php';
+<?php include 'includes/templates/header.php';
+	include 'includes/templates/navbar.php';
 	?>
 <?php
 
-
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "najmdb";
-///////////////
-
-////
-//////////////
-
- 
-// Create connection
-$conn = new mysqli($servername, $username, $password ,$dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}else{
+include '../includes/db.php';
 
   
     date_default_timezone_set("Asia/Aden");
@@ -51,8 +34,6 @@ $pat_id=$_POST['pat_id'];
 
   }
 
-$conn->close();
-}
 ?>
 <body> 
 

@@ -1,5 +1,5 @@
-<?php include 'templats/header.php';
-       include 'templats/navbar.php';
+<?php include 'includes/templates/header.php';
+       include 'includes/templates/navbar.php';
        
 	?>
 
@@ -8,7 +8,7 @@
 
       
            
-    <img src="Bloodtest.jpg" alt="image" width="100%" height="auto">
+    <img src="includes/images/Bloodtest.jpg" alt="image" width="100%" height="auto">
     <div class="boxlab" style="top:5px; " >
     <table cellspacing="15" cellpadding="0" >
     <form  action="choess_blood_box_pdf.php" method="get">

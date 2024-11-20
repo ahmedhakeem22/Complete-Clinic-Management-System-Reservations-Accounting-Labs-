@@ -14,11 +14,11 @@
 <body> 
 
 <?php 
-	include 'templats/navbar.php';
+	include 'includes/templates/navbar.php';
 	?>    
 
 	
-	<img src="Treasury.jpg" alt="image" width="100%" height="auto">
+	<img src="includes/images/Treasury.jpg" alt="image" width="100%" height="auto">
 	<br>	<br>
 
 	<div class="container">
@@ -26,7 +26,7 @@
 <div class="row">
 		<div class="  col-md-3 col-sm-6"><!-- col-lg-12 Starts -->
 <div class="form-group" ><!-- form-group Starts -->
-<div><img  src="img3.png" alt="">
+<div><img  src="includes/images/img3.png" alt="">
 	  <a href="booksession.php"> Book a session </a></div>
 
 </div><!-- form-group Ends -->
@@ -34,7 +34,7 @@
 	  
 	<div class="form-group" ><!-- form-group Starts -->
 <div>
-		<img  src="img5.png" alt="">
+		<img  src="includes/images/img5.png" alt="">
 		<a href="Bloodtest.php"> Blood test </a>
 			</div>
 
@@ -44,7 +44,7 @@
 		 <div class="  col-md-6 col-sm-6"><!-- col-lg-12 Starts -->		
 <div class="form-group" ><!-- form-group Starts -->
 	
-<div><img  src="img4.png" alt="">
+<div><img  src="includes/images/img4.png" alt="">
 	<a href="choess_nafsy_box.php"> Psychological examination </a></div>
 
 </div><!-- form-group Ends -->
