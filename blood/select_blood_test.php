@@ -12,8 +12,8 @@
 </head>
 <?php
 
-include 'templats/header.php';
-include 'templats/navbar.php';
+include 'includes/templates/header.php';
+include 'includes/templates/navbar.php';
 include '../includes/db.php'; // استيراد ملف الاتصال بقاعدة البيانات
 
 date_default_timezone_set("Asia/Aden");

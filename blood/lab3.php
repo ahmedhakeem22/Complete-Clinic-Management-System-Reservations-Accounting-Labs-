@@ -26,7 +26,7 @@ echo "<script>window.open('login.php','_self')</script>";
 
 else {
 ?>
-<?php include 'templats/navbar.php';
+<?php include 'includes/templates/navbar.php';
 	?>
 	<?php
 

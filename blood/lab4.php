@@ -1,7 +1,7 @@
 <?php
 // تضمين ملفات الهيدر والنافبار
-include 'templats/header.php';
-include 'templats/navbar.php';
+include 'includes/templates/header.php';
+include 'includes/templates/navbar.php';
 
 // تضمين ملف الاتصال بقاعدة البيانات من المسار المحدد
 include '../includes/db.php';
