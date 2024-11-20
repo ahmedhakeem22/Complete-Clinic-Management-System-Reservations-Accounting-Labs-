@@ -229,7 +229,7 @@ if ($conn->connect_error) {
     </footer>
     
     <!-- إضافة الروابط اللازمة للـ JS مثل Bootstrap و jQuery -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/includes/js/bootstrap.bundle.min.js"></script>
     <script>
         // مثال لتحسين تجربة المستخدم: إظهار رسالة نجاح بعد فترة زمنية
         document.addEventListener("DOMContentLoaded", function(){
