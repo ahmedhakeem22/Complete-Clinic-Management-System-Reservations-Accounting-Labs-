@@ -80,9 +80,9 @@ include("lab2.php");
 </div><!-- page-wrapper Ends -->
 
 
-<script src="js/jquery.min.js"></script>
+<script src="includes/js/jquery.min.js"></script>
 
-<script src="js/bootstrap.min.js"></script>
+<script src="includes/js/bootstrap.min.js"></script>
 
 
 </body>

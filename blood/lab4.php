@@ -173,7 +173,7 @@ if(isset($_GET['Submit_pation']) && isset($_GET['pat_id'])){
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
     </style>
-    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="includes/js/jquery-3.4.1.min.js"></script>
     <script>
         $(document).ready(function () {
             $(".category-toggle").click(function () {
@@ -278,8 +278,8 @@ if(isset($_GET['Submit_pation']) && isset($_GET['pat_id'])){
         </form>
     </main>
     <footer></footer> 
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/fontawesome.min.js"></script> 
-    <script src="js/myjs.js"></script> 
+    <script src="includes/js/bootstrap.min.js"></script>
+    <script src="includes/js/fontawesome.min.js"></script> 
+    <script src="includes/js/myjs.js"></script> 
 </body>
 </html>

@@ -670,10 +670,10 @@ while($row =mysqli_fetch_array($r)){
 
 </html>
 
-<script src="js/jquery-3.4.1.min.js"></script>
-         <script src="js/bootstrap.min.js"></script>
-    <script src="js/fontawesome.min.js"></script> 
-        <script src="js/myjs.js."></script> 
+<script src="includes/js/jquery-3.4.1.min.js"></script>
+         <script src="includes/js/bootstrap.min.js"></script>
+    <script src="includes/js/fontawesome.min.js"></script> 
+        <script src="includes/js/myjs.js."></script> 
         
 
 <!-- كود طباعة -->
