@@ -50,7 +50,7 @@ $pat_id=$_POST['pat_id'];
 
       
       <div>
-            <img src="today.jpg" alt="image" width="100%" height="45%">
+            <img src="includes/images/today.jpg" alt="image" width="100%" height="45%">
 
       </div>
 
