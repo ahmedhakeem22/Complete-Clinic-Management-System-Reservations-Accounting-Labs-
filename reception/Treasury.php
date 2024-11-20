@@ -2,10 +2,10 @@
 <head>
 <title> Treasury </title>
 <link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" type="text/css" href="css/style1.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="includes/css/style1.css">
+	<link rel="stylesheet" type="text/css" href="includes/css/style.css">
+	<link rel="stylesheet" href="includes/css/bootstrap.min.css">
+        <link rel="stylesheet" href="includes/css/font-awesome.min.css">
 	<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
