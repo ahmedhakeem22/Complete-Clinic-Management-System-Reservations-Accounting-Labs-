@@ -1,6 +1,6 @@
 
-<?php include 'includes/templats/header.php';
-	include 'includes/templats/navbar.php';
+<?php include 'includes/templates/header.php';
+	include 'includes/templates/navbar.php';
    
 
 	?>

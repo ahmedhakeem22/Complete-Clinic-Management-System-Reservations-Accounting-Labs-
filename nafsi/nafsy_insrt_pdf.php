@@ -10,7 +10,7 @@ $pdf->Image('img_back_pdf.png',10,10,-300);
 //concect db 
 $servername = "127.0.0.1";
 $username = "root";
-$password = "";
+$password = "root";
 
 
 // Create connection
