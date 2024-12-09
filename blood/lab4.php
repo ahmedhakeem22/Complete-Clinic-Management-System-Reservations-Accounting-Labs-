@@ -188,8 +188,8 @@ if(isset($_GET['Submit_pation']) && isset($_GET['pat_id'])){
         <!-- نموذج البحث عن المريض -->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="GET">
             <div class="table-responsive">
-                <table id="mytable" class="table table-dark table-striped table-bordered table-hover table-active">
-                    <thead>
+            <table id="mytable" class="table table-dark table-striped table-bordered  table-active" style="color: #000;">
+            <thead>
                         <tr>
                             <th colspan="3">استعلام عن بيانات المريض</th>
                         </tr>
@@ -245,7 +245,7 @@ if(isset($_GET['Submit_pation']) && isset($_GET['pat_id'])){
                             <span>
                                 <h2 class="label label-danger" style="text-align: center;">
                                     <span class="label label-danger badge" style="text-align: center; color:Brown;">
-                                        <img src="includes/img/options2.png" alt="Category Icon" class="category-icon" style="width: 25px; height: 20px;"/>
+                                        <img src="includes/images/options2.png" alt="Category Icon" class="category-icon" style="width: 25px; height: 20px;"/>
                                         <?php echo htmlspecialchars($category['name']); ?>
                                     </span>
                                 </h2>
