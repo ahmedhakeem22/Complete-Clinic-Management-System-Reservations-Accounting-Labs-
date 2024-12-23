@@ -1,6 +1,6 @@
 <?php
 
-require_once('../TCPDF-master/tcpdf.php');
+require_once __DIR__ . '/../vendor/autoload.php';
 include '../includes/db.php'; // تضمين ملف الاتصال بقاعدة البيانات
 
   
@@ -5774,7 +5774,7 @@ $pdf->Output('lab3.pdf', 'I');
 
      }
      }
-}
+
     $conn->close();
 
 ?>
