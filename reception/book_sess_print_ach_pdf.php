@@ -2,7 +2,7 @@
 // Suppress deprecated and notice warnings temporarily
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
-require_once('../TCPDF-master/tcpdf.php');
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // اتصال قاعدة البيانات عبر ملف db.php
 include 'includes/db.php'; // Use a relative path
