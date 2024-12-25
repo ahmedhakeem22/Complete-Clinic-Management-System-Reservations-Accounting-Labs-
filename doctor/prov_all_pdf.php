@@ -1,6 +1,6 @@
 <?php 
 
-require_once('../TCPDF-master/tcpdf.php');
+require_once __DIR__ . '/../vendor/autoload.php';
 include '../includes/db.php';
 
       /////////////select from pay bill //////////////
