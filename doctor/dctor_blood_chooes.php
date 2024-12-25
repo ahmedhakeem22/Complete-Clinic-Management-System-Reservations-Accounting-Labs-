@@ -1,290 +1,116 @@
-<?php include 'includes/templates/header.php';
-       include 'includes/templates/navbar.php';
-       
-	?>
+<?php
+include '../includes/db.php';
+?>
 
+<h3 class="mb-4 text-center" style="font-weight: bold; color: #333;">اختر الفحوصات الدموية</h3>
 
-           
-                  <img src="includes/images/Bloodtest.jpg" alt="image" width="100%" height="auto">
-
-
-
-
-                    <main>
-
-
-
-
-             <div class="boxlab " style="top:0px; " >
-
-                  <table cellspacing="15" cellpadding="0" >
-
-       <form  action="blood_choosen_dctor_pdf.php" method="get">
-<tr>
-              <td> 
-                    <div style="right:400px;">
-    <lable class="form-control">  Patinte ID  :  </lable>
-    </td>
-    <td>
-<input type="number" id="Patinte" name="pat_id" class="form-control" required /> 
-                      </div>
-         </td>
-              </tr>
-</table>
+<!-- Patient ID -->
+<div class="form-group row mb-4">
+    <label for="PatientID" class="col-sm-2 col-form-label" style="font-weight: bold;">معرف المريض:</label>
+    <div class="col-sm-10">
+        <input 
+            type="number" 
+            class="form-control" 
+            id="PatientID" 
+            name="pat_id" 
+            placeholder="أدخل معرف المريض" 
+            required
+        >
+    </div>
+</div>
 
 <style>
-input[type='checkbox'] {
-    -webkit-appearance:none;
-    width:20px;
-    height:20px;
-    background:white;
-    border-radius:5px;
-    border:1px solid green;
+    input[type='checkbox'] {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border-radius: 5px;
+        border: 1px solid green;
         cursor: pointer;
-
-}
-input[type='checkbox']:checked {
-    background: red;
-}
+        transition: 0.3s;
+    }
+    input[type='checkbox']:checked {
+        background: red;
+        transform: scale(1.2);
+    }
+    .form-group label {
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 10px;
+    }
+    .test-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .test-section label {
+        color: #d9534f;
+        font-size: 22px;
+    }
+    .test-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
 </style>
 
-<div class="form-group" style="font-size:22px; font-family:Tahoma; "  ><!-- form-group Starts -->
-
-
-<lable style="color:red; font-size:22px; " > HAEMATOLOGY </lable>
-<br/>
-
-       <input type="checkbox" name="test[]" value="1" > C.B.C - </input>
-
-<select name="test[]" multiple >
-<option  value=""> CBC - فروع </option>
-<option type="checkbox" name="test[]" value="101">HB </option>
-<option class="checkbox" type="checkbox" name="test[]" value="102">WBC </option>
-</select>
-
-        <input type="checkbox" name="test[]" value="2" > Platelats  </input>
-
-       <input type="checkbox" name="test[]" value="3" > ESR   </input>
-
-       <input type="checkbox" name="test[]" value="4" >  Malaria  </input>
-       
-       <input type="checkbox" name="test[]" value="7" > CT </input>
-
-       <input type="checkbox" name="test[]" value="8" > PT </input>
-
-<!--    <select name="test[]">
-<option  value=""> PT - فروع </option>
-<option name="test[]" value="103">INR</option>
-</select>
--->
-       <input type="checkbox" name="test[]" value="9" > BT </input>
-
-       <input type="checkbox" name="test[]" value="10" > Reticulocyte </input>
-
-       <input type="checkbox" name="test[]" value="11" > Sickling test </input>
-
-              <input type="checkbox" name="test[]" value="12" >  PTT </input>
-
-       
-       <input type="checkbox" name="test[]" value="13" > D_Dimer  </input>
-
-<pre></pre>
-
-<lable style="color:red; font-size:22px; "> BIOCHEMEISTRY </lable>
-
-<pre></pre>
-
-       <input type="checkbox" name="test[]" value="14" > F.B.S   </input>
-
-       <input type="checkbox" name="test[]" value="15" >  R.B.S </input>
-
-       <input type="checkbox" name="test[]" value="16" > P.PBS  </input>
-
-       <input type="checkbox" name="test[]" value="17" > HBA 1C  </input>
-       
-       <input type="checkbox" name="test[]" value="18" > KFT </input>
-
- <select name="test[]" multiple >
-<option  value=""> KFT - فروع </option>
-<option name="test[]" value="104">Urea</option>
-<option name="test[]" value="105">Creatinine</option>
-</select>
-
-       <input type="checkbox" name="test[]" value="19" > LFT </input>
-
-        <select name="test[]" multiple >
-<option  value=""> LFT - فروع </option>
-<option name="test[]" value="106">S.Got</option>
-<option name="test[]" value="107">S.Gpt</option>
-<option name="test[]" value="108">Total Bilirubin</option>
-<option name="test[]" value="109">Dirict Bilirubin </option>
-</select>
-
-       <input  type="checkbox" name="test[]" value="20" >ALK.Phospats </input>
-
-       <input type="checkbox" name="test[]" value="21" > Albumin</input>
-
-       <input type="checkbox" name="test[]" value="22" > Electrolytes  </input>
-
-               <select name="test[]" multiple >
-<option  value=""> Electrolytes - فروع </option>
-<option name="test[]" value="110"> Ca++ </option>
-<option name="test[]" value="111">K+</option>
-<option name="test[]" value="112">Na+</option>
-<option name="test[]" value="113"> Cl- </option>
-<option name="test[]" value="114">Mg++</option>
-</select>
-       
-<pre></pre>
-
-
-       <input type="checkbox" name="test[]" value="23" > Cardiac Enzyme  </input>
-
-                      <select name="test[]" multiple >
-<option  value=""> Cardiac Enzyme - فروع </option>
-<option name="test[]" value="115"> C.K </option>
-<option name="test[]" value="116">CK-MB</option>
-<option name="test[]" value="117">L.D.H</option>
-</select>
-
-       <input type="checkbox" name="test[]" value="24" > Lipid  </input>
-
-                             <select name="test[]" multiple >
-<option  value=""> Lipid - فروع </option>
-<option name="test[]" value="118"> Cholesterol </option>
-<option name="test[]" value="119">Triglyceride</option>
-<option name="test[]" value="120">LDL</option>
-<option name="test[]" value="121">HDL</option>
-
-</select>
-
-       <input type="checkbox" name="test[]" value="25" >  Uricacid </input>
-
-       <input type="checkbox" name="test[]" value="39" >  T.Patinte </input>
-
-
-<pre></pre>
-
-<lable style="color:red; font-size:22px; "> SEROLOGY </lable>
-
-<pre></pre>
-
-       <input type="checkbox" name="test[]" value="26" > ASO  </input>
-
-       <input type="checkbox" name="test[]" value="27" > C.R.P  </input>
-       
-       <input type="checkbox" name="test[]" value="28" > RF </input>
-
-       <input type="checkbox" name="test[]" value="29" > Widal Test </input>
-
-       <input type="checkbox" name="test[]" value="30" > Brucella A+M </input>
-
-       <input type="checkbox" name="test[]" value="31" > BLOOD Group </input>
-
-       <input type="checkbox" name="test[]" value="32" > TB  </input>
-       
-       
-       <input type="checkbox" name="test[]" value="33" > Viral Marker  </input>
-
-                             <select name="test[]" multiple >
-<option  value=""> Viral Marker - فروع </option>
-<option name="test[]" value="122"> HIV </option>
-<option name="test[]" value="123">HCV</option>
-<option name="test[]" value="124">HBS.AG</option>
-</select>
-       <input type="checkbox" name="test[]" value="36" >  VDRL   </input>
-
-       <input type="checkbox" name="test[]" value="37" > H.PYLORI RB </input>
-       
-       <input type="checkbox" name="test[]" value="38" > H.PYLORI AG </input>
-
-
-   
-<pre></pre>
-<lable style="color:red; font-size:22px; " > Drugs </lable>
-<pre></pre>
-
-     <input type="checkbox" name="test[]" value="40" > Ethanol  </input>
-
-       <input type="checkbox" name="test[]" value="41" > Diazepam  </input>
-       
-       <input type="checkbox" name="test[]" value="42" > Marijuana </input>
-
-       <input type="checkbox" name="test[]" value="43" > Tramedol </input>
-
-       <input type="checkbox" name="test[]" value="44" > Heroin </input>
-
-       <input type="checkbox" name="test[]" value="45" > Pethidine </input>
-
-       <input type="checkbox" name="test[]" value="46" > Cocaine  </input>
-
-              <input type="checkbox" name="test[]" value="47" > Amphetamine  </input>
-
-       <pre></pre>
-<lable style="color:red; font-size:22px; " > Harmones </lable>
-<pre></pre>
-
-<input type="checkbox" name="test[]" value="48" > T3  </input>
-
-       <input type="checkbox" name="test[]" value="49" > T4  </input>
-       
-       <input type="checkbox" name="test[]" value="50" > TSH </input>
-
-       <input type="checkbox" name="test[]" value="51" > Prolactin </input>
-
-       <input type="checkbox" name="test[]" value="52" > PSA Free </input>
-
-       <input type="checkbox" name="test[]" value="53" > PSA Total </input>
-       <input type="checkbox" name="test[]" value="54" > Vit-B12 </input>
-
-       <input type="checkbox" name="test[]" value="55" > Vit-D3 </input>
-
-       <input type="checkbox" name="test[]" value="56" > CA 153 </input>
-
-       <input type="checkbox" name="test[]" value="57" > CA 125 </input>
-
-
-    <button type="submit"  aria-placeholder="Add" name="add_sess" class="btn btn-success" > SAVE </button>
-
-    </div>
-    </div>
-
-
-</form>
-                    </table>
-
-
-
-
-      </main>
-
-
-      <footer>
-
-        <!--
-<p id="demo"></p>
-
-            <script>
-            var d = new Date();
-            document.getElementById("demo").innerHTML = d;
-            </script>
-        -->    
-            
-
-      </footer>
-
-      
-
-</body>
-
-
-
-
-
-</html>
-
-<script src="includes/js/jquery-3.4.1.min.js"></script>
-         <script src="includes/js/bootstrap.min.js"></script>
-    <script src="includes/js/fontawesome.min.js"></script> 
-        <script src="includes/js/myjs.js."></script> 
-
+<div class="form-group" style="font-size:22px; font-family:Tahoma;">
+    <?php
+    function getTestsByIds($conn, array $ids) {
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+        $orderField = implode(',', $ids);
+
+        $sql = "SELECT test_id, test_name FROM tests
+                WHERE test_id IN ($placeholders)
+                ORDER BY FIELD(test_id, $orderField)";
+
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            die('خطأ في تحضير الاستعلام: ' . $conn->error);
+        }
+        $types = str_repeat('i', count($ids));
+        $stmt->bind_param($types, ...$ids);
+
+        $stmt->execute();
+        $res = $stmt->get_result();
+
+        $tests = [];
+        while ($row = $res->fetch_assoc()) {
+            $tests[] = $row;
+        }
+        $stmt->close();
+        return $tests;
+    }
+
+    $categories = [
+        'HAEMATOLOGY' => [1, 101, 102, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13],
+        'BIOCHEMISTRY' => [
+            14, 15, 16, 17, 18, 104, 105, 19, 106, 107, 108, 109,
+            20, 21, 22, 110, 111, 112, 113, 114, 23, 115, 116, 117,
+            24, 118, 119, 120, 121, 25, 39
+        ],
+        'SEROLOGY' => [26, 27, 28, 29, 30, 31, 32, 33, 122, 123, 124, 36, 37, 38],
+        'DRUGS' => [40, 41, 42, 43, 44, 45, 46, 47],
+        'HORMONES' => [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+    ];
+
+    foreach ($categories as $category => $ids) {
+        echo '<div class="test-section">';
+        echo "<label>$category</label><br/>";
+
+        $tests = getTestsByIds($conn, $ids);
+
+        echo '<div class="test-items">';
+        foreach ($tests as $test) {
+            $tid = $test['test_id'];
+            $name = $test['test_name'];
+            echo "<label><input type='checkbox' name='test[]' value='$tid'> $name</label>";
+        }
+        echo '</div>';
+        echo '</div>';
+    }
+    ?>
+</div>
