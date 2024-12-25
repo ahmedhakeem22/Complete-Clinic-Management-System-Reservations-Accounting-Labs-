@@ -1,7 +1,6 @@
 <?php
 // manage_tests.php
 
-// بدء الجلسة
 session_start();
 
 // 1) استدعاء ملف الاتصال بقاعدة البيانات
@@ -30,11 +29,16 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
 // معالجة إضافة أو تعديل الفحص
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // جلب البيانات من النموذج
-    $test_name = trim($_POST['test_name']);
-    $price = trim($_POST['price']);
-    $normal_range = trim($_POST['normal_range']);
-    $category_id = intval($_POST['category_id']);
-    $parent_test_id = !empty($_POST['parent_test_id']) ? intval($_POST['parent_test_id']) : NULL;
+    $test_name         = trim($_POST['test_name']);
+    $price             = trim($_POST['price']);
+    $normal_range      = trim($_POST['normal_range']);
+    $category_id       = intval($_POST['category_id']);
+    $parent_test_id    = !empty($_POST['parent_test_id']) ? intval($_POST['parent_test_id']) : NULL;
+    
+    // الحقلان الجديدان
+    // إذا كان الـ CheckBox غير مُحدد سيبقى 0، وإذا تم تحديده يصبح 1
+    $is_sub_test_level = isset($_POST['is_sub_test_level']) ? 1 : 0;
+    $is_parent         = isset($_POST['is_parent']) ? 1 : 0;
 
     // التحقق من صحة البيانات
     if (empty($test_name)) {
@@ -51,11 +55,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($errors)) {
         if (isset($_POST['save'])) {
             // عملية إضافة
-            $stmt = $conn->prepare("INSERT INTO tests (test_name, category_id, price, normal_range, parent_test_id) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sidsi", $test_name, $category_id, $price, $normal_range, $parent_test_id);
+            $stmt = $conn->prepare("INSERT INTO tests (test_name, category_id, price, normal_range, parent_test_id, is_sub_test_level, is_parent) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?)");
+            // لاحظ الترتيب في bind_param:
+            // s: string, i: integer, d: double/float, s: string, i: integer, i: integer, i: integer
+            $stmt->bind_param("sidssii", 
+                $test_name, 
+                $category_id, 
+                $price, 
+                $normal_range, 
+                $parent_test_id, 
+                $is_sub_test_level, 
+                $is_parent
+            );
+
             if ($stmt->execute()) {
                 $_SESSION['success'] = "تمت إضافة الفحص بنجاح.";
-                // إعادة التوجيه مع الحفاظ على معايير البحث والصفحة الحالية
                 $redirect_url = "manage_tests.php?page=" . $page;
                 if (!empty($search_query)) {
                     $redirect_url .= "&search=" . urlencode($search_query);
@@ -69,11 +84,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } elseif (isset($_POST['update'])) {
             // عملية تحديث
             $test_id = intval($_POST['test_id']);
-            $stmt = $conn->prepare("UPDATE tests SET test_name = ?, category_id = ?, price = ?, normal_range = ?, parent_test_id = ? WHERE test_id = ?");
-            $stmt->bind_param("sidssi", $test_name, $category_id, $price, $normal_range, $parent_test_id, $test_id);
+            $stmt = $conn->prepare("UPDATE tests 
+                                    SET test_name = ?, 
+                                        category_id = ?, 
+                                        price = ?, 
+                                        normal_range = ?, 
+                                        parent_test_id = ?, 
+                                        is_sub_test_level = ?, 
+                                        is_parent = ?
+                                    WHERE test_id = ?");
+            $stmt->bind_param("sidssiii", 
+                $test_name, 
+                $category_id, 
+                $price, 
+                $normal_range, 
+                $parent_test_id,
+                $is_sub_test_level,
+                $is_parent,
+                $test_id
+            );
+
             if ($stmt->execute()) {
                 $_SESSION['success'] = "تم تحديث الفحص بنجاح.";
-                // إعادة التوجيه مع الحفاظ على معايير البحث والصفحة الحالية
                 $redirect_url = "manage_tests.php?page=" . $page;
                 if (!empty($search_query)) {
                     $redirect_url .= "&search=" . urlencode($search_query);
@@ -86,35 +118,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->close();
         }
     } else {
-        // في حالة وجود أخطاء، سيتم عرضها في النوافذ المنبثقة
+        // في حالة وجود أخطاء
         $_SESSION['form_errors'] = $errors;
-        $_SESSION['form_data'] = $_POST;
+        $_SESSION['form_data']   = $_POST;
     }
 }
 
 // معالجة طلبات الحذف
 if (isset($_GET['delete'])) {
     $test_id = intval($_GET['delete']);
-    // التأكد من وجود الفحص قبل الحذف
+    // التأكد من وجود الفحص
     $stmt = $conn->prepare("SELECT * FROM tests WHERE test_id = ?");
     $stmt->bind_param("i", $test_id);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows == 1) {
-        // حذف الفحص
+        // حذف
         $stmt_delete = $conn->prepare("DELETE FROM tests WHERE test_id = ?");
         $stmt_delete->bind_param("i", $test_id);
         if ($stmt_delete->execute()) {
             $_SESSION['success'] = "تم حذف الفحص بنجاح.";
         } else {
-            $_SESSION['error'] = "حدث خطأ أثناء حذف الفحص: " . $stmt_delete->error;
+            $_SESSION['error']   = "حدث خطأ أثناء حذف الفحص: " . $stmt_delete->error;
         }
         $stmt_delete->close();
     } else {
         $_SESSION['error'] = "الفحص المطلوب غير موجود.";
     }
     $stmt->close();
-    // إعادة التوجيه مع الحفاظ على معايير البحث والصفحة الحالية
+
     $redirect_url = "manage_tests.php?page=" . $page;
     if (!empty($search_query)) {
         $redirect_url .= "&search=" . urlencode($search_query);
@@ -123,7 +155,7 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
-// جلب العدد الإجمالي للفحوصات لحساب عدد الصفحات بناءً على معايير البحث
+// جلب العدد الإجمالي للفحوصات
 if (!empty($search_query)) {
     $count_stmt = $conn->prepare("SELECT COUNT(*) AS total FROM tests WHERE test_name LIKE ?");
     $count_stmt->bind_param("s", $search_param);
@@ -133,9 +165,9 @@ if (!empty($search_query)) {
 
 $count_stmt->execute();
 $total_tests_result = $count_stmt->get_result();
-$total_tests_row = $total_tests_result->fetch_assoc();
-$total_tests = $total_tests_row['total'];
-$total_pages = ceil($total_tests / $limit);
+$total_tests_row    = $total_tests_result->fetch_assoc();
+$total_tests        = $total_tests_row['total'];
+$total_pages        = ceil($total_tests / $limit);
 $count_stmt->close();
 
 // جلب جميع الفئات
@@ -149,20 +181,24 @@ if ($cat_result) {
     $_SESSION['error'] = "حدث خطأ أثناء جلب تصنيفات الفحوصات: " . $conn->error;
 }
 
-// جلب الفحوصات للصفحة الحالية بناءً على معايير البحث
+// جلب الفحوصات للصفحة الحالية
 $tests = [];
 if (!empty($search_query)) {
-    $test_stmt = $conn->prepare("SELECT t.*, c.category_name, p.test_name AS parent_test_name FROM tests t 
+    $test_stmt = $conn->prepare("SELECT t.*, c.category_name, p.test_name AS parent_test_name 
+                                 FROM tests t 
                                  LEFT JOIN test_categories c ON t.category_id = c.category_id 
                                  LEFT JOIN tests p ON t.parent_test_id = p.test_id 
                                  WHERE t.test_name LIKE ?
-                                 ORDER BY t.test_id ASC LIMIT ? OFFSET ?");
+                                 ORDER BY t.test_id ASC 
+                                 LIMIT ? OFFSET ?");
     $test_stmt->bind_param("sii", $search_param, $limit, $offset);
 } else {
-    $test_stmt = $conn->prepare("SELECT t.*, c.category_name, p.test_name AS parent_test_name FROM tests t 
+    $test_stmt = $conn->prepare("SELECT t.*, c.category_name, p.test_name AS parent_test_name 
+                                 FROM tests t 
                                  LEFT JOIN test_categories c ON t.category_id = c.category_id 
                                  LEFT JOIN tests p ON t.parent_test_id = p.test_id 
-                                 ORDER BY t.test_id ASC LIMIT ? OFFSET ?");
+                                 ORDER BY t.test_id ASC 
+                                 LIMIT ? OFFSET ?");
     $test_stmt->bind_param("ii", $limit, $offset);
 }
 
@@ -193,18 +229,17 @@ $test_stmt->close();
     <!-- Bootstrap Icons via CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Font Awesome via CDN (إذا كنت تحتاجها) -->
+    <!-- Font Awesome via CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- ملفات CSS إضافية -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-    <!-- هاذه هو النافبار المخصص لصفحة manage_tests.php -->
+    <!-- نافبار -->
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="Doctor.php">اسم الموقع</a>
-          
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -243,7 +278,7 @@ $test_stmt->close();
         </div>
     </nav>
 
-    <!-- محتوى الصفحة يبدأ هنا -->
+    <!-- المحتوى -->
     <div class="container mt-5">
         <!-- العنوان وزر الإضافة -->
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -253,14 +288,15 @@ $test_stmt->close();
             </button>
         </div>
 
-        <!-- نموذج البحث بشكل أكثر أناقة -->
+        <!-- نموذج البحث -->
         <div class="card mb-4">
             <div class="card-body">
                 <form class="row g-3" method="GET" action="manage_tests.php">
                     <div class="col-md-10">
                         <div class="input-group">
                             <span class="input-group-text bg-primary text-white"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" name="search" placeholder="ابحث عن اسم الفحص..." value="<?php echo htmlspecialchars($search_query); ?>">
+                            <input type="text" class="form-control" name="search" placeholder="ابحث عن اسم الفحص..." 
+                                   value="<?php echo htmlspecialchars($search_query); ?>">
                         </div>
                     </div>
                     <div class="col-md-2 d-grid">
@@ -269,13 +305,15 @@ $test_stmt->close();
                 </form>
                 <?php if (!empty($search_query)): ?>
                     <div class="mt-3">
-                        <a href="manage_tests.php" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> إلغاء البحث</a>
+                        <a href="manage_tests.php" class="btn btn-outline-secondary">
+                            <i class="bi bi-x-circle"></i> إلغاء البحث
+                        </a>
                     </div>
                 <?php endif; ?>
             </div>
         </div>
 
-        <!-- عرض رسائل النجاح أو الخطأ من الجلسة -->
+        <!-- رسائل النجاح أو الخطأ -->
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php 
@@ -296,7 +334,7 @@ $test_stmt->close();
             </div>
         <?php endif; ?>
 
-        <!-- جدول الفحوصات بدلاً من بطاقات لعرض أكثر تنظيماً -->
+        <!-- جدول الفحوصات -->
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white">
                 <h5 class="mb-0">قائمة الفحوصات</h5>
@@ -313,6 +351,8 @@ $test_stmt->close();
                                     <th>السعر</th>
                                     <th>النطاق الطبيعي</th>
                                     <th>الفحص الأب</th>
+                                    <th>SubTest</th>
+                                    <th>IsParent</th>
                                     <th>الإجراءات</th>
                                 </tr>
                             </thead>
@@ -325,6 +365,9 @@ $test_stmt->close();
                                         <td><?php echo htmlspecialchars(number_format($test['price'] ?? 0, 2)) . " ريال"; ?></td>
                                         <td><?php echo htmlspecialchars($test['normal_range'] ?? ''); ?></td>
                                         <td><?php echo htmlspecialchars($test['parent_test_name'] ?? 'لا يوجد'); ?></td>
+                                        <!-- عرض القيم الجديدة بشكل نصي (صفر أو واحد) -->
+                                        <td><?php echo ($test['is_sub_test_level'] == 1) ? 'نعم' : 'لا'; ?></td>
+                                        <td><?php echo ($test['is_parent'] == 1) ? 'نعم' : 'لا'; ?></td>
                                         <td>
                                             <button 
                                                 class="btn btn-sm btn-warning me-2 edit-btn" 
@@ -336,6 +379,8 @@ $test_stmt->close();
                                                 data-price="<?php echo htmlspecialchars($test['price'] ?? ''); ?>"
                                                 data-normal_range="<?php echo htmlspecialchars($test['normal_range'] ?? ''); ?>"
                                                 data-parent_test_id="<?php echo htmlspecialchars($test['parent_test_id'] ?? ''); ?>"
+                                                data-is_sub_test_level="<?php echo htmlspecialchars($test['is_sub_test_level'] ?? '0'); ?>"
+                                                data-is_parent="<?php echo htmlspecialchars($test['is_parent'] ?? '0'); ?>"
                                             >
                                                 <i class="bi bi-pencil-square"></i> تعديل
                                             </button>
@@ -358,11 +403,11 @@ $test_stmt->close();
             </div>
         </div>
 
-        <!-- عناصر الباجنيشن بشكل أنيق -->
+        <!-- الباجنيشن -->
         <?php if ($total_pages > 1): ?>
             <nav aria-label="Page navigation example" class="mt-4">
                 <ul class="pagination justify-content-center">
-                    <!-- زر الصفحة السابقة -->
+                    <!-- السابق -->
                     <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
                         <a class="page-link" href="<?php 
                             if($page <= 1){
@@ -371,27 +416,29 @@ $test_stmt->close();
                                 $prev_page = $page -1;
                                 echo 'manage_tests.php?page=' . $prev_page . (!empty($search_query) ? '&search=' . urlencode($search_query) : '');
                             }
-                        ?>" tabindex="-1">السابق</a>
+                        ?>">السابق</a>
                     </li>
 
                     <!-- أرقام الصفحات -->
                     <?php 
-                        // تحديد نطاق الأرقام لعرض بعض الصفحات حول الصفحة الحالية
-                        $range = 2; // عدد الصفحات قبل وبعد الصفحة الحالية
+                        $range = 2;
                         for($i = max(1, $page - $range); $i <= min($page + $range, $total_pages); $i++): 
                     ?>
                         <li class="page-item <?php if($page == $i){ echo 'active'; } ?>">
-                            <a class="page-link <?php if($page == $i){ echo 'bg-primary text-white'; } ?>" href="manage_tests.php?page=<?php echo $i; ?><?php echo !empty($search_query) ? '&search=' . urlencode($search_query) : ''; ?>"><?php echo $i; ?></a>
+                            <a class="page-link <?php if($page == $i){ echo 'bg-primary text-white'; } ?>" 
+                               href="manage_tests.php?page=<?php echo $i; ?><?php echo !empty($search_query) ? '&search=' . urlencode($search_query) : ''; ?>">
+                                <?php echo $i; ?>
+                            </a>
                         </li>
                     <?php endfor; ?>
 
-                    <!-- زر الصفحة التالية -->
+                    <!-- التالي -->
                     <li class="page-item <?php if($page >= $total_pages){ echo 'disabled'; } ?>">
                         <a class="page-link" href="<?php 
                             if($page >= $total_pages){
                                 echo '#';
                             } else {
-                                $next_page = $page +1;
+                                $next_page = $page + 1;
                                 echo 'manage_tests.php?page=' . $next_page . (!empty($search_query) ? '&search=' . urlencode($search_query) : '');
                             }
                         ?>">التالي</a>
@@ -401,7 +448,7 @@ $test_stmt->close();
         <?php endif; ?>
     </div>
 
-    <!-- نموذج إضافة الفحص في نافذة منبثقة -->
+    <!-- نافذة إضافة فحص -->
     <div class="modal fade" id="addTestModal" tabindex="-1" aria-labelledby="addTestModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -411,15 +458,13 @@ $test_stmt->close();
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- عرض الأخطاء إن وجدت -->
+                        <!-- أخطاء -->
                         <?php if (isset($_SESSION['form_errors']) && isset($_POST['save'])): ?>
                             <div class="alert alert-danger">
                                 <ul>
                                     <?php 
                                         foreach ($_SESSION['form_errors'] as $error): 
-                                    ?>
-                                        <li><?php echo htmlspecialchars($error ?? ''); ?></li>
-                                    <?php 
+                                            echo "<li>".htmlspecialchars($error)."</li>";
                                         endforeach; 
                                         unset($_SESSION['form_errors']);
                                     ?>
@@ -429,22 +474,22 @@ $test_stmt->close();
                         <div class="mb-3">
                             <label for="add_test_name" class="form-label">اسم الفحص <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="add_test_name" name="test_name" 
-                                value="<?php echo isset($_SESSION['form_data']['test_name']) ? htmlspecialchars($_SESSION['form_data']['test_name']) : ''; ?>" 
-                                required>
+                                   value="<?php echo isset($_SESSION['form_data']['test_name']) ? htmlspecialchars($_SESSION['form_data']['test_name']) : ''; ?>" 
+                                   required>
                         </div>
                         <div class="mb-3">
                             <label for="add_category_id" class="form-label">تصنيف الفحص <span class="text-danger">*</span></label>
                             <select class="form-select" id="add_category_id" name="category_id" required>
                                 <option value="">اختر تصنيفًا</option>
                                 <?php foreach ($categories as $category): ?>
-                                    <option value="<?php echo htmlspecialchars($category['category_id'] ?? ''); ?>"
+                                    <option value="<?php echo htmlspecialchars($category['category_id']); ?>"
                                         <?php 
                                             if(isset($_SESSION['form_data']['category_id']) && $_SESSION['form_data']['category_id'] == $category['category_id']) {
                                                 echo 'selected';
                                             }
                                         ?>
                                     >
-                                        <?php echo htmlspecialchars($category['category_name'] ?? ''); ?>
+                                        <?php echo htmlspecialchars($category['category_name']); ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
@@ -453,15 +498,42 @@ $test_stmt->close();
                             <div class="col-md-6 mb-3">
                                 <label for="add_price" class="form-label">السعر <span class="text-danger">*</span></label>
                                 <input type="number" step="0.01" class="form-control" id="add_price" name="price" 
-                                    value="<?php echo isset($_SESSION['form_data']['price']) ? htmlspecialchars($_SESSION['form_data']['price']) : ''; ?>" 
-                                    required>
+                                       value="<?php echo isset($_SESSION['form_data']['price']) ? htmlspecialchars($_SESSION['form_data']['price']) : ''; ?>" 
+                                       required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="add_normal_range" class="form-label">النطاق الطبيعي</label>
                                 <input type="text" class="form-control" id="add_normal_range" name="normal_range" 
-                                    value="<?php echo isset($_SESSION['form_data']['normal_range']) ? htmlspecialchars($_SESSION['form_data']['normal_range']) : ''; ?>">
+                                       value="<?php echo isset($_SESSION['form_data']['normal_range']) ? htmlspecialchars($_SESSION['form_data']['normal_range']) : ''; ?>">
                             </div>
                         </div>
+
+                        <!-- الحقلان الجديدان -->
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="add_is_sub_test_level" name="is_sub_test_level"
+                                <?php 
+                                    if (isset($_SESSION['form_data']['is_sub_test_level']) && $_SESSION['form_data']['is_sub_test_level'] == '1') {
+                                        echo 'checked';
+                                    }
+                                ?>
+                            >
+                            <label class="form-check-label" for="add_is_sub_test_level">
+                                هل هو Sub-Test (فحص فرعي)؟
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="add_is_parent" name="is_parent"
+                                <?php 
+                                    if (isset($_SESSION['form_data']['is_parent']) && $_SESSION['form_data']['is_parent'] == '1') {
+                                        echo 'checked';
+                                    }
+                                ?>
+                            >
+                            <label class="form-check-label" for="add_is_parent">
+                                هل هو فحص أب (يحتوي على فحوصات فرعية)؟
+                            </label>
+                        </div>
+
                         <div class="mb-3">
                             <label for="add_parent_test_id" class="form-label">الفحص الأب (اختياري)</label>
                             <select class="form-select" id="add_parent_test_id" name="parent_test_id">
@@ -495,7 +567,7 @@ $test_stmt->close();
         </div>
     </div>
 
-    <!-- نموذج تعديل الفحص في نافذة منبثقة -->
+    <!-- نافذة تعديل الفحص -->
     <div class="modal fade" id="editTestModal" tabindex="-1" aria-labelledby="editTestModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -505,15 +577,13 @@ $test_stmt->close();
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- عرض الأخطاء إن وجدت -->
+                        <!-- أخطاء -->
                         <?php if (isset($_SESSION['form_errors']) && isset($_POST['update'])): ?>
                             <div class="alert alert-danger">
                                 <ul>
                                     <?php 
                                         foreach ($_SESSION['form_errors'] as $error): 
-                                    ?>
-                                        <li><?php echo htmlspecialchars($error ?? ''); ?></li>
-                                    <?php 
+                                            echo "<li>".htmlspecialchars($error)."</li>";
                                         endforeach; 
                                         unset($_SESSION['form_errors']);
                                     ?>
@@ -530,8 +600,8 @@ $test_stmt->close();
                             <select class="form-select" id="edit_category_id" name="category_id" required>
                                 <option value="">اختر تصنيفًا</option>
                                 <?php foreach ($categories as $category): ?>
-                                    <option value="<?php echo htmlspecialchars($category['category_id'] ?? ''); ?>">
-                                        <?php echo htmlspecialchars($category['category_name'] ?? ''); ?>
+                                    <option value="<?php echo htmlspecialchars($category['category_id']); ?>">
+                                        <?php echo htmlspecialchars($category['category_name']); ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
@@ -546,6 +616,17 @@ $test_stmt->close();
                                 <input type="text" class="form-control" id="edit_normal_range" name="normal_range">
                             </div>
                         </div>
+
+                        <!-- الحقلان الجديدان -->
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="edit_is_sub_test_level" name="is_sub_test_level">
+                            <label class="form-check-label" for="edit_is_sub_test_level">هل هو Sub-Test؟</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="edit_is_parent" name="is_parent">
+                            <label class="form-check-label" for="edit_is_parent">هل هو فحص أب؟</label>
+                        </div>
+
                         <div class="mb-3">
                             <label for="edit_parent_test_id" class="form-label">الفحص الأب (اختياري)</label>
                             <select class="form-select" id="edit_parent_test_id" name="parent_test_id">
@@ -567,33 +648,41 @@ $test_stmt->close();
         </div>
     </div>
 
-    <!-- سكريبتات JavaScript لتشغيل النوافذ المنبثقة وتعبئة بيانات التعديل -->
+    <!-- سكريبت تعبئة بيانات التعديل -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const editButtons = document.querySelectorAll('.edit-btn');
             editButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    const testId = this.getAttribute('data-test_id');
-                    const testName = this.getAttribute('data-test_name');
-                    const categoryId = this.getAttribute('data-category_id');
-                    const price = this.getAttribute('data-price');
-                    const normalRange = this.getAttribute('data-normal_range');
-                    const parentTestId = this.getAttribute('data-parent_test_id');
+                    const testId            = this.getAttribute('data-test_id');
+                    const testName          = this.getAttribute('data-test_name');
+                    const categoryId        = this.getAttribute('data-category_id');
+                    const price             = this.getAttribute('data-price');
+                    const normalRange       = this.getAttribute('data-normal_range');
+                    const parentTestId      = this.getAttribute('data-parent_test_id');
+                    const isSubTestLevel    = this.getAttribute('data-is_sub_test_level');
+                    const isParent          = this.getAttribute('data-is_parent');
 
-                    // تعيين القيم في نموذج التعديل
-                    document.getElementById('edit_test_id').value = testId;
-                    document.getElementById('edit_test_name').value = testName;
-                    document.getElementById('edit_category_id').value = categoryId;
-                    document.getElementById('edit_price').value = price;
-                    document.getElementById('edit_normal_range').value = normalRange;
+                    document.getElementById('edit_test_id').value       = testId;
+                    document.getElementById('edit_test_name').value      = testName;
+                    document.getElementById('edit_category_id').value    = categoryId;
+                    document.getElementById('edit_price').value          = price;
+                    document.getElementById('edit_normal_range').value   = normalRange;
                     document.getElementById('edit_parent_test_id').value = parentTestId;
+
+                    // معالجة Checkbox is_sub_test_level
+                    const editIsSub = document.getElementById('edit_is_sub_test_level');
+                    editIsSub.checked = (isSubTestLevel === '1');
+
+                    // معالجة Checkbox is_parent
+                    const editIsParent = document.getElementById('edit_is_parent');
+                    editIsParent.checked = (isParent === '1');
                 });
             });
 
-            // إذا كان هناك أخطاء في النموذج، فتح النافذة المنبثقة المناسبة
+            // إذا كان هناك أخطاء في النموذج، افتح النافذة المنبثقة المناسبة
             <?php if (isset($_SESSION['form_errors'])): ?>
                 <?php
-                    // تحديد نوع النافذة المنبثقة التي يجب فتحها بناءً على ما إذا كان هناك حفظ أم تحديث
                     if (isset($_POST['save'])) {
                         echo "var addModal = new bootstrap.Modal(document.getElementById('addTestModal')); addModal.show();";
                     } elseif (isset($_POST['update'])) {
@@ -604,7 +693,7 @@ $test_stmt->close();
         });
     </script>
 
-    <!-- Bootstrap 5 JS Bundle via CDN (يتضمن Popper.js) -->
+    <!-- Bootstrap 5 JS (يتضمن Popper.js) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

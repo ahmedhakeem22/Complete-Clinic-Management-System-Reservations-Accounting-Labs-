@@ -18,42 +18,133 @@ include '../includes/db.php';
         >
     </div>
 </div>
-
 <style>
-    input[type='checkbox'] {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        background: white;
-        border-radius: 5px;
-        border: 1px solid green;
-        cursor: pointer;
-        transition: 0.3s;
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #eef2f7;
+        margin: 0;
+        padding: 0;
+        color: #333;
     }
-    input[type='checkbox']:checked {
-        background: red;
-        transform: scale(1.2);
-    }
-    .form-group label {
+
+    h3 {
         font-weight: bold;
-        color: #555;
-        margin-bottom: 10px;
+        color: #2c3e50;
+        text-align: center;
+        margin: 20px 0;
     }
-    .test-section {
-        margin-bottom: 30px;
-        padding: 15px;
-        border: 1px solid #ddd;
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #34495e;
+    }
+
+    #PatientID {
+        border: 1px solid #bdc3c7;
+        padding: 10px;
         border-radius: 5px;
-        background-color: #f9f9f9;
     }
+
+    .form-group input[type="checkbox"] {
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        background-color: #ecf0f1;
+        border: 2px solid #3498db;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .form-group input[type="checkbox"]:checked {
+        background-color: #2ecc71;
+        border-color: #27ae60;
+        transform: scale(1.1);
+    }
+
+    .test-section {
+        background-color: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
     .test-section label {
-        color: #d9534f;
-        font-size: 22px;
+        font-size: 20px;
+        color: #2980b9;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
     }
+
     .test-items {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .test-items label {
+        font-size: 16px;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
         gap: 10px;
+        cursor: pointer;
+        padding: 10px;
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .test-items label:hover {
+        background-color: #f1f1f1;
+        border-color: #3498db;
+    }
+
+    .test-items label.highlight {
+        background-color: #f39c12;
+        color: white;
+    }
+
+    .form-group.row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    .form-group.row label {
+        flex-basis: 20%;
+        text-align: right;
+    }
+
+    .form-group.row input {
+        flex-basis: 75%;
+        padding: 10px;
+        border: 1px solid #bdc3c7;
+        border-radius: 5px;
+    }
+
+    .form-group.row input:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+
+    footer {
+        margin-top: 20px;
+        text-align: center;
+        padding: 10px;
+        background-color: #34495e;
+        color: #ecf0f1;
+        font-size: 14px;
     }
 </style>
 
@@ -63,8 +154,9 @@ include '../includes/db.php';
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
         $orderField = implode(',', $ids);
 
-        $sql = "SELECT test_id, test_name FROM tests
+        $sql = "SELECT test_id, test_name, is_parent, parent_test_id FROM tests
                 WHERE test_id IN ($placeholders)
+                AND is_sub_test_level != 1
                 ORDER BY FIELD(test_id, $orderField)";
 
         $stmt = $conn->prepare($sql);
@@ -107,7 +199,13 @@ include '../includes/db.php';
         foreach ($tests as $test) {
             $tid = $test['test_id'];
             $name = $test['test_name'];
-            echo "<label><input type='checkbox' name='test[]' value='$tid'> $name</label>";
+            $isParent = $test['is_parent'];
+            $parentTestId = $test['parent_test_id'];
+
+            // Check if the test should have a special color
+            $highlightClass = ($isParent == 1 || !empty($parentTestId)) ? 'highlight' : '';
+
+            echo "<label class='$highlightClass'><input type='checkbox' name='test[]' value='$tid'> $name</label>";
         }
         echo '</div>';
         echo '</div>';

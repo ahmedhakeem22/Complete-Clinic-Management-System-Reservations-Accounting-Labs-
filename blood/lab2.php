@@ -31,7 +31,7 @@ while($row = $res_cat->fetch_assoc()){
 $stmt_cat->close();
 
 // جلب الاختبارات
-$test_sql = "SELECT test_id, test_name, category_id, normal_range FROM tests ORDER BY category_id ASC, test_id ASC";
+$test_sql = "SELECT test_id, test_name, category_id, normal_range, is_parent, is_sub_test_level FROM tests ORDER BY category_id ASC, test_id ASC";
 $stmt_test = $conn->prepare($test_sql);
 $stmt_test->execute();
 $res_test = $stmt_test->get_result();
@@ -310,18 +310,31 @@ if(isset($_POST['submit_tests'])){
                                 foreach(array_chunk($testsOfCat,2) as $twoTests):
                                 ?>
                                     <tr>
-                                        <?php foreach($twoTests as $testItem): ?>
-                                        <td style="width:50%;">
-                                            <label for="test_<?= $testItem['test_id']; ?>">
-                                                <?= htmlspecialchars($testItem['test_name']); ?>:
-                                            </label>
-                                            <input type="text"
-                                                   id="test_<?= $testItem['test_id']; ?>"
-                                                   name="test_<?= $testItem['test_id']; ?>"
-                                                   class="form-control"
-                                                   placeholder="اكتب النتيجة..."/>
-                                        </td>
-                                        <?php endforeach; ?>
+                                    <?php foreach($twoTests as $testItem): ?>
+    <?php 
+        $isParent = $testItem['is_parent'] == 1;
+        $isSubTest = $testItem['is_sub_test_level'] == 1;
+        $rowStyle = $isParent ? 'background-color: #ffc107; font-weight: bold;' : ''; // لون مميز لـ is_parent
+        if ($isSubTest && !$isParent) {
+            $rowStyle = 'background-color: #ffc107;'; // نفس اللون لـ is_sub_test_level
+        }
+    ?>
+    <tr style="<?= $rowStyle; ?>">
+        <td style="width:50%;">
+            <label for="test_<?= $testItem['test_id']; ?>">
+                <?= htmlspecialchars($testItem['test_name']); ?>:
+            </label>
+            <?php if (!($isParent && $isSubTest) && !$isParent): ?>
+                <input type="text"
+                       id="test_<?= $testItem['test_id']; ?>"
+                       name="test_<?= $testItem['test_id']; ?>"
+                       class="form-control"
+                       placeholder="اكتب النتيجة..."/>
+            <?php endif; ?>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
                                     </tr>
                                 <?php endforeach; ?>
                             </table>
