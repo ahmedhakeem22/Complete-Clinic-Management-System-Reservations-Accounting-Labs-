@@ -2,7 +2,7 @@
 
 
 
-require_once('../TCPDF-master/tcpdf.php');
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $pdf =new TCPDF('p','mm','A4','UTF-8');
 $pdf-> AddPage();
