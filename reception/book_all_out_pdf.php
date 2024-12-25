@@ -1,6 +1,6 @@
 <?php 
 
-require_once('../TCPDF-master/tcpdf.php');
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // الاتصال بقاعدة البيانات عبر ملف db.php
 include '../includes/db.php';
