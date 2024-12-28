@@ -2,7 +2,7 @@
 
 include'templats/header.php';
 include'templats/navbar.php';
-include'includes/db.php';
+include'../includes/db.php';
 
 
 ?>
@@ -77,7 +77,7 @@ echo $row['id'];
 
 
 if(isset($_POST['submit'])){
-    include'includes/db.php';
+    include'../includes/db.php';
     $i=0;
 
     foreach ($_POST['data'] as $val) {

@@ -5,7 +5,7 @@ error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // اتصال قاعدة البيانات عبر ملف db.php
-include 'includes/db.php'; // Use a relative path
+include '../includes/db.php';
 
 // تعيين الترميز إلى utf8mb4
 mysqli_set_charset($conn, "utf8mb4");

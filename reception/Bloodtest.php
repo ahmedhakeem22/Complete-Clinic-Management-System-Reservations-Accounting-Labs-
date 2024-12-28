@@ -1,139 +1,146 @@
 <?php
+// Bloodtest.php
+
+// 1) استدعاء ملف الاتصال بقاعدة البيانات
 include '../includes/db.php';
+
+// 2) استدعاء ملفات الواجهة (هيدر/نافبار)
+include 'includes/templates/header.php';
+include 'includes/templates/navbar.php';
 ?>
+<main>
+    <img src="includes/images/Bloodtest.jpg" alt="image" width="100%" height="auto">
 
-<h3 class="mb-4 text-center" style="font-weight: bold; color: #333;">اختر الفحوصات الدموية</h3>
+    <div class="boxlab" style="top:5px;">
+        <!-- نستخدم الفورم الرئيسية لإرسال الفحوصات المختارة -->
+        <!-- (الأفضل استعمال POST) -->
+        <form id="bloodtest-form" action="choess_blood_box_preview.php" method="post">
+            <table cellspacing="15" cellpadding="0">
+                <tr>
+                    <td>
+                        Patient ID:
+                        <input type="number" id="Patient" name="pat_id" required />
+                    </td>
+                    <td>
+                        <!-- زر إرسال لننتقل إلى صفحة المعاينة (preview) -->
+                        <button type="submit" name="preview" class="btn btn-success">عرض التكلفة</button>
+                    </td>
+                </tr>
+            </table>
 
-<!-- Patient ID -->
-<div class="form-group row mb-4">
-    <label for="PatientID" class="col-sm-2 col-form-label" style="font-weight: bold;">معرف المريض:</label>
-    <div class="col-sm-10">
-        <input 
-            type="number" 
-            class="form-control" 
-            id="PatientID" 
-            name="pat_id" 
-            placeholder="أدخل معرف المريض" 
-            required
-        >
+            <?php
+            // 1) جلب جميع الفئات من قاعدة البيانات
+            $sql_categories = "SELECT category_id, category_name FROM test_categories ORDER BY category_id ASC";
+            $res_categories = $conn->query($sql_categories);
+
+            if ($res_categories->num_rows > 0):
+                while ($cat_row = $res_categories->fetch_assoc()):
+                    $category_id = $cat_row['category_id'];
+                    $category_name = $cat_row['category_name'];
+
+                    // عنوان الفئة
+                    echo "<h3 style='color:red; font-size:22px; margin-top:15px;'>{$category_name}</h3>";
+
+                    // 2) جلب الاختبارات الخاصة بهذه الفئة
+                    $sql_tests = "SELECT test_id, test_name, price , is_parent, parent_test_id
+              FROM tests 
+              WHERE category_id = $category_id AND is_sub_test_level = 0
+              ORDER BY test_id ASC";
+                    $res_tests = $conn->query($sql_tests);
+
+                    if ($res_tests->num_rows > 0):
+                        echo "<div style='margin-bottom:10px;'>";
+                        while ($test_row = $res_tests->fetch_assoc()):
+                            $test_id = $test_row['test_id'];
+                            $test_name = $test_row['test_name'];
+                            $price = $test_row['price'];
+                            $isParent = $test_row['is_parent'] == 1;
+                            $hasParentTest = !is_null($test_row['parent_test_id']); // التحقق إذا كانت قيمة parent_test_id ليست خالية
+            
+                            // تحديد النمط بناءً على الشروط
+                            $rowStyle = '';
+                            if ($isParent) {
+                                $rowStyle = 'background-color: #ffc107; font-weight: bold;'; // لون مميز لـ is_parent
+                            } elseif ($hasParentTest) {
+                                $rowStyle = 'background-color: #ffc107;'; // نفس اللون إذا كانت parent_test_id غير خالية
+                            }
+                            ?>
+                            <label style="margin-right:15px; <?= $rowStyle; ?>">
+                                <input type="checkbox" name="test[]" value="<?= $test_id; ?>" />
+                                <?= htmlspecialchars($test_name); ?> (<?= $price; ?>)
+                            </label>
+                            <?php
+                        endwhile;
+
+                        echo "</div>";
+                    else:
+                        echo "<p>لا توجد اختبارات ضمن هذه الفئة.</p>";
+                    endif;
+
+                endwhile;
+            else:
+                echo "<p>لا توجد فئات مُسجّلة بعد.</p>";
+            endif;
+            ?>
+        </form>
+    </div>
+</main>
+
+<!-- Modal Structure -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-success" id="confirmationModalLabel">تأكيد الفحوصات المختارة</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="إغلاق">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- محتوى التأكيد سيتم تحميله هنا -->
+                <div id="confirmationContent">
+                    <!-- سيتم ملؤه عبر AJAX -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+            </div>
+        </div>
     </div>
 </div>
 
-<style>
-    input[type='checkbox'] {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        background: white;
-        border-radius: 5px;
-        border: 1px solid green;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    input[type='checkbox']:checked {
-        background: red;
-        transform: scale(1.2);
-    }
-    .form-group label {
-        font-weight: bold;
-        color: #555;
-        margin-bottom: 10px;
-    }
-    .test-section {
-        margin-bottom: 30px;
-        padding: 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-    }
-    .test-section label {
-        color: #d9534f;
-        font-size: 22px;
-    }
-    .test-items {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 10px;
-    }
-</style>
+<footer>
+    <!-- Footer content -->
+</footer>
 
-<div class="form-group" style="font-size:22px; font-family:Tahoma;">
-    <?php
-    function getTestsByIds($conn, array $ids) {
-        $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $orderField = implode(',', $ids);
+<!-- JavaScript to handle form submission and modal display -->
+<script>
+    document.getElementById('bloodtest-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // منع الإرسال التقليدي للنموذج
 
-        $sql = "SELECT test_id, test_name, is_parent, parent_test_id, is_sub_test_level 
-                FROM tests
-                WHERE test_id IN ($placeholders)
-                ORDER BY FIELD(test_id, $orderField)";
+        // إنشاء كائن FormData لجمع بيانات النموذج
+        var formData = new FormData(this);
 
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            die('خطأ في تحضير الاستعلام: ' . $conn->error);
-        }
-        $types = str_repeat('i', count($ids));
-        $stmt->bind_param($types, ...$ids);
+        // إرسال البيانات عبر Fetch API باستخدام POST
+        fetch('choess_blood_box_preview.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
+            .then(data => {
+                // تحميل البيانات في محتوى النموذج المنبثق
+                document.getElementById('confirmationContent').innerHTML = data;
+                // عرض النموذج المنبثق
+                $('#confirmationModal').modal('show');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء معالجة الطلب.');
+            });
+    });
+</script>
 
-        $stmt->execute();
-        $res = $stmt->get_result();
+</body>
 
-        $tests = [];
-        while ($row = $res->fetch_assoc()) {
-            $tests[] = $row;
-        }
-        $stmt->close();
-        return $tests;
-    }
-
-    $categories = [
-        'HAEMATOLOGY' => [1, 101, 102, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13],
-        'BIOCHEMISTRY' => [
-            14, 15, 16, 17, 18, 104, 105, 19, 106, 107, 108, 109,
-            20, 21, 22, 110, 111, 112, 113, 114, 23, 115, 116, 117,
-            24, 118, 119, 120, 121, 25, 39
-        ],
-        'SEROLOGY' => [26, 27, 28, 29, 30, 31, 32, 33, 122, 123, 124, 36, 37, 38],
-        'DRUGS' => [40, 41, 42, 43, 44, 45, 46, 47],
-        'HORMONES' => [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
-    ];
-
-    foreach ($categories as $category => $ids) {
-        echo '<div class="test-section">';
-        echo "<label>$category</label><br/>";
-
-        $tests = getTestsByIds($conn, $ids);
-
-        echo '<div class="test-items">';
-        foreach ($tests as $test) {
-            $tid = $test['test_id'];
-            $name = $test['test_name'];
-            $isParent = $test['is_parent'] == 1;
-            $hasParentTest = !is_null($test['parent_test_id']);
-            $isSubTestLevel = $test['is_sub_test_level'] == 1;
-
-            // تجاهل الفحوصات التي تكون is_sub_test_level = 1
-            if ($isSubTestLevel) {
-                continue;
-            }
-
-            // تحديد النمط بناءً على الشروط
-            $rowStyle = '';
-            if ($isParent) {
-                $rowStyle = 'background-color: #ffc107; font-weight: bold;'; // لون مميز لـ is_parent
-            } elseif ($hasParentTest) {
-                $rowStyle = 'background-color: #ffc107;'; // نفس اللون إذا كانت parent_test_id غير خالية
-            }
-
-            // عرض الاختبار بناءً على الشروط
-            echo "<label style='$rowStyle'>";
-            if (!$isParent || $hasParentTest) { // إذا لم يكن "أبًا" أو لديه parent_test_id
-                echo "<input type='checkbox' name='test[]' value='$tid'> ";
-            }
-            echo "$name</label>";
-        }
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-</div>
+</html>
