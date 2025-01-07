@@ -1,5 +1,9 @@
 <?php 
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+ini_set('display_errors', '0');
 
+// بدء تخزين المخرجات قبل الإرسال للمتصفح
+ob_start();
 require_once __DIR__ . '/../vendor/autoload.php';
 include '../includes/db.php';
 
@@ -28,7 +32,7 @@ function test_input($data) {
   }
     
 ////////////////////////////////////////////
-class PDF extends tcpdf{
+class PDF extends TCPDF{
   function Header(){
   $this->setfont('times','B',15);
   
