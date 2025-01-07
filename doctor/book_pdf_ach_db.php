@@ -1,6 +1,9 @@
 <?php 
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+ini_set('display_errors', '0');
+ob_start();
 
-require '../TCPDF-master/tcpdf.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 include '../includes/db.php';
 
     
@@ -34,7 +37,7 @@ function test_input($data) {
 
 
 
-$pdf =new tcpdf('p','mm','A4','UTF-8');
+$pdf =new TCPDF('p','mm','A4','UTF-8');
 $pdf-> AddPage();
 $pdf->SetFont('times','B',12);
 
