@@ -213,33 +213,33 @@ include 'includes/templates/navbar2.php';
                 <li>
                     <a href="newsession.php"><i class="fas fa-plus-circle"></i> جلسة جديدة</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="book_all_out_pdf.php"><i class="fas fa-file-pdf"></i> مخرجات كشف الصندوق</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="book_nafsy_pdf_ach_db.php"><i class="fas fa-file-alt"></i> فواتير الفحوص النفسية</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="book_pdf_ach_db.php"><i class="fas fa-file-invoice-dollar"></i> فواتير الجلسات</a>
-                </li>
+                </li> -->
                 <li>
                     <a href="select_file_pation.php"><i class="fas fa-chart-line"></i> تقارير المرضى</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="book_blood_pdf_ach_db.php"><i class="fas fa-tint"></i> فواتير فحص الدم</a>
-                </li>
+                </li> -->
                 <li>
                     <a href="book_out.php"><i class="fas fa-receipt"></i> سند صرف</a>
                 </li>
                 <li>
-                    <a href="report_box_all.php"><i class="fas fa-box"></i> جميع فواتير الصندوق</a>
+                    <a href="treasury.php"><i class="fas fa-box"></i> الصندوق</a>
                 </li>
                 <li>
                     <a href="provider.php"><i class="fas fa-hands-helping"></i> دعم المركز</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="prov_all_pdf.php"><i class="fas fa-users"></i> كشف الداعمين</a>
-                </li>
+                </li> -->
                 <li>
                     <a href="manage_tests.php"><i class="fas fa-vial"></i> إدارة الاختبارات</a>
                 </li>
@@ -279,7 +279,7 @@ include 'includes/templates/navbar2.php';
                 </div>
 
                 <!-- بطاقة مخرجات كشف الصندوق -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/IMG4.png" class="card-img-top" alt="مخرجات كشف الصندوق">
                         <div class="card-body">
@@ -289,10 +289,10 @@ include 'includes/templates/navbar2.php';
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- بطاقة فواتير الفحوص النفسية -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/img7.png" class="card-img-top" alt="فواتير الفحوص النفسية">
                         <div class="card-body">
@@ -302,10 +302,10 @@ include 'includes/templates/navbar2.php';
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- بطاقة فواتير الجلسات -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/IMG5.png" class="card-img-top" alt="فواتير الجلسات">
                         <div class="card-body">
@@ -315,7 +315,7 @@ include 'includes/templates/navbar2.php';
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- بطاقة تقارير المرضى -->
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -331,7 +331,7 @@ include 'includes/templates/navbar2.php';
                 </div>
 
                 <!-- بطاقة فواتير فحص الدم -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/img8.png" class="card-img-top" alt="فواتير فحص الدم">
                         <div class="card-body">
@@ -341,7 +341,7 @@ include 'includes/templates/navbar2.php';
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- بطاقة سند صرف -->
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -356,13 +356,13 @@ include 'includes/templates/navbar2.php';
                     </div>
                 </div>
 
-                <!-- بطاقة جميع فواتير الصندوق -->
+                <!-- بطاقة الصندوق -->
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
-                        <img src="includes/images/img3.png" class="card-img-top" alt="جميع فواتير الصندوق">
+                        <img src="includes/images/IMG4.png" class="card-img-top" alt="الصندوق">
                         <div class="card-body">
-                            <h5 class="card-title">جميع فواتير الصندوق</h5>
-                            <a href="report_box_all.php" class="btn btn-success">
+                            <h5 class="card-title">الصندوق</h5>
+                            <a href="treasury.php" class="btn btn-success">
                                 <i class="fas fa-box me-2"></i> عرض
                             </a>
                         </div>
@@ -383,7 +383,7 @@ include 'includes/templates/navbar2.php';
                 </div>
 
                 <!-- بطاقة كشف الداعمين -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/img3.png" class="card-img-top" alt="كشف الداعمين">
                         <div class="card-body">
@@ -393,7 +393,7 @@ include 'includes/templates/navbar2.php';
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- بطاقة إدارة الاختبارات -->
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
