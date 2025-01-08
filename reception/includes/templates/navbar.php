@@ -1,7 +1,7 @@
 <nav class="navbar  sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
        
-        <div class="namealign"> <a class="nav-link" href="index.php" > Home<span class="sr-only">(current)</span></a>
+        <div class="namealign"> <a class="nav-link" href="reception.php" > Home<span class="sr-only">(current)</span></a>
 		</div>
   <div class="namealign"><a class="nav-link" href="reception.php" >reception</a>
 		</div>
@@ -16,5 +16,6 @@
   
 	  
   </div>
+  
 </div>
 </nav>

@@ -67,7 +67,7 @@ $_SESSION['r_name']=$admin_email;
 
 echo "<script>alert('You are Logged in into admin panel')</script>";
 
-echo "<script>window.open('index.php','_self')</script>";
+echo "<script>window.open('reception.php','_self')</script>";
 
 }
 else {

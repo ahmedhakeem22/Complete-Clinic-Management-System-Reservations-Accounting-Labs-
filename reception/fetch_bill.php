@@ -21,7 +21,7 @@ if ($stmt) {
     $stmt->execute();
     $result = $stmt->get_result();
     $invoice = $result->fetch_assoc();
-    
+
     if (!$invoice) {
         echo "لم يتم العثور على الفاتورة المطلوبة.";
         exit();
@@ -38,92 +38,144 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <title>فاتورة رقم <?php echo htmlspecialchars($invoice['invoice_id']); ?></title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
     <style>
+       @page {
+            margin: 0;
+            /* تعطيل الهوامش الافتراضية للصفحة */
+        }
+
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #f8f9fa;
             padding: 20px;
-        }
-        .invoice {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* إضافة مسافة داخلية مخصصة للطباعة */
         }
 
-        .invoice-header, .invoice-footer {
-            border-bottom: 2px solid #dee2e6;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+
+        .invoice {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 14px; /* تقليل حجم الخط العام */
+        }
+
+        .invoice-header {
+            border-bottom: 1px solid #0d6efd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .invoice-footer {
-            border-top: 2px solid #dee2e6;
-            border-bottom: none;
-            padding-top: 15px;
-            margin-top: 20px;
+            border-top: 1px solid #0d6efd;
+            padding-top: 10px;
+            margin-top: 15px;
+            font-size: 12px; /* تقليل حجم الخط في التذييل */
         }
 
         .logo {
-            max-width: 150px;
+            max-width: 120px; /* تقليل حجم الشعار */
         }
 
         .invoice-title {
             color: #0d6efd;
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
         .table th {
             background-color: #0d6efd;
             color: #ffffff;
+            font-size: 13px; /* تقليل حجم الخط في رؤوس الجدول */
+            padding: 8px;
+        }
+
+        .table td {
+            font-size: 13px; /* تقليل حجم الخط في خلايا الجدول */
+            padding: 8px;
         }
 
         .btn-print {
-            margin-top: 20px;
+            margin-top: 15px;
+            font-size: 14px; /* تقليل حجم الخط في زر الطباعة */
+        }
+
+        .text-primary {
+            color: #0d6efd !important;
+            font-size: 16px; /* تقليل حجم الخط لعناوين الأقسام */
         }
 
         @media print {
             .btn-print {
                 display: none;
             }
+            body {
+                margin: 0;
+            }
+            .invoice {
+                box-shadow: none;
+                border: none;
+            }
+        }
+
+        /* تحسين استجابة التصميم للشاشات الصغيرة */
+        @media (max-width: 576px) {
+            .invoice-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .text-end {
+                text-align: left !important;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="invoice">
-            <div class="invoice-header d-flex justify-content-between align-items-center">
+            <div class="invoice-header">
                 <div>
                     <!-- تأكد من تحديث مسار الشعار -->
                     <img src="../img/one.png" alt="شعار الشركة" class="logo">
                 </div>
                 <div class="text-end">
-                    <h1 class="invoice-title">فاتورة</h1>
-                    <p><strong>رقم الفاتورة:</strong> <?php echo htmlspecialchars($invoice['invoice_id']); ?></p>
-                    <p><strong>تاريخ الفاتورة:</strong> <?php echo htmlspecialchars($invoice['invoice_date']); ?></p>
+                    <!-- اسم الشركة والعنوان -->
+                    <h2 class="text-primary">عيادة النفس المطمئنة</h2>
+                    <p>العنوان: صنعاء، اليمن</p>
+                    <p>هاتف: 777164964</p>
                 </div>
             </div>
             <div class="invoice-body">
-                <div class="row mb-4">
+                <div class="row mb-3">
                     <div class="col-md-6">
-                        <h5>تفاصيل المستفيد</h5>
+                        <h5 class="text-primary"><i class="bi bi-person-fill"></i> تفاصيل المستفيد</h5>
                         <p><strong>اسم المريض:</strong> <?php echo htmlspecialchars($invoice['fname']); ?></p>
                         <p><strong>اسم الخدمة:</strong> <?php echo htmlspecialchars($invoice['name_ser']); ?></p>
                     </div>
                     <div class="col-md-6 text-end">
-                        <h5>تفاصيل الدفع</h5>
+                        <h5 class="text-primary"><i class="bi bi-cash-stack"></i> تفاصيل الدفع</h5>
                         <p><strong>المبلغ:</strong> <?php echo number_format($invoice['cost_ser'], 2); ?> ريال</p>
+                        <p><strong>طريقة الدفع:</strong> نقداً / بطاقة ائتمان</p>
                     </div>
                 </div>
-                <table class="table table-striped">
+                <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>الوصف</th>
@@ -146,19 +198,29 @@ $conn->close();
                         </tr>
                     </tbody>
                 </table>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <p><strong>شروط وأحكام:</strong></p>
+                        <p>يرجى الاحتفاظ بهذه الفاتورة للرجوع إليها عند الحاجة. في حالة وجود أي استفسارات، لا تتردد في الاتصال بنا.</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <p><strong>التوقيع:</strong></p>
+                        <p>_________________________</p>
+                    </div>
+                </div>
             </div>
             <div class="invoice-footer text-center">
                 <p>شكراً لاستخدامكم خدماتنا.</p>
-                <p>_________________________</p>
-                <p>التوقيع</p>
+                <p>&copy; <?php echo date("Y"); ?> عيادة النفس المطمئنة. جميع الحقوق محفوظة.</p>
             </div>
-            <div class="text-center">
-                <button onclick="window.print()" class="btn btn-primary btn-print">طباعة الفاتورة</button>
-            </div>
+            <button onclick="window.print()" class="btn btn-primary btn-print">
+                <i class="bi bi-printer"></i> طباعة الفاتورة
+            </button>
         </div>
     </div>
 
     <!-- Bootstrap 5 JS and dependencies (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
