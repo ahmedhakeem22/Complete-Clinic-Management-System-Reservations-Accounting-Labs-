@@ -361,12 +361,12 @@ $stmt->close();
             ?>
 
             <!-- شريط البحث -->
-            <form method="GET" action="index.php" class="mb-3 search-bar d-flex">
+            <form method="GET" action="patients.php" class="mb-3 search-bar d-flex">
                 <i class="fa fa-search mt-2 me-2"></i>
                 <input type="text" name="search" class="form-control me-2" placeholder="ابحث عن مريض.." 
                        value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                 <button type="submit" class="btn btn-primary me-2">بحث</button>
-                <a href="index.php" class="btn btn-secondary">مسح البحث</a>
+                <a href="patients.php" class="btn btn-secondary">مسح البحث</a>
             </form>
 
             <!-- الجدول -->
