@@ -170,14 +170,14 @@
       <button class="btn btn-outline-secondary ms-2" id="toggleSidebar">
         <i class="fas fa-bars"></i>
       </button>
-      <a class="navbar-brand ms-3" href="#">Reception New Panel</a>
+      <a class="navbar-brand ms-3" href="#">Reception Panel</a>
     </div>
   </nav>
 
   <!-- Main Content -->
   <div id="content">
     <div class="container-fluid">
-      <h1 class="mb-4">Welcome to Your New Admin Panel</h1>
+      <h1 class="mb-4">Welcome to Your New Reception Admin Panel</h1>
       <div class="row g-3">
         <!-- Card 1 -->
         <div class="col-md-6 col-lg-4">
