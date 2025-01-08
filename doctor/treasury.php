@@ -244,7 +244,7 @@ $result = $stmtData->get_result();
                 <select name="service_type" id="service_type" class="form-select">
                     <option value="">كل الأنواع</option>
                     <option value="فحص نفسي" <?php if(@$_GET['service_type'] == 'فحص نفسي') echo 'selected';?>>فحص نفسي</option>
-                    <option value="فحص دم" <?php if(@$_GET['service_type'] == 'فحص دم') echo 'selected';?>>فحص دم</option>
+                    <option value="Blood Tests" <?php if(@$_GET['service_type'] == 'فحص دم') echo 'selected';?>>فحص دم</option>
                     <option value="حجز جلسة" <?php if(@$_GET['service_type'] == 'حجز جلسة') echo 'selected';?>>حجز جلسة</option>
                 </select>
             </div>
@@ -283,50 +283,56 @@ $result = $stmtData->get_result();
 
     <!-- جدول عرض النتائج -->
     <div class="table-responsive shadow-sm">
-        <table class="table table-bordered table-hover table-striped bg-white">
-            <thead>
+    <table class="table table-bordered table-hover table-striped bg-white">
+        <thead>
+            <tr>
+                <th>رقم الفاتورة</th>
+                <th>رقم المريض</th>
+                <th>اسم الخدمة</th>
+                <th>تكلفة الخدمة</th>
+                <th>تاريخ الفاتورة</th>
+                <th>إجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php if ($result && $result->num_rows > 0): ?>
+            <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <th>رقم الفاتورة</th>
-                    <th>رقم المريض</th>
-                    <th>اسم الخدمة</th>
-                    <th>تكلفة الخدمة</th>
-                    <th>تاريخ الفاتورة</th>
-                    <th>إجراءات</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php if ($result && $result->num_rows > 0): ?>
-                <?php while($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($row['invoice_id']); ?></td>
-                        <td><?php echo htmlspecialchars($row['pat_id']); ?></td>
-                        <td><?php echo htmlspecialchars($row['name_ser']); ?></td>
-                        <td><?php echo htmlspecialchars(number_format($row['cost_ser'], 2)); ?> ر.س</td>
-                        <td><?php echo htmlspecialchars($row['invoice_date']); ?></td>
-                        <td>
-                            <!-- زر فتح تفاصيل الفاتورة في نافذة منبثقة (معاينة) -->
-                            <button class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                    data-invoice="<?php echo htmlspecialchars($row['invoice_id']); ?>">
-                                <i class="fas fa-eye me-1"></i>معاينة
-                            </button>
+                    <td><?php echo htmlspecialchars($row['invoice_id']); ?></td>
+                    <td><?php echo htmlspecialchars($row['pat_id']); ?></td>
+                    <td>
+                        <?php 
+                        // التحقق من اسم الخدمة وتغيير القيمة عند الطباعة
+                        echo htmlspecialchars($row['name_ser'] === 'Blood Tests' ? 'فحص دم' : $row['name_ser']); 
+                        ?>
+                    </td>
+                    <td><?php echo htmlspecialchars(number_format($row['cost_ser'], 2)); ?> ر.س</td>
+                    <td><?php echo htmlspecialchars($row['invoice_date']); ?></td>
+                    <td>
+                        <!-- زر فتح تفاصيل الفاتورة في نافذة منبثقة (معاينة) -->
+                        <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#invoiceModal"
+                                data-invoice="<?php echo htmlspecialchars($row['invoice_id']); ?>">
+                            <i class="fas fa-eye me-1"></i>معاينة
+                        </button>
 
-                            <!-- زر طباعة فاتورة محددة -->
-                            <a href="print_single_invoice.php?invoice_id=<?php echo urlencode($row['invoice_id']); ?>"
-                               target="_blank" class="btn btn-warning btn-sm">
-                                <i class="fas fa-print me-1"></i>طباعة
-                            </a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="6">لا توجد نتائج مطابقة.</td>
+                        <!-- زر طباعة فاتورة محددة -->
+                        <a href="print_single_invoice.php?invoice_id=<?php echo urlencode($row['invoice_id']); ?>"
+                           target="_blank" class="btn btn-warning btn-sm">
+                            <i class="fas fa-print me-1"></i>طباعة
+                        </a>
+                    </td>
                 </tr>
-            <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="6">لا توجد نتائج مطابقة.</td>
+            </tr>
+        <?php endif; ?>
+        </tbody>
+    </table>
+</div>
+
 
     <!-- شريط الترقيم (Pagination) -->
     <?php if ($totalRows > 0): ?>
