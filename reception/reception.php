@@ -177,7 +177,7 @@
   <!-- Main Content -->
   <div id="content">
     <div class="container-fluid">
-      <h1 class="mb-4">Welcome to Your New Reception Admin Panel</h1>
+      <h1 class="mb-4">Welcome Reception Admin Panel</h1>
       <div class="row g-3">
         <!-- Card 1 -->
         <div class="col-md-6 col-lg-4">
