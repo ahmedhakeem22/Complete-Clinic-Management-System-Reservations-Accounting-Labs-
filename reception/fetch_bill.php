@@ -118,6 +118,16 @@ $conn->close();
             color: #0d6efd !important;
             font-size: 16px; /* تقليل حجم الخط لعناوين الأقسام */
         }
+        .invoice-title-main {
+            color: #0d6efd;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 10px;
+
+        }
 
         @media print {
             .btn-print {
@@ -154,6 +164,11 @@ $conn->close();
                 <div>
                     <!-- تأكد من تحديث مسار الشعار -->
                     <img src="../img/one.png" alt="شعار الشركة" class="logo">
+                </div>
+                <div class="col-md-4 text-center mb-3 mb-md-0">
+                    <div class="invoice-title-main">
+                        سند صرف
+                    </div>
                 </div>
                 <div class="text-end">
                     <!-- اسم الشركة والعنوان -->
