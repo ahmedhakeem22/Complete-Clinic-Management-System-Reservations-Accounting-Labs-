@@ -170,7 +170,7 @@
       <button class="btn btn-outline-secondary ms-2" id="toggleSidebar">
         <i class="fas fa-bars"></i>
       </button>
-      <a class="navbar-brand ms-3" href="#">Brand New Panel</a>
+      <a class="navbar-brand ms-3" href="#">Reception New Panel</a>
     </div>
   </nav>
 
