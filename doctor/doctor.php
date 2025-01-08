@@ -25,7 +25,7 @@ include 'includes/templates/navbar2.php';
         }
 
         /* أنماط الشريط الجانبي */
-        #sidebar {
+       #sidebar {
             min-width: 250px;
             max-width: 250px;
             background: #2c3e50;
@@ -33,10 +33,13 @@ include 'includes/templates/navbar2.php';
             transition: all 0.3s;
             height: 100vh;
             position: fixed;
-            left: 0;
+            left: 0; /* لأن الاتجاه RTL */
             top: 0;
             overflow-y: auto;
+            padding: auto;
+            z-index: 1000; /* لضمان ظهور الشريط الجانبي فوق الشريط العلوي */
         }
+
 
         #sidebar.active {
             margin-left: -250px;
@@ -97,12 +100,16 @@ include 'includes/templates/navbar2.php';
         }
 
         /* شريط التنقل العلوي */
-        .navbar {
+       .navbar {
             padding: 15px;
             background: #fff;
             border-bottom: 1px solid #dee2e6;
             border-radius: 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            left: 250px; /* ترك مساحة للشريط الجانبي */
+            right: 0;
+            z-index: 999; /* تحت الشريط الجانبي */
         }
 
         /* البطاقات */
@@ -128,15 +135,17 @@ include 'includes/templates/navbar2.php';
 
         /* بانر التاريخ */
         .date-banner {
-            background: #1abc9c;
-            color: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+    background: #1abc9c;
+    color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 80px; /* إضافة مسافة من الأعلى */
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 
         /* التذييل */
         footer {
@@ -237,26 +246,19 @@ include 'includes/templates/navbar2.php';
                 <li>
                     <a href="provider.php"><i class="fas fa-hands-helping"></i> دعم المركز</a>
                 </li>
-                <!-- <li>
-                    <a href="prov_all_pdf.php"><i class="fas fa-users"></i> كشف الداعمين</a>
-                </li> -->
+                <li>
+                    <a href="today_dates.php"><i class="fas fa-users"></i> حجوزات اليوم</a>
+                </li>
                 <li>
                     <a href="manage_tests.php"><i class="fas fa-vial"></i> إدارة الاختبارات</a>
                 </li>
+                
             </ul>
         </nav>
 
         <!-- محتوى الصفحة -->
         <div id="content">
-            <!-- شريط التنقل العلوي -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <span class="ms-3 fw-bold fs-4">لوحة التحكم</span>
-                </div>
-            </nav>
+           
 
             <!-- بانر التاريخ -->
             <div class="date-banner" id="dateBanner">
@@ -305,17 +307,17 @@ include 'includes/templates/navbar2.php';
                 </div> -->
 
                 <!-- بطاقة فواتير الجلسات -->
-                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
-                        <img src="includes/images/IMG5.png" class="card-img-top" alt="فواتير الجلسات">
+                        <img src="../img/searchday.jpg" class="card-img-top" alt="فواتير الجلسات">
                         <div class="card-body">
-                            <h5 class="card-title">فواتير الجلسات</h5>
-                            <a href="book_pdf_ach_db.php" class="btn btn-info">
+                            <h5 class="card-title">حجوزات اليوم</h5>
+                            <a href="today_dates.php" class="btn btn-info">
                                 <i class="fas fa-file-invoice-dollar me-2"></i> عرض
                             </a>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <!-- بطاقة تقارير المرضى -->
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
