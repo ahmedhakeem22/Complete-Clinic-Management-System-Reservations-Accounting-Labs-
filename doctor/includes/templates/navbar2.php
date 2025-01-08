@@ -15,16 +15,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="doctor.php">الرئيسية<span class="visually-hidden">(الحالية)</span></a>
+                <a class="nav-link" href="Doctor.php">Home<span class="visually-hidden">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="news.php">الأخبار</a>
+                <a class="nav-link disabled" href="News.php">News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="contact.php">اتصل بنا</a>
+                    <a class="nav-link disabled" href="contact.php">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="about.php">حول</a>
+                    <a class="nav-link disabled" href="About.php">About</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
@@ -32,8 +32,8 @@
                         المستخدم
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="doctor.php" target="_blank">الطبيب</a></li>
-                        <li><a class="dropdown-item" href="../reception/reception.php" target="_blank">الاستقبال</a></li>
+                    <li><a class="dropdown-item" href="Doctor.php" target="_blank">Doctor</a></li>
+                        <li><a class="dropdown-item" href="../reception/reception.php" target="_blank">Reception</a></li>
                         <li><a class="dropdown-item" href="../nafsi/nafsi.php" target="_blank">المختبر النفسي</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../blood/index.php" target="_blank">مختبر الدم</a></li>
