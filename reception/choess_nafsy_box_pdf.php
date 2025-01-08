@@ -1,4 +1,8 @@
 <?php 
+ob_start();
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE); // اختياري لتخفيف التحذيرات
+ini_set('display_errors', 0); // إخفاء الأخطاء في واجهة المستخدم
+// ... بقية الكود
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -54,7 +58,7 @@ $pat_id=$_GET['pat_id'];
         
         */
 
-        class PDF extends tcpdf{
+        class PDF extends TCPDF{
             function Header(){
             $this->setfont('times','B',15);
             
