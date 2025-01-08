@@ -50,8 +50,8 @@ include '../includes/db.php';
     <!-- نموذج إضافة سند قبض -->
     <div class="form-container">
         <h2 class="mb-4">إضافة سند قبض مقابل دعم مركز</h2>
-        <form action="pro_pdf.php" method="post" class="needs-validation" novalidate>
-            <div class="mb-3">
+        <form action="pro_pdf.php" method="post" class="needs-validation" novalidate target="_blank">
+        <div class="mb-3">
                 <label for="name_pro" class="form-label">اسم الداعم:</label>
                 <input type="text" class="form-control" id="name_pro" name="name_pro" required>
                 <div class="invalid-feedback">
@@ -77,7 +77,7 @@ include '../includes/db.php';
                 <textarea class="form-control" id="note" name="note" rows="3"></textarea>
             </div>
             <button type="submit" id="add" name="add_sess" class="btn btn-primary submit-btn">حفظ</button>
-        </form>
+            </form>
     </div>
 
     <!-- نموذج الفلترة -->
