@@ -56,8 +56,6 @@ if (isset($_GET['filter'])) {
 
     // رقم المريض
     if (!empty($_GET['pat_id'])) {
-        // إن كان لديك عمود pat_id رقميًا فالأفضل أن يكون النوع i وليس s
-        // لكن سنستخدم s هنا للتبسيط
         $sqlCount .= " AND pat_id = ?";
         $sqlData  .= " AND pat_id = ?";
         $params[]  = $_GET['pat_id'];
@@ -93,6 +91,64 @@ $stmtData = $conn->prepare($sqlData);
 $stmtData->bind_param($typesData, ...$paramsData);
 $stmtData->execute();
 $result = $stmtData->get_result();
+
+// حساب المبالغ الإجمالية والمصروفات
+// المبلغ الإجمالي في الصندوق
+$sqlTotalInvoices = "SELECT SUM(cost_ser) AS total_invoices FROM invoice WHERE 1=1";
+
+if (isset($_GET['filter'])) {
+    if (!empty($_GET['service_type'])) {
+        $sqlTotalInvoices .= " AND name_ser = ?";
+    }
+    if (!empty($_GET['date_from'])) {
+        $sqlTotalInvoices .= " AND invoice_date >= ?";
+    }
+    if (!empty($_GET['date_to'])) {
+        $sqlTotalInvoices .= " AND invoice_date <= ?";
+    }
+    if (!empty($_GET['pat_id'])) {
+        $sqlTotalInvoices .= " AND pat_id = ?";
+    }
+}
+
+$stmtTotalInvoices = $conn->prepare($sqlTotalInvoices);
+if (!empty($params)) {
+    $stmtTotalInvoices->bind_param($types, ...$params);
+}
+$stmtTotalInvoices->execute();
+$resultTotalInvoices = $stmtTotalInvoices->get_result();
+$rowTotalInvoices = $resultTotalInvoices->fetch_assoc();
+$totalInvoices = $rowTotalInvoices['total_invoices'] ?? 0;
+
+// مبلغ المصروفات
+$sqlTotalExpenses = "SELECT SUM(amount) AS total_expenses FROM pay_bill WHERE 1=1";
+
+$expenseParams = [];
+$expenseTypes = '';
+
+if (!empty($_GET['date_from'])) {
+    $sqlTotalExpenses .= " AND bill_date >= ?";
+    $expenseParams[] = $_GET['date_from'];
+    $expenseTypes .= 's';
+}
+
+if (!empty($_GET['date_to'])) {
+    $sqlTotalExpenses .= " AND bill_date <= ?";
+    $expenseParams[] = $_GET['date_to'];
+    $expenseTypes .= 's';
+}
+
+$stmtTotalExpenses = $conn->prepare($sqlTotalExpenses);
+if (!empty($expenseParams)) {
+    $stmtTotalExpenses->bind_param($expenseTypes, ...$expenseParams);
+}
+$stmtTotalExpenses->execute();
+$resultTotalExpenses = $stmtTotalExpenses->get_result();
+$rowTotalExpenses = $resultTotalExpenses->fetch_assoc();
+$totalExpenses = $rowTotalExpenses['total_expenses'] ?? 0;
+
+// المبلغ الصافي
+$netAmount = $totalInvoices - $totalExpenses;
 ?>
 <!DOCTYPE html>
 <html lang="ar">
@@ -210,6 +266,17 @@ $result = $stmtData->get_result();
             border-color: #5E3370;
             color: #ffffff;
         }
+        /* تخصيص زر إضافة مصروفات */
+        .btn-add-expense {
+            background-color: #27AE60;
+            border-color: #27AE60;
+            color: #ffffff;
+        }
+        .btn-add-expense:hover {
+            background-color: #1E8449;
+            border-color: #196F3D;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -267,18 +334,59 @@ $result = $stmtData->get_result();
                        value="<?php echo @$_GET['pat_id']; ?>" placeholder="رقم المريض">
             </div>
 
-            <div class="col-12 d-flex justify-content-start">
-                <button type="submit" name="filter" class="btn btn-primary me-3"><i class="fas fa-search me-2"></i>بحث</button>
-                <a href="box.php" class="btn btn-secondary"><i class="fas fa-times me-2"></i>إزالة الفلاتر</a>
-            </div>
+            <div class="col-12 d-flex justify-content-start gap-2">
+    <button type="submit" name="filter" class="btn btn-primary"><i class="fas fa-search me-2"></i>بحث</button>
+    <a href="box.php" class="btn btn-secondary"><i class="fas fa-times me-2"></i>إزالة الفلاتر</a>
+    <!-- زر إضافة مصروفات -->
+    <a href="book_out.php" class="btn btn-add-expense"><i class="fas fa-plus me-2"></i>إضافة مصروفات</a>
+</div>
+
         </form>
+    </div>
+
+    <!-- قسم عرض المبالغ المالية -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">المبلغ الإجمالي في الصندوق</div>
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo number_format($totalInvoices, 2); ?> ر.ي</h5>
+                    <!-- أو يمكن استخدام "ريال يمني" بدلاً من "ر.ي" -->
+                    <!-- <h5 class="card-title"><?php echo number_format($totalInvoices, 2); ?> ريال يمني</h5> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-header">مبلغ المصروفات</div>
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo number_format($totalExpenses, 2); ?> ر.ي</h5>
+                    <!-- <h5 class="card-title"><?php echo number_format($totalExpenses, 2); ?> ريال يمني</h5> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">المبلغ الصافي</div>
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo number_format($netAmount, 2); ?> ر.ي</h5>
+                    <!-- <h5 class="card-title"><?php echo number_format($netAmount, 2); ?> ريال يمني</h5> -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- زر طباعة النتائج الكاملة (مع الفلاتر الحالية) -->
     <div class="text-end mb-4">
-        <a href="print_all_invoices.php?<?php echo http_build_query($_GET); ?>" target="_blank" class="btn btn-print">
+        <a href="print_all_invoices.php?<?php echo http_build_query($_GET); ?>" target="_blank" class="btn btn-print me-3">
             <i class="fas fa-print me-2"></i>طباعة النتائج الحالية
         </a>
+        <!-- زر إضافة مصروفات في حالة الرغبة بإضافة زر آخر بجانب زر الطباعة -->
+        <!--
+        <a href="book_out.php" class="btn btn-add-expense">
+            <i class="fas fa-plus me-2"></i>إضافة مصروفات
+        </a>
+        -->
     </div>
 
     <!-- جدول عرض النتائج -->
@@ -306,7 +414,7 @@ $result = $stmtData->get_result();
                         echo htmlspecialchars($row['name_ser'] === 'Blood Tests' ? 'فحص دم' : $row['name_ser']); 
                         ?>
                     </td>
-                    <td><?php echo htmlspecialchars(number_format($row['cost_ser'], 2)); ?> ر.س</td>
+                    <td><?php echo htmlspecialchars(number_format($row['cost_ser'], 2)); ?> ر.ي</td>
                     <td><?php echo htmlspecialchars($row['invoice_date']); ?></td>
                     <td>
                         <!-- زر فتح تفاصيل الفاتورة في نافذة منبثقة (معاينة) -->
