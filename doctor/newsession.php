@@ -478,10 +478,11 @@ $conn->close();
 </div>
 
 <!-- Modal Window for Blood Tests -->
+<!-- Modal Window for Blood Tests -->
 <div class="modal fade" id="bloodModal" tabindex="-1" role="dialog" aria-labelledby="bloodModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <form method="get" action="blood_choosen_dctor_pdf.php" target="_blank" class="modal-form">
+      <form id="bloodTestsForm" method="get" action="blood_choosen_dctor_pdf.php" target="_blank" class="modal-form">
         <div class="modal-header">
           <h5 class="modal-title" id="bloodModalLabel">اختر الفحوصات الدموية</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -493,12 +494,40 @@ $conn->close();
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" name="add_sess" class="btn btn-primary">حفظ الاختبارات/طباعة</button>
+          <button type="button" class="btn btn-success" id="submitBloodTests">إرسال الطلب</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('submitBloodTests').addEventListener('click', function() {
+        const formElement = document.getElementById('bloodTestsForm');
+        const formData = new FormData(formElement);
+
+        fetch('store_blood_request.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                if (window.parent && window.parent.showSuccessMessage) {
+                    window.parent.showSuccessMessage('تم إرسال الطلب بنجاح!');
+                }
+                window.parent.$('#bloodModal').modal('hide');
+            } else {
+                alert('حدث خطأ: ' + data.message);
+            }
+        })
+        .catch(err => {
+            alert('تعذّر إرسال الطلب، تحقق من الاتصال. ' + err);
+        });
+    });
+});
+</script>
 
 <script>
   // Close the modal after form submission
@@ -581,6 +610,27 @@ $conn->close();
         });
     });
 </script>  
+<script>
+// دالة في الصفحة الرئيسية يمكن استدعاؤها من النافذة المنبثقة
+function showSuccessMessage(msg) {
+    // إنشاء div يحمل تنسيق alert-success
+    var alertDiv = document.createElement('div');
+    alertDiv.className = 'alert alert-success';
+    alertDiv.style.margin = '15px';
+    alertDiv.textContent = msg;
+
+    // نضيفه في أعلى الصفحة مثلاً
+    document.body.prepend(alertDiv);
+
+    // بعد 5 ثوانٍ نخفي التنبيه
+    setTimeout(function() {
+        if (alertDiv && alertDiv.parentNode) {
+            alertDiv.parentNode.removeChild(alertDiv);
+        }
+    }, 5000);
+}
+</script>
+
 
 </body>
 </html>
