@@ -13,7 +13,7 @@
             <a href="patients.php"><i class="fas fa-user-friends me-2"></i> Patients</a>
             <a href="today_dates.php"><i class="fas fa-briefcase me-2"></i> Appointments</a>
             <a href="Treasury.php"><i class="fas fa-calendar-alt me-2"></i> Billing</a>
-            <a href="Bloodtest.php"><i class="fas fa-file-invoice-dollar me-2"></i> Blood test</a>
+            <a href="accountant_view_requests.php"><i class="fas fa-file-invoice-dollar me-2"></i> Blood test</a>
             <a href="choess_nafsy_box.php"><i class="fas fa-file-invoice-dollar me-2"></i>Psychological examination</a>
 
         </div>
