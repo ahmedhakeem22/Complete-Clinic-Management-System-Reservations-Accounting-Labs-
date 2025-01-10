@@ -1,109 +1,153 @@
+
 <?php
+// تضمين الملفات اللازمة
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once '../includes/db.php'; // تأكد من أن مسار ملف قاعدة البيانات صحيح
 
-require_once('tcpdf.php');
+// لا حاجة لـ 'use TCPDF;' لأن TCPDF في النطاق العام
 
+// إنشاء كائن PDF
+$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+$pdf->AddPage();
+$pdf->Ln(42);
+$pdf->SetFillColor(165, 225, 166);
 
-$pdf =new TCPDF('p','mm','A4','UTF-8');
-$pdf-> AddPage();
+// إضافة صورة الخلفية
+// تأكد من أن مسار الصورة صحيح وأن الصورة خالية من مشاكل ملف التعريف اللوني
+$pdf->Image('includes/images/img_back_pdf.png', 10, 10, 190, 0, 'PNG', '', '', false, 300, '', false, false, 0);
 
-include '../includes/db.php';
+// تعيين المنطقة الزمنية
+date_default_timezone_set("Asia/Aden");
+$date = date("Y-m-d");
 
- date_default_timezone_set("Asia/Aden");
-$date=   date("Y-m-d ");               
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
-
-
-
-$s = "INSERT INTO medical (pat_id,med_name,usee,countity,date_t) VALUES ";
-for ($i = 0; $i < $_POST['numbers'] ; $i++) { 
-    $s .="('".$_POST['pat_id']."','".$_POST['med_name'][$i]."','".$_POST['usee'][$i]."','".$_POST['countity'][$i]."','".$date."'),";
+// دالة لتنقية المدخلات
+function test_input($data)
+{
+    return htmlspecialchars(stripslashes(trim($data)));
 }
 
-$s = rtrim($s,",");
-if (!$mysqli->query($s))
-echo $mysqli->error;
+// التأكد من أن النموذج تم إرساله عبر POST وأن الحقول المطلوبة موجودة
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['pat_id'], $_POST['med_name'], $_POST['quantity'], $_POST['usage'])) {
+        $pat_id = test_input($_POST['pat_id']);
+        $med_names = $_POST['med_name'];
+        $quantities = $_POST['quantity'];
+        $usages = $_POST['usage'];
 
-         $pat_id=$_POST['pat_id'];
+        // التحقق من وجود المريض
+        $s = mysqli_prepare($conn, "SELECT fname FROM patinte WHERE pat_id = ?");
+        if (!$s) {
+            die("خطأ في تحضير الاستعلام: " . $conn->error);
+        }
+        mysqli_stmt_bind_param($s, 'i', $pat_id);
+        mysqli_stmt_execute($s);
+        mysqli_stmt_bind_result($s, $row_fname);
+        mysqli_stmt_fetch($s);
+        mysqli_stmt_close($s);
 
-     $s=mysqli_query($conn,"select fname from patinte where pat_id=$pat_id");
+        if (!$row_fname) {
+            die("المريض غير موجود.");
+        }
 
+        // إعداد مصفوفة خيارات الاستخدام في الخادم
+        $usageOptions = [
+            1  => 'حبة قبل الفطور',
+            2  => 'نصف حبة قبل الفطور',
+            3  => 'حبة بعد الفطور',
+            4  => 'نصف حبة بعد الفطور',
+            5  => 'حبة قبل الغداء',
+            6  => 'نصف حبة قبل الغداء',
+            7  => 'حبة بعد الغداء',
+            8  => 'نصف حبة بعد الغداء',
+            9  => 'حبة قبل العشاء',
+            10 => 'نصف حبة قبل العشاء',
+            11 => 'حبة بعد العشاء',
+            12 => 'نصف حبة بعد العشاء',
+            13 => 'حبة قبل النوم',
+            14 => 'نصف حبة قبل النوم',
+            15 => 'حبة كل أسبوع',
+            16 => 'مرتين في الأسبوع',
+            // أضف المزيد من الخيارات حسب الحاجة
+        ];
 
-     while($row =mysqli_fetch_array($s)){
+        // توليد PDF
+        $pdf->SetFont('dejavusans', '', 22);
+        $pdf->Cell(55, 8, '', 0, 0, 'C', 0);
+        $pdf->Cell(80, 12, 'وصفـــة طبيـــة', 1, 1, 'C', 1);
+        $pdf->SetFont('dejavusans', '', 12);
+        $pdf->Cell(20, 8, '', 0, 1, 'C', 0);
+        $pdf->SetFillColor(165, 225, 166);
+        $pdf->Cell(5, 8, '', 0, 0, 'C', 0);
 
-        $row_fname=$row['fname'];
+        $pdf->Cell(25, 8, 'رقم المريض', 1, 0, 'C', 1);
+        $pdf->Cell(15, 8, $pat_id, 1, 0, 'C', 1);
 
-     }
+        $pdf->Cell(25, 8, 'اسم المريض', 1, 0, 'C', 1);
+        $pdf->Cell(60, 8, $row_fname, 1, 0, 'C', 1);
 
+        $pdf->Cell(15, 8, 'تاريخ', 1, 0, 'C', 1);
+        $pdf->Cell(35, 8, $date, 1, 1, 'C', 1);
+        $pdf->Ln(10);
 
-        $chose=$_POST['usee'];
+        $pdf->SetFillColor(171, 209, 254);
+        $pdf->Cell(28, 8, '', 0, 0, 'C', 0);
+        $pdf->Cell(80, 8, 'اســـم الـــدواء', 1, 0, 'C', 1);
+        $pdf->Cell(50, 8, 'الكميـــة', 1, 1, 'C', 1);
 
-        $c =count($chose);
-       
-       
-      
-    
+        // إعداد استعلام الإدراج باستخدام Prepared Statements
+        // تم تعديل العمود ليشمل fname وتصحيح اسم العمود countity إلى quantity إذا قمت بتعديل الجدول
+        $stmt = $conn->prepare("INSERT INTO medical (pat_id, fname, med_name, usee, countity, date_t) VALUES (?, ?, ?, ?, ?, ?)");
+        if ($stmt === false) {
+            die("خطأ في تحضير الاستعلام: " . $conn->error);
+        }
 
+        for ($j = 0; $j < count($med_names); $j++) {
+            $med_name = test_input($med_names[$j]);
+            $quantity = (int)test_input($quantities[$j]);
+            $selected_usages = isset($usages[$j]) ? $usages[$j] : [];
 
-        $pdf =new TCPDF('p','mm','A4','UTF-8',false);
-        $pdf-> AddPage();
-        $pdf->SetFont('freeserif','',14);
- 
- 
- $pdf->Cell(50,8,' وصفـــة طبيـــة ',1,0,'C',0);
+            // توليد نص "طريقة الاستخدام"
+            $medcal_skills = [];
+            foreach ($selected_usages as $usage_id) {
+                if (isset($usageOptions[$usage_id])) {
+                    $medcal_skills[] = $usageOptions[$usage_id];
+                }
+            }
+            $medcal_skills_str = implode(', ', $medcal_skills);
 
+            // ربط المعاملات: pat_id (int), fname (string), med_name (string), usee (string), countity (int), date_t (string)
+            $stmt->bind_param("isssis", $pat_id, $row_fname, $med_name, $medcal_skills_str, $quantity, $date);
 
-$pdf->Cell(40,8,'تاريخ ',1,0,'C',0);
-$pdf->Cell(40,8,$date,1,1,'C',0);
-$pdf->Cell(20,8,'',0,1,'C',0);
-   
-$pdf->SetFont('freeserif','',10);
+            if (!$stmt->execute()) {
+                echo "خطأ في الإدراج: " . $stmt->error;
+            }
 
+            // إعداد بيانات PDF
+            $pdf->Cell(28, 8, '', 0, 0, 'C', 0);
+            $pdf->SetFillColor(177, 232, 178);
+            $pdf->Cell(80, 8, $med_name, 1, 0, 'C', 1);
+            $pdf->Cell(50, 8, $quantity, 1, 1, 'C', 1);
 
+            $pdf->SetFillColor(211, 247, 212);
+            $pdf->Cell(28, 8, '', 0, 0, 'C', 0);
+            $pdf->Cell(130, 8, $medcal_skills_str, 1, 1, 'C', 1);
+        }
 
-$pdf->Cell(40,8,'رقم المريض',1,0,'C',0);
-$pdf->Cell(40,8,'اسم المريض',1,0,'C',0);
-$pdf->Cell(40,8,'اسم الدواء',1,0,'C',0);
-$pdf->Cell(20,8,'الكمية',1,0,'C',0);
-$pdf->Cell(40,8,'طريقة الاستخدام',1,1,'C',0);
+        $stmt->close();
 
+        $pdf->SetFont('freeserif', '', 14);
 
- $pdf->Cell(40,8,$_POST['pat_id'],1,0,'C',0);
-       $pdf->Cell(40,8,$row_fname,1,0,'C',0);
+        // تنظيف محتويات البوفر
+        if (ob_get_length()) {
+            ob_end_clean();
+        }
 
-
-  
-
-
-
-                     
- 
-
-for ($i = 0; $i < $_POST['numbers'] ; $i++) {
-
-    $pdf->SetFont('freeserif','',10);
-
-    $pdf->Cell(40,8,$_POST['med_name'][$i],1,0,'C',0);
-    $pdf->Cell(20,8,$_POST['countity'][$i],1,0,'C',0);
-    $pdf->Cell(40,8,$_POST['usee'][$i],1,1,'C',0);
-    $pdf->Cell(80,8,'',0,0,'C',0);
-
+        // إرسال الـ PDF للمستخدم
+        $pdf->Output('sale.pdf', 'I');
+    } else {
+        die("بيانات النموذج غير كاملة.");
+    }
+} else {
+    die("طريقة الطلب غير صالحة.");
 }
-
-
-
- var_dump(array(
-    "data" => "demo"
-));
-
-// Clean any content of the output buffer
-ob_end_clean();
-
-// Send the PDF !
-$pdf->Output('sale.pdf', 'I');
-
 ?>
