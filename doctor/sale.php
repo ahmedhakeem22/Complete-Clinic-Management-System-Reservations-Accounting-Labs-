@@ -3,18 +3,6 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once '../includes/db.php'; // تأكد من أن مسار ملف قاعدة البيانات صحيح
 
-// لا حاجة لـ 'use TCPDF;' لأن TCPDF في النطاق العام
-
-// إنشاء كائن PDF
-$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-$pdf->AddPage();
-$pdf->Ln(42);
-$pdf->SetFillColor(165, 225, 166);
-
-// إضافة صورة الخلفية
-// تأكد من أن مسار الصورة صحيح وأن الصورة خالية من مشاكل ملف التعريف اللوني
-$pdf->Image('includes/images/img_back_pdf.png', 10, 10, 190, 0, 'PNG', '', '', false, 300, '', false, false, 0);
-
 // تعيين المنطقة الزمنية
 date_default_timezone_set("Asia/Aden");
 $date = date("Y-m-d");
@@ -28,7 +16,7 @@ function test_input($data)
 // التأكد من أن النموذج تم إرساله عبر POST وأن الحقول المطلوبة موجودة
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['pat_id'], $_POST['med_name'], $_POST['quantity'], $_POST['usage'])) {
-        $pat_id = test_input($_POST['pat_id']);
+        $pat_id = (int)test_input($_POST['pat_id']);
         $med_names = $_POST['med_name'];
         $quantities = $_POST['quantity'];
         $usages = $_POST['usage'];
@@ -48,7 +36,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             die("المريض غير موجود.");
         }
 
-        // إعداد مصفوفة خيارات الاستخدام في الخادم
+        // بدء معاملة
+        $conn->begin_transaction();
+
+        // إدراج في جدول الوصفات الطبية
+        $stmt_presc = $conn->prepare("INSERT INTO prescriptions (pat_id, fname, date_t, status) VALUES (?, ?, ?, 'pending')");
+        if (!$stmt_presc) {
+            die("خطأ في تحضير الاستعلام: " . $conn->error);
+        }
+        $stmt_presc->bind_param("iss", $pat_id, $row_fname, $date);
+        if (!$stmt_presc->execute()) {
+            $conn->rollback();
+            die("خطأ في الإدراج في جدول الوصفات الطبية: " . $stmt_presc->error);
+        }
+        $prescription_id = $stmt_presc->insert_id;
+        $stmt_presc->close();
+
+        // إعداد استعلام الإدراج للأدوية
+        $stmt_med = $conn->prepare("INSERT INTO medical (prescription_id, pat_id, fname, med_name, usee, countity, date_t) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        if (!$stmt_med) {
+            $conn->rollback();
+            die("خطأ في تحضير الاستعلام: " . $conn->error);
+        }
+
+        // إعداد خيارات الاستخدام
         $usageOptions = [
             1  => 'حبة قبل الفطور',
             2  => 'نصف حبة قبل الفطور',
@@ -69,37 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // أضف المزيد من الخيارات حسب الحاجة
         ];
 
-        // توليد PDF
-        $pdf->SetFont('dejavusans', '', 22);
-        $pdf->Cell(55, 8, '', 0, 0, 'C', 0);
-        $pdf->Cell(80, 12, 'وصفـــة طبيـــة', 1, 1, 'C', 1);
-        $pdf->SetFont('dejavusans', '', 12);
-        $pdf->Cell(20, 8, '', 0, 1, 'C', 0);
-        $pdf->SetFillColor(165, 225, 166);
-        $pdf->Cell(5, 8, '', 0, 0, 'C', 0);
-
-        $pdf->Cell(25, 8, 'رقم المريض', 1, 0, 'C', 1);
-        $pdf->Cell(15, 8, $pat_id, 1, 0, 'C', 1);
-
-        $pdf->Cell(25, 8, 'اسم المريض', 1, 0, 'C', 1);
-        $pdf->Cell(60, 8, $row_fname, 1, 0, 'C', 1);
-
-        $pdf->Cell(15, 8, 'تاريخ', 1, 0, 'C', 1);
-        $pdf->Cell(35, 8, $date, 1, 1, 'C', 1);
-        $pdf->Ln(10);
-
-        $pdf->SetFillColor(171, 209, 254);
-        $pdf->Cell(28, 8, '', 0, 0, 'C', 0);
-        $pdf->Cell(80, 8, 'اســـم الـــدواء', 1, 0, 'C', 1);
-        $pdf->Cell(50, 8, 'الكميـــة', 1, 1, 'C', 1);
-
-        // إعداد استعلام الإدراج باستخدام Prepared Statements
-        // تم تعديل العمود ليشمل fname وتصحيح اسم العمود countity إلى quantity إذا قمت بتعديل الجدول
-        $stmt = $conn->prepare("INSERT INTO medical (pat_id, fname, med_name, usee, countity, date_t) VALUES (?, ?, ?, ?, ?, ?)");
-        if ($stmt === false) {
-            die("خطأ في تحضير الاستعلام: " . $conn->error);
-        }
-
         for ($j = 0; $j < count($med_names); $j++) {
             $med_name = test_input($med_names[$j]);
             $quantity = (int)test_input($quantities[$j]);
@@ -114,35 +94,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             $medcal_skills_str = implode(', ', $medcal_skills);
 
-            // ربط المعاملات: pat_id (int), fname (string), med_name (string), usee (string), countity (int), date_t (string)
-            $stmt->bind_param("isssis", $pat_id, $row_fname, $med_name, $medcal_skills_str, $quantity, $date);
+            // ربط المعاملات: prescription_id, pat_id, fname, med_name, usee, countity, date_t
+            $stmt_med->bind_param("iisssis", $prescription_id, $pat_id, $row_fname, $med_name, $medcal_skills_str, $quantity, $date);
 
-            if (!$stmt->execute()) {
-                echo "خطأ في الإدراج: " . $stmt->error;
+            if (!$stmt_med->execute()) {
+                $conn->rollback();
+                die("خطأ في الإدراج في جدول الأدوية: " . $stmt_med->error);
             }
-
-            // إعداد بيانات PDF
-            $pdf->Cell(28, 8, '', 0, 0, 'C', 0);
-            $pdf->SetFillColor(177, 232, 178);
-            $pdf->Cell(80, 8, $med_name, 1, 0, 'C', 1);
-            $pdf->Cell(50, 8, $quantity, 1, 1, 'C', 1);
-
-            $pdf->SetFillColor(211, 247, 212);
-            $pdf->Cell(28, 8, '', 0, 0, 'C', 0);
-            $pdf->Cell(130, 8, $medcal_skills_str, 1, 1, 'C', 1);
         }
 
-        $stmt->close();
+        $stmt_med->close();
+        $conn->commit();
 
-        $pdf->SetFont('freeserif', '', 14);
-
-        // تنظيف محتويات البوفر
-        if (ob_get_length()) {
-            ob_end_clean();
-        }
-
-        // إرسال الـ PDF للمستخدم
-        $pdf->Output('sale.pdf', 'I');
+        // عرض رسالة نجاح أو إعادة توجيه
+        echo "تم إرسال الوصفة الطبية بنجاح إلى الصيدلي.";
     } else {
         die("بيانات النموذج غير كاملة.");
     }
