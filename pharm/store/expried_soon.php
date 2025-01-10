@@ -2,11 +2,7 @@
 <?php
 
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "najmdb";
-
+  include '../../includes/db.php';
  
 
 $conn = new mysqli($servername, $username, $password ,$dbname);

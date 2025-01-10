@@ -21,9 +21,9 @@
           User
         </a>
         <div  class="dropdown-menu navdrob" aria-labelledby="navbarDropdown" >
-          <a class="dropdown-item" href="buy"  target="_blank">Buy</a>
-          <a class="dropdown-item" href="sale"  target="_blank">Sales</a>
-		<a class="dropdown-item" href="store"  target="_blank"> Store </a>
+          <a class="dropdown-item" href="buy/index.php"  target="_blank">Buy</a>
+          <a class="dropdown-item" href="sale/index.php"  target="_blank">Sales</a>
+		<a class="dropdown-item" href="store/index.php"  target="_blank"> Store </a>
         
         
       </li> 

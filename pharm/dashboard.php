@@ -21,12 +21,12 @@ else {
       <main >
 <div class="home1">
                   
-            <img src="phar1.jpg" alt="image" width="100%" height="45%">
+            <img src="../img/phar1.jpg" alt="image" width="100%" height="45%">
       </div>
 
       <div class="home">
 
-                  <img src="backimg.jpg" alt="" >
+                  <img src="../img/backimg.jpg" alt="" >
       </div>
       
 

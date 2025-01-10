@@ -31,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['prescription_id'])) {
     // توليد PDF للطباعة
     $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
     $pdf->AddPage();
+    $pdf->Image('../img/img_back_pdf.png', 10, 10, 190, 0, 'PNG', '', '', false, 300, '', false, false, 0);
+
     $pdf->Ln(42);
     $pdf->SetFillColor(165, 225, 166);
 

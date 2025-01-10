@@ -6,12 +6,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $pdf =new TCPDF('p','mm','A4','UTF-8');
 $pdf-> AddPage();
 
-include '../includes/db.php';
+include '../../includes/db.php';
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "najmdb";
 
 $mysqli = new mysqli($servername, $username, $password ,$dbname);
 $num_rand=rand(100,1000000);

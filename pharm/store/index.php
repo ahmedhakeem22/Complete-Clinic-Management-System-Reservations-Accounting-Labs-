@@ -2,34 +2,25 @@
 
 session_start();
 
-include '../includes/db.php';
-
-if(!isset($_SESSION['s_name'])){
-
-echo "<script>window.open('login.php','_self')</script>";
-
-}
-
-else {
+include '../../includes/db.php';
 
 ?>
 
 <?php
 
-$admin_session = $_SESSION['s_name'];
+$admin_session = $_SESSION['s_name'] ?? null;
 
 $get_admin = "select * from ph_store_admin  where s_name='$admin_session'";
 
-$run_admin = mysqli_query($conn,$get_admin);
+$run_admin = mysqli_query($conn, $get_admin);
 
 $row_admin = mysqli_fetch_array($run_admin);
 
-$admin_id = $row_admin['id'];
+$admin_id = $row_admin['id'] ?? null;
 
-$admin_name = $row_admin['s_pass'];
+$admin_name = $row_admin['s_pass'] ?? null;
 
-$admin_email = $row_admin['s_name'];
-
+$admin_email = $row_admin['s_name'] ?? null;
 
 ?>
 
@@ -52,8 +43,6 @@ $admin_email = $row_admin['s_name'];
 
 <body>
 
-
-
 <?php include("dashboard.php");  ?>
 <div id="page-wrapper"><!-- page-wrapper Starts -->
 
@@ -62,16 +51,11 @@ $admin_email = $row_admin['s_name'];
 <?php
 
 if(isset($_GET['dashboard'])){
-
-include("dashboard.php");
-
+    include("dashboard.php");
 }
-	if(isset($_GET['index'])){
-
-include("index.php");
-
+if(isset($_GET['index'])){
+    include("index.php");
 }
-
 
 ?>
 
@@ -87,7 +71,4 @@ include("index.php");
 
 </body>
 
-
 </html>
-
-<?php } ?>

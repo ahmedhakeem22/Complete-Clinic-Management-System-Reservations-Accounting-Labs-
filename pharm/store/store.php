@@ -1,16 +1,12 @@
-<?php include 'templats/header.php';
+<?php 
+
+include 'templats/header.php';
 	include 'templats/navbar.php';
+  include '../../includes/db.php';
 	?>
  
 <?php
 
-
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "najmdb";
-
- 
 
 $conn = new mysqli($servername, $username, $password ,$dbname);
 

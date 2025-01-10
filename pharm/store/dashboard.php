@@ -14,8 +14,11 @@ else {
 
 
 ?>
-<?php include 'templats/header.php';
+<?php 
+
+include 'templats/header.php';
 	include 'templats/navbar.php';
+  include '../../includes/db.php';
 	?>
 
       
