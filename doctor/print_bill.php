@@ -217,8 +217,8 @@ $conn->close();
                         <h5 class="text-primary"><i class="bi bi-cash-stack"></i> تفاصيل الدفع</h5>
                         <p><strong>المبلغ:</strong> <?php echo number_format($bill['amount'], 2); ?> ريال يمني</p>
                         <p><strong>طريقة الدفع:</strong> <?php echo htmlspecialchars($bill['payment_method']); ?></p>
-                        <p><strong>رقم الفاتورة/المرجع:</strong> <?php echo htmlspecialchars($bill['invoice_number']); ?></p>
-                    </div>
+                        <p><strong>رقم الفاتورة/المرجع:</strong> <?php echo htmlspecialchars($bill['invoice_number'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                        </div>
                 </div>
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -244,8 +244,8 @@ $conn->close();
                         </tr>
                         <tr>
                             <td colspan="3" class="text-end"><strong>الوصف:</strong></td>
-                            <td><?php echo nl2br(htmlspecialchars($bill['description'])); ?></td>
-                        </tr>
+                            <td><?php echo nl2br(htmlspecialchars($bill['description'] ?? '', ENT_QUOTES, 'UTF-8')); ?></td>
+                            </tr>
                     </tbody>
                 </table>
                 <div class="row mb-3">
