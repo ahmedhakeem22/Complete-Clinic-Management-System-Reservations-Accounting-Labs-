@@ -1,14 +1,9 @@
-```php
 <?php
-// lab2.php<?php
 // lab2.php
-
-// تضمين ملفات الهيدر والنافبار (اختياري)
-include 'includes/templates/header.php';
-include 'includes/templates/navbar.php';
 
 // تضمين ملف الاتصال بقاعدة البيانات
 include '../includes/db.php';
+include 'includes/templates/header.php';
 
 session_start();
 
@@ -108,71 +103,194 @@ if(isset($_POST['submit_tests'])){
     exit;
 }
 
+// إغلاق الاتصال بقاعدة البيانات في نهاية السكريبت
 // (يمكن غلق الاتصال هنا أو تركه)
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-    <title>Insert Test</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-    <link href="css/style1.css" rel="stylesheet"/>
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>إدخال نتائج الفحوصات</title>
+    <!-- ربط Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- إضافة أيقونات Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        /* تنسيقات الصفحة */
-        body {
-            background-color: #f5f5f5;
+        /* تخصيص لوحة الألوان */
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --accent-color: #198754;
+            --background-color: #f8f9fa;
+            --text-color: #212529;
+            --card-bg: #ffffff;
+            --navbar-bg: #343a40;
+            --navbar-text: #ffffff;
+            --header-height: 60px; /* ارتفاع الرأس */
+            --sidebar-width: 250px; /* عرض الشريط الجانبي */
         }
-        main {
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* شريط التنقل الجانبي */
+        .sidebar {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            height: 100vh;
+            width: var(--sidebar-width);
+            background-color: var(--navbar-bg);
+            color: var(--navbar-text);
+            padding-top: 20px;
+            transition: all 0.3s;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            color: var(--navbar-text);
+            text-decoration: none;
+            display: block;
+            padding: 15px 20px;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* رأس الصفحة */
+        .navbar-custom {
+            background-color: var(--navbar-bg);
+            height: var(--header-height);
+            position: fixed;
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar-custom .navbar-brand {
+            color: var(--navbar-text);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .navbar-custom .navbar-text {
+            margin-left: auto;
+            color: var(--navbar-text);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-custom .navbar-text i {
+            margin-right: 5px;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            margin-top: var(--header-height);
+            margin-left: var(--sidebar-width);
             padding: 20px;
         }
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+
+        /* بطاقات المعلومات */
+        .info-card {
+            background-color: var(--card-bg);
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
-        h2, h3 {
-            color: #dc3545;
-            text-align: center;
+
+        .info-card:hover {
+            transform: translateY(-5px);
         }
-        h2 {
-            font-size: 1.8rem;
-        }
-        .category-toggle span {
-            font-size: 1.3rem;
-        }
-        label {
-            font-weight: bold;
-        }
-        .btn-warning, .btn-danger, .btn-success {
-            margin-top: 10px;
-        }
-        table.table {
-            background-color: #ffffff;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        th {
-            background-color: #343a40;
+
+        /* تخصيص الجداول */
+        table thead {
+            background-color: var(--primary-color);
             color: #ffffff;
-            text-align: center;
         }
+
+        table tbody tr:nth-child(even) {
+            background-color: #e9f3fb;
+        }
+
+        /* تخصيص المودال */
+        .modal-header {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+        }
+
+        .modal-footer .btn-secondary {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #157347;
+            border-color: #157347;
+        }
+
+        /* أيقونات الشارات */
+        .badge-primary {
+            background-color: var(--primary-color);
+        }
+
+        .badge-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .badge-accent {
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        /* حالة عدم وجود طلبات */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            color: #6c757d;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        /* تحسين تنسيق الفئات والاختبارات */
         .category-toggle {
             cursor: pointer;
             background-color: #d6d8db;
             padding: 15px;
             border-radius: 10px;
             transition: background-color 0.3s ease, transform 0.3s ease;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .category-toggle:hover {
             background-color: #c2c4c7;
         }
+
         .category-tests {
             display: none; /* الإخفاء الافتراضي */
             margin-top: 10px;
@@ -183,173 +301,216 @@ if(isset($_POST['submit_tests'])){
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .category-icon {
             transition: transform 0.3s ease;
         }
+
         .category-toggle.open .category-icon {
             transform: rotate(90deg);
         }
+
         .category-toggle.open {
             background-color: #e9ecef;
         }
-        .test-row {
-            display: flex;
-            justify-content: space-between;
+
+        /* استجابة التصميم */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .navbar-custom {
+                left: 0;
+                width: 100%;
+                height: var(--header-height);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 80px 10px 10px 10px;
+            }
         }
-        .test-row div {
-            width: 48%;
+
+        /* تخصيص الأزرار */
+        .btn-info-custom {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: #ffffff;
         }
-        .category-tests tr:nth-child(odd) {
-            background-color: #f9f9f9;
+
+        .btn-info-custom:hover {
+            background-color: #3ab5a4;
+            border-color: #3ab5a4;
         }
-        .category-tests tr:nth-child(even) {
-            background-color: #ffffff;
-        }
-        .category-tests table {
-            width: 100%;
-            border-spacing: 0;
-            border-collapse: separate;
-        }
-        .category-tests td {
-            padding: 10px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .category-tests input.form-control {
-            border-radius: 5px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+
+        /* تنسيق الشارات */
+        .badge-custom {
+            font-size: 0.9em;
         }
     </style>
 
-    <script src="includes/js/jquery-3.4.1.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $(".category-toggle").click(function(){
-                $(this).toggleClass("open");
-                $(this).next(".category-tests").slideToggle();
+        document.addEventListener('DOMContentLoaded', function() {
+            var categoryToggles = document.querySelectorAll('.category-toggle');
+            categoryToggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function() {
+                    this.classList.toggle('open');
+                    var tests = this.nextElementSibling;
+                    if (tests.style.display === 'block') {
+                        tests.style.display = 'none';
+                    } else {
+                        tests.style.display = 'block';
+                    }
+                });
             });
         });
     </script>
 </head>
 <body>
-    <main>
+
+    <!-- شريط التنقل الجانبي -->
+    <div class="sidebar">
+        <a href="lab2.php"><i class="bi bi-house-door-fill me-2"></i> الصفحة الرئيسية</a>
+        <a href="lab_view_requests.php"><i class="bi bi-list-check me-2"></i> إدارة الطلبات</a>
+        <a href="manage_tests.php"><i class="bi bi-gear-fill me-2"></i> الإعدادات</a>
+        <a href="login.php"><i class="bi bi-box-arrow-right me-2"></i> تسجيل الخروج</a>
+    </div>
+
+    <!-- رأس الصفحة -->
+    <nav class="navbar navbar-custom">
+        <a class="navbar-brand" href="#">نظام المختبر</a>
+        <div class="navbar-text">
+            <i class="bi bi-bell-fill me-2"></i>
+            <i class="bi bi-person-circle me-2"></i> المدير
+        </div>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
         <!-- نموذج البحث عن المريض -->
-        <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="GET">
-            <div class="table-responsive">
-                <table id="mytable" class="table table-dark table-striped table-bordered table-active" style="color:#000;">
-                    <thead>
-                        <tr>
-                            <th colspan="3">استعلام عن بيانات المريض</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>
-                            <label for="pat_id">رقم المريض:</label>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="mb-4 text-center text-primary">استعلام عن بيانات المريض</h2>
+                <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="GET">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-4">
+                            <label for="pat_id" class="form-label">رقم المريض:</label>
                             <input type="number" id="pat_id" name="pat_id" class="form-control" required/>
-                        </td>
-                        <td>
-                            <input type="submit" value="استعلام" class="btn btn-warning" name="Submit_pation" style="width:180px;"/>
-                        </td>
-                        <td>
-                            <button type="button" onclick="location.href='select_blood_test.php';" class="btn btn-danger">
-                                استعلام عن فحص
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <input type="submit" value="استعلام" class="btn btn-warning w-100" name="Submit_pation"/>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="button" onclick="location.href='select_blood_test.php';" class="btn btn-danger w-100">
+                                <i class="bi bi-search"></i> استعلام عن فحص
                             </button>
-                        </td>
-                    </tr>
-                    <?php 
-                    // عرض بيانات المريض إن وجد
-                    if($pat_idd > 0 && $r){
-                        while($row = $r->fetch_assoc()){
-                            echo "<tr>";
-                            echo "<td>اسم: " .htmlspecialchars($row['fname'])."</td>";
-                            echo "<td>العمر: " .htmlspecialchars($row['age'])."</td>";
-                            echo "<td>الجنس: " .htmlspecialchars($row['gander'])."</td>";
-                            echo "<td>الهاتف: " .htmlspecialchars($row['phone'])."</td>";
-                            echo "</tr>";
-                        }
+                        </div>
+                    </div>
+                </form>
+
+                <?php 
+                // عرض بيانات المريض إن وجد
+                if($pat_idd > 0 && $r){
+                    echo '<div class="mt-4">';
+                    echo '<h4 class="mb-3 text-center text-success">بيانات المريض</h4>';
+                    echo '<table class="table table-bordered">';
+                    echo '<tbody>';
+                    while($row = $r->fetch_assoc()){
+                        echo "<tr>";
+                        echo "<th scope='row'>اسم:</th><td>" .htmlspecialchars($row['fname'])."</td>";
+                        echo "<th scope='row'>العمر:</th><td>" .htmlspecialchars($row['age'])."</td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<th scope='row'>الجنس:</th><td>" .htmlspecialchars($row['gander'])."</td>";
+                        echo "<th scope='row'>الهاتف:</th><td>" .htmlspecialchars($row['phone'])."</td>";
+                        echo "</tr>";
                     }
-                    ?>
-                </table>
+                    echo '</tbody>';
+                    echo '</table>';
+                    echo '</div>';
+                }
+                ?>
             </div>
-        </form>
+        </div>
 
         <!-- نموذج إدخال نتائج الفحوصات -->
-        <form action="" method="POST">
-            <div class="table-responsive card card-cascade narrower">
-                <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-                    <h2 class="text-center" style="margin:0 auto;text-align:center;">جدول إدخال نتائج الفحوصات</h2>
-                </div>
-
-                <!-- إذا كان المريض معروفًا، حقل مخفي لتمرير pat_id -->
-                <?php if($pat_idd > 0): ?>
-                    <input type="hidden" name="pat_id" value="<?= $pat_idd; ?>"/>
-                <?php else: ?>
-                    <!-- إذا لم يكن المريض معروفًا، أعرض حقل إدخال pat_id -->
-                    <div class="form-group">
-                        <label for="pat_id_result">رقم المريض:</label>
-                        <input type="number" id="pat_id_result" name="pat_id" class="form-control" required/>
-                    </div>
-                <?php endif; ?>
-
-                <!-- عرض الفئات والاختبارات -->
-                <?php foreach ($categories as $category): ?>
-                    <div class="category-section">
-                        <div class="category-toggle">
-                            <span>
-                                <h2 class="label label-danger" style="text-align:center;">
-                                    <span class="label label-danger badge" style="text-align:center;color:Brown;">
-                                        <img src="includes/images/options2.png" alt="Category Icon" class="category-icon" style="width:25px;height:20px;"/>
-                                        <?= htmlspecialchars($category['name']); ?>
-                                    </span>
-                                </h2>
-                            </span>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="mb-4 text-center text-primary">إدخال نتائج الفحوصات</h2>
+                <form action="" method="POST">
+                    <!-- إذا كان المريض معروفًا، حقل مخفي لتمرير pat_id -->
+                    <?php if($pat_idd > 0): ?>
+                        <input type="hidden" name="pat_id" value="<?= $pat_idd; ?>"/>
+                    <?php else: ?>
+                        <!-- إذا لم يكن المريض معروفًا، أعرض حقل إدخال pat_id -->
+                        <div class="mb-3">
+                            <label for="pat_id_result" class="form-label">رقم المريض:</label>
+                            <input type="number" id="pat_id_result" name="pat_id" class="form-control" required/>
                         </div>
-                        <div class="category-tests">
-                            <table>
-                                <?php 
-                                $testsOfCat = $category['tests'];
-                                foreach(array_chunk($testsOfCat,2) as $twoTests):
-                                ?>
-                                    <tr>
-                                    <?php foreach($twoTests as $testItem): ?>
-    <?php 
-        $isParent = $testItem['is_parent'] == 1;
-        $isSubTest = $testItem['is_sub_test_level'] == 1;
-        $rowStyle = $isParent ? 'background-color: #ffc107; font-weight: bold;' : ''; // لون مميز لـ is_parent
-        if ($isSubTest && !$isParent) {
-            $rowStyle = 'background-color: #ffc107;'; // نفس اللون لـ is_sub_test_level
-        }
-    ?>
-    <tr style="<?= $rowStyle; ?>">
-        <td style="width:50%;">
-            <label for="test_<?= $testItem['test_id']; ?>">
-                <?= htmlspecialchars($testItem['test_name']); ?>:
-            </label>
-            <?php if (!($isParent && $isSubTest) && !$isParent): ?>
-                <input type="text"
-                       id="test_<?= $testItem['test_id']; ?>"
-                       name="test_<?= $testItem['test_id']; ?>"
-                       class="form-control"
-                       placeholder="اكتب النتيجة..."/>
-            <?php endif; ?>
-        </td>
-    </tr>
-<?php endforeach; ?>
+                    <?php endif; ?>
 
-                                    </tr>
-                                <?php endforeach; ?>
-                            </table>
+                    <!-- عرض الفئات والاختبارات -->
+                    <?php foreach ($categories as $category): ?>
+                        <div class="mb-4">
+                            <div class="category-toggle d-flex justify-content-between align-items-center p-3 rounded">
+                                <h5 class="mb-0 text-dark">
+                                    <i class="bi bi-chevron-right me-2 category-icon"></i>
+                                    <?= htmlspecialchars($category['name']); ?>
+                                </h5>
+                            </div>
+                            <div class="category-tests">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <?php 
+                                        $testsOfCat = $category['tests'];
+                                        foreach(array_chunk($testsOfCat,2) as $twoTests):
+                                        ?>
+                                            <?php foreach($twoTests as $testItem): ?>
+                                                <?php 
+                                                    $isParent = $testItem['is_parent'] == 1;
+                                                    $isSubTest = $testItem['is_sub_test_level'] == 1;
+                                                    $rowStyle = $isParent ? 'background-color: #ffc107; font-weight: bold;' : ''; // لون مميز لـ is_parent
+                                                    if ($isSubTest && !$isParent) {
+                                                        $rowStyle = 'background-color: #ffc107;'; // نفس اللون لـ is_sub_test_level
+                                                    }
+                                                ?>
+                                                <tr style="<?= $rowStyle; ?>">
+                                                    <th scope="row"><?= htmlspecialchars($testItem['test_name']); ?></th>
+                                                    <td>
+                                                        <?php if (!($isParent && $isSubTest) && !$isParent): ?>
+                                                            <input type="text"
+                                                                   id="test_<?= $testItem['test_id']; ?>"
+                                                                   name="test_<?= $testItem['test_id']; ?>"
+                                                                   class="form-control"
+                                                                   placeholder="اكتب النتيجة..."/>
+                                                        <?php else: ?>
+                                                            <!-- إذا كان الاختبار هو Parent أو Sub Test، لا تعرض حقل إدخال -->
+                                                            <span class="badge badge-secondary badge-custom">لا يتطلب إدخال</span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-                <!-- زر إرسال النتائج -->
-                <div class="form-group text-center">
-                    <button type="submit" name="submit_tests" class="btn btn-success btn-lg">
-                        إرسال النتائج
-                    </button>
-                </div>
+                    <!-- زر إرسال النتائج -->
+                    <div class="d-grid gap-2">
+                        <button type="submit" name="submit_tests" class="btn btn-success btn-lg">
+                            <i class="bi bi-check-circle-fill"></i> إرسال النتائج
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </main>
+        </div>
+    </div>
+
+    <!-- ربط Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

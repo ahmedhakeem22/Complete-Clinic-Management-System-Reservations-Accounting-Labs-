@@ -1,9 +1,10 @@
-<?php 
+<?php
 include 'includes/templates/header.php';
 include 'includes/templates/navbar2.php';
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,7 @@ include 'includes/templates/navbar2.php';
         }
 
         /* أنماط الشريط الجانبي */
-       #sidebar {
+        #sidebar {
             min-width: 250px;
             max-width: 250px;
             background: #2c3e50;
@@ -33,11 +34,13 @@ include 'includes/templates/navbar2.php';
             transition: all 0.3s;
             height: 100vh;
             position: fixed;
-            left: 0; /* لأن الاتجاه RTL */
+            left: 0;
+            /* لأن الاتجاه RTL */
             top: 0;
             overflow-y: auto;
             padding: auto;
-            z-index: 1000; /* لضمان ظهور الشريط الجانبي فوق الشريط العلوي */
+            z-index: 1000;
+            /* لضمان ظهور الشريط الجانبي فوق الشريط العلوي */
         }
 
 
@@ -79,7 +82,7 @@ include 'includes/templates/navbar2.php';
             border-radius: 4px;
         }
 
-        #sidebar ul li.active > a,
+        #sidebar ul li.active>a,
         a[aria-expanded="true"] {
             color: #ecf0f1;
             background: #1abc9c;
@@ -94,57 +97,65 @@ include 'includes/templates/navbar2.php';
             padding: 20px;
         }
 
-        #sidebar.active + #content {
+        #sidebar.active+#content {
             width: 100%;
             margin: 0;
         }
 
         /* شريط التنقل العلوي */
-       .navbar {
+        .navbar {
             padding: 15px;
             background: #fff;
             border-bottom: 1px solid #dee2e6;
             border-radius: 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
-            left: 250px; /* ترك مساحة للشريط الجانبي */
+            left: 250px;
+            /* ترك مساحة للشريط الجانبي */
             right: 0;
-            z-index: 999; /* تحت الشريط الجانبي */
+            z-index: 999;
+            /* تحت الشريط الجانبي */
         }
 
         /* البطاقات */
         .card {
             border: none;
             border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             background-color: #fff;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
         }
 
+        /* تحديث مقاسات الصور داخل البطاقات */
         .card-img-top {
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
             height: 180px;
+            /* يمكنك تعديل هذا الارتفاع حسب الحاجة */
+            width: 100%;
             object-fit: cover;
+            /* يضمن تغطية الصورة للمساحة بدون تشويه */
         }
+
 
         /* بانر التاريخ */
         .date-banner {
-    background: #1abc9c;
-    color: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 1.3rem;
-    margin-top: 80px; /* إضافة مسافة من الأعلى */
-    margin-bottom: 30px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+            background: #1abc9c;
+            color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.3rem;
+            margin-top: 80px;
+            /* إضافة مسافة من الأعلى */
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
 
         /* التذييل */
@@ -180,13 +191,16 @@ include 'includes/templates/navbar2.php';
             #sidebar {
                 margin-left: -250px;
             }
+
             #sidebar.active {
                 margin-left: 0;
             }
+
             #content {
                 width: 100%;
                 margin: 0;
             }
+
             #sidebarCollapse {
                 display: block;
             }
@@ -210,6 +224,7 @@ include 'includes/templates/navbar2.php';
         }
     </style>
 </head>
+
 <body>
 
     <div class="d-flex">
@@ -222,21 +237,11 @@ include 'includes/templates/navbar2.php';
                 <li>
                     <a href="newsession.php"><i class="fas fa-plus-circle"></i> جلسة جديدة</a>
                 </li>
-                <!-- <li>
-                    <a href="book_all_out_pdf.php"><i class="fas fa-file-pdf"></i> مخرجات كشف الصندوق</a>
-                </li> -->
-                <!-- <li>
-                    <a href="book_nafsy_pdf_ach_db.php"><i class="fas fa-file-alt"></i> فواتير الفحوص النفسية</a>
-                </li> -->
-                <!-- <li>
-                    <a href="book_pdf_ach_db.php"><i class="fas fa-file-invoice-dollar"></i> فواتير الجلسات</a>
-                </li> -->
+
                 <li>
                     <a href="select_file_pation.php"><i class="fas fa-chart-line"></i> تقارير المرضى</a>
                 </li>
-                <!-- <li>
-                    <a href="book_blood_pdf_ach_db.php"><i class="fas fa-tint"></i> فواتير فحص الدم</a>
-                </li> -->
+
                 <li>
                     <a href="book_out.php"><i class="fas fa-receipt"></i> سند صرف</a>
                 </li>
@@ -247,18 +252,28 @@ include 'includes/templates/navbar2.php';
                     <a href="provider.php"><i class="fas fa-hands-helping"></i> دعم المركز</a>
                 </li>
                 <li>
-                    <a href="today_dates.php"><i class="fas fa-users"></i> حجوزات اليوم</a>
+                    <a href="today_dates.php"><i class="fas fa-calendar-check"></i> حجوزات اليوم</a>
                 </li>
+
                 <li>
                     <a href="manage_tests.php"><i class="fas fa-vial"></i> إدارة الاختبارات</a>
                 </li>
-                
+                <li>
+                    <a href="vendors.php"><i class="fas fa-user-tie"></i> ادارة الموردين</a>
+                </li>
+                <li>
+                    <a href="categories.php"><i class="fas fa-tags"></i> ادارة فئات المصاريف</a>
+                </li>
+                <li>
+                    <a href="employees.php"><i class="fas fa-users"></i> ادارة الموظفين </a>
+                </li>
+
             </ul>
         </nav>
 
         <!-- محتوى الصفحة -->
         <div id="content">
-           
+
 
             <!-- بانر التاريخ -->
             <div class="date-banner" id="dateBanner">
@@ -268,46 +283,23 @@ include 'includes/templates/navbar2.php';
             <!-- محتوى الصفحة الرئيسي -->
             <div class="row">
                 <!-- بطاقة جلسة جديدة -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="card text-center">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 text-center">
                         <img src="includes/images/jalsa1.PNG" class="card-img-top" alt="جلسة جديدة">
-                        <div class="card-body">
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">جلسة جديدة</h5>
-                            <a href="newsession.php" class="btn btn-primary">
+                            <a href="newsession.php" class="btn btn-primary mt-auto">
                                 <i class="fas fa-plus-circle me-2"></i> ابدأ الآن
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- بطاقة مخرجات كشف الصندوق -->
-                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="card text-center">
-                        <img src="includes/images/IMG4.png" class="card-img-top" alt="مخرجات كشف الصندوق">
-                        <div class="card-body">
-                            <h5 class="card-title">مخرجات كشف الصندوق</h5>
-                            <a href="book_all_out_pdf.php" class="btn btn-success">
-                                <i class="fas fa-file-pdf me-2"></i> عرض
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
 
-                <!-- بطاقة فواتير الفحوص النفسية -->
-                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="card text-center">
-                        <img src="includes/images/img7.png" class="card-img-top" alt="فواتير الفحوص النفسية">
-                        <div class="card-body">
-                            <h5 class="card-title">فواتير الفحوص النفسية</h5>
-                            <a href="book_nafsy_pdf_ach_db.php" class="btn btn-warning">
-                                <i class="fas fa-file-alt me-2"></i> عرض
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
+
 
                 <!-- بطاقة فواتير الجلسات -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="../img/searchday.jpg" class="card-img-top" alt="فواتير الجلسات">
                         <div class="card-body">
@@ -320,7 +312,7 @@ include 'includes/templates/navbar2.php';
                 </div>
 
                 <!-- بطاقة تقارير المرضى -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/img9.png" class="card-img-top" alt="تقارير المرضى">
                         <div class="card-body">
@@ -332,21 +324,10 @@ include 'includes/templates/navbar2.php';
                     </div>
                 </div>
 
-                <!-- بطاقة فواتير فحص الدم -->
-                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="card text-center">
-                        <img src="includes/images/img8.png" class="card-img-top" alt="فواتير فحص الدم">
-                        <div class="card-body">
-                            <h5 class="card-title">فواتير فحص الدم</h5>
-                            <a href="book_blood_pdf_ach_db.php" class="btn btn-danger">
-                                <i class="fas fa-tint me-2"></i> عرض
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
+
 
                 <!-- بطاقة سند صرف -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/img3.png" class="card-img-top" alt="سند صرف">
                         <div class="card-body">
@@ -359,7 +340,7 @@ include 'includes/templates/navbar2.php';
                 </div>
 
                 <!-- بطاقة الصندوق -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/IMG4.png" class="card-img-top" alt="الصندوق">
                         <div class="card-body">
@@ -372,7 +353,7 @@ include 'includes/templates/navbar2.php';
                 </div>
 
                 <!-- بطاقة دعم المركز -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/img3.png" class="card-img-top" alt="دعم المركز">
                         <div class="card-body">
@@ -384,27 +365,55 @@ include 'includes/templates/navbar2.php';
                     </div>
                 </div>
 
-                <!-- بطاقة كشف الداعمين -->
-                <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="card text-center">
-                        <img src="includes/images/img3.png" class="card-img-top" alt="كشف الداعمين">
-                        <div class="card-body">
-                            <h5 class="card-title">كشف الداعمين</h5>
-                            <a href="prov_all_pdf.php" class="btn btn-info">
-                                <i class="fas fa-users me-2"></i> عرض
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
-
                 <!-- بطاقة إدارة الاختبارات -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
                     <div class="card text-center">
                         <img src="includes/images/manage_tests.png" class="card-img-top" alt="إدارة الاختبارات">
                         <div class="card-body">
                             <h5 class="card-title">إدارة الاختبارات</h5>
                             <a href="manage_tests.php" class="btn btn-primary">
                                 <i class="fas fa-vial me-2"></i> إدارة
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة إدارة الموردين -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="card text-center">
+                        <img src="../img/vendor-icon-16.jpg" class="card-img-top" alt="إدارة الاختبارات">
+                        <div class="card-body">
+                            <h5 class="card-title">إدارة الموردين</h5>
+                            <a href="vendors.php" class="btn btn-primary">
+                                <i class="fas fa-user-tie me-2"></i> إدارة
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة إدارة الموظفين -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="card text-center">
+                        <img src="../img/manager_8743723.png" class="card-img-top" alt="إدارة الاختبارات">
+                        <div class="card-body">
+                            <h5 class="card-title">إدارة الموظفين</h5>
+                            <a href="employees.php" class="btn btn-primary">
+                                <i class="fas fa-users me-2"></i> إدارة
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة إدارة فئات المصاريف -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="card text-center">
+                        <img src="../img/cost-management_16919198.png" class="card-img-top" alt="إدارة الاختبارات">
+                        <div class="card-body">
+                            <h5 class="card-title">إدارة المصاريف</h5>
+                            <a href="categories.php" class="btn btn-primary">
+                                <i class="fas fa-tags me-2"></i> إدارة
                             </a>
                         </div>
                     </div>
@@ -431,8 +440,8 @@ include 'includes/templates/navbar2.php';
         // شريط التاريخ بالعربية
         function displayDate() {
             const days = ["الأحد", "الأثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
-            const months = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", 
-                            "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+            const months = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+                "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
             const now = new Date();
             const dayName = days[now.getDay()];
             const day = now.getDate();
@@ -451,4 +460,5 @@ include 'includes/templates/navbar2.php';
     </script>
 
 </body>
+
 </html>
