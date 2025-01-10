@@ -188,4 +188,5 @@ include '../includes/db.php';
         echo "<p>لا توجد أقسام متاحة.</p>";
     }
     ?>
+    
 </div>
