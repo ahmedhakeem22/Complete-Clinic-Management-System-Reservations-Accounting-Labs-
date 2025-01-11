@@ -24,6 +24,8 @@
           <a class="dropdown-item" href="buy/index.php"  target="_blank">Buy</a>
           <a class="dropdown-item" href="sale/index.php"  target="_blank">Sales</a>
 		<a class="dropdown-item" href="store/index.php"  target="_blank"> Store </a>
+    <a class="dropdown-item" href="pharmacist.php"  target="_blank"> طلبات الادوية </a>
+
         
         
       </li> 

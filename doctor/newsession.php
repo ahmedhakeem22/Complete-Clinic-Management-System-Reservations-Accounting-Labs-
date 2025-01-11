@@ -116,6 +116,9 @@ if (isset($_POST['addsess'])) {
     );
     $stmt->execute();
     
+    // عرض إشعار النجاح
+    echo "<script>showSuccessMessage('تم إضافة الجلسة بنجاح!');</script>";
+    
     // Close the statement
     $stmt->close();
   }
@@ -435,7 +438,7 @@ $conn->close();
 <div class="modal fade" id="medicalModal" tabindex="-1" role="dialog" aria-labelledby="medicalModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <form method="post" action="sale.php" target="_blank" class="modal-form">
+      <form id="medicalForm" method="post" action="sale.php" class="modal-form">
         <div class="modal-header">
           <h5 class="modal-title" id="medicalModalLabel">Enter Prescribed Medications Information</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -453,6 +456,7 @@ $conn->close();
     </div>
   </div>
 </div>
+
 
 <!-- Modal Window for Psychological Tests -->
 <div class="modal fade" id="psychModal" tabindex="-1" role="dialog" aria-labelledby="psychModalLabel" aria-hidden="true">
@@ -478,7 +482,6 @@ $conn->close();
 </div>
 
 <!-- Modal Window for Blood Tests -->
-<!-- Modal Window for Blood Tests -->
 <div class="modal fade" id="bloodModal" tabindex="-1" role="dialog" aria-labelledby="bloodModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -501,8 +504,15 @@ $conn->close();
   </div>
 </div>
 
+<!-- حاوية Toasts -->
+<div aria-live="polite" aria-atomic="true" style="position: fixed; top: 20px; right: 20px; min-height: 200px; z-index: 1060;">
+  <div id="toast-container">
+    <!-- سيتم إضافة Toasts هنا ديناميكيًا -->
+  </div>
+</div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // معالجة إرسال نموذج الفحوصات الدموية
     document.getElementById('submitBloodTests').addEventListener('click', function() {
         const formElement = document.getElementById('bloodTestsForm');
         const formData = new FormData(formElement);
@@ -514,10 +524,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                if (window.parent && window.parent.showSuccessMessage) {
-                    window.parent.showSuccessMessage('تم إرسال الطلب بنجاح!');
-                }
-                window.parent.$('#bloodModal').modal('hide');
+                showSuccessMessage('تم إرسال الطلب بنجاح!');
+                $('#bloodModal').modal('hide');
             } else {
                 alert('حدث خطأ: ' + data.message);
             }
@@ -526,8 +534,34 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('تعذّر إرسال الطلب، تحقق من الاتصال. ' + err);
         });
     });
+
+    // معالجة إرسال نموذج الوصفة الطبية
+    document.getElementById('medicalForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // منع الإرسال الافتراضي للنموذج
+
+        const formElement = document.getElementById('medicalForm');
+        const formData = new FormData(formElement);
+
+        fetch('sale.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showSuccessMessage('تم إضافة الوصفة الطبية بنجاح!');
+                $('#medicalModal').modal('hide');
+            } else {
+                alert('حدث خطأ: ' + data.message);
+            }
+        })
+        .catch(err => {
+            alert('تعذّر إرسال الوصفة الطبية، تحقق من الاتصال. ' + err);
+        });
+    });
 });
 </script>
+
 
 <script>
   // Close the modal after form submission
@@ -539,6 +573,44 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 </script>
 
+<!-- دالة عرض Toast كإشعار عائم -->
+<script>
+    // دالة في الصفحة الرئيسية يمكن استدعاؤها من النافذة المنبثقة
+    function showSuccessMessage(msg) {
+        // إنشاء عنصر Toast
+        var toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'assertive');
+        toast.setAttribute('aria-atomic', 'true');
+        toast.setAttribute('data-delay', '5000'); // مدة عرض الـ Toast بالمللي ثانية
+
+        // محتويات الـ Toast
+        toast.innerHTML = `
+            <div class="toast-header">
+                <strong class="mr-auto text-success">نجاح</strong>
+                <small>الآن</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="إغلاق">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                ${msg}
+            </div>
+        `;
+
+        // إضافة الـ Toast إلى الحاوية
+        document.getElementById('toast-container').appendChild(toast);
+
+        // تفعيل Toast باستخدام jQuery
+        $(toast).toast('show');
+
+        // إزالة الـ Toast من الـ DOM بعد انتهاء عرضه
+        $(toast).on('hidden.bs.toast', function () {
+            $(this).remove();
+        });
+    }
+</script>
 
 <!-- Bootstrap and jQuery JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -611,26 +683,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 </script>  
 <script>
-// دالة في الصفحة الرئيسية يمكن استدعاؤها من النافذة المنبثقة
-function showSuccessMessage(msg) {
-    // إنشاء div يحمل تنسيق alert-success
-    var alertDiv = document.createElement('div');
-    alertDiv.className = 'alert alert-success';
-    alertDiv.style.margin = '15px';
-    alertDiv.textContent = msg;
+    // دالة عرض Toast كإشعار عائم
+    function showSuccessMessage(msg) {
+        // إنشاء عنصر Toast
+        var toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'assertive');
+        toast.setAttribute('aria-atomic', 'true');
+        toast.setAttribute('data-delay', '5000'); // مدة عرض الـ Toast بالمللي ثانية
 
-    // نضيفه في أعلى الصفحة مثلاً
-    document.body.prepend(alertDiv);
+        // محتويات الـ Toast
+        toast.innerHTML = `
+            <div class="toast-header">
+                <strong class="mr-auto text-success">نجاح</strong>
+                <small>الآن</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="إغلاق">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                ${msg}
+            </div>
+        `;
 
-    // بعد 5 ثوانٍ نخفي التنبيه
-    setTimeout(function() {
-        if (alertDiv && alertDiv.parentNode) {
-            alertDiv.parentNode.removeChild(alertDiv);
-        }
-    }, 5000);
-}
+        // إضافة الـ Toast إلى الحاوية
+        document.getElementById('toast-container').appendChild(toast);
+
+        // تفعيل Toast باستخدام jQuery
+        $(toast).toast('show');
+
+        // إزالة الـ Toast من الـ DOM بعد انتهاء عرضه
+        $(toast).on('hidden.bs.toast', function () {
+            $(this).remove();
+        });
+    }
 </script>
-
 
 </body>
 </html>
