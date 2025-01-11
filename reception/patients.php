@@ -574,28 +574,33 @@ $stmt->close();
 
     // Add Patient AJAX
     document.getElementById('addPatientForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        fetch('process_add_patient.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.success){
-                alert('تم إضافة المريض بنجاح.');
-                const addModal = new bootstrap.Modal(document.getElementById('addPatientModal'));
-                addModal.hide();
-                window.location.href = 'index.php?success=1';
-            } else {
-                alert('حدث خطأ: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('حدث خطأ أثناء إرسال البيانات.');
-        });
+    e.preventDefault();
+    const formData = new FormData(this);
+    // إضافة قيمة المعامل يدويًا إذا لم تكن موجودة
+    if (!formData.has('add_pp')) {
+        formData.append('add_pp', '1');
+    }
+    fetch('process_add_patient.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success){
+            alert('تم إضافة المريض بنجاح.');
+            const addModal = new bootstrap.Modal(document.getElementById('addPatientModal'));
+            addModal.hide();
+            window.location.href = 'patients.php?success=1';
+        } else {
+            alert('حدث خطأ: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('حدث خطأ أثناء إرسال البيانات.');
     });
+});
+
 
     // Edit Patient AJAX
     document.getElementById('editPatientForm').addEventListener('submit', function(e) {
@@ -611,7 +616,7 @@ $stmt->close();
                 alert('تم تعديل بيانات المريض بنجاح.');
                 const editModal = new bootstrap.Modal(document.getElementById('editPatientModal'));
                 editModal.hide();
-                window.location.href = 'index.php?update_success=1';
+                window.location.href = 'patients.php?update_success=1';
             } else {
                 alert('حدث خطأ: ' + data.error);
             }
