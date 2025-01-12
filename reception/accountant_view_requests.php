@@ -307,6 +307,33 @@ $count_unpaid = $result_unpaid->fetch_assoc()['count_unpaid'] ?? 0;
         width: 100%;
       }
     }
+    .table-custom {
+        border-collapse: separate;
+        border-spacing: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .table-custom thead th {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        padding: 12px 15px;
+        border: none;
+    }
+    .table-custom tbody td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e3e3e3;
+    }
+    .table-custom tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .table-custom tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    /* إزالة حدود الزوايا العريضة من الصفوف الأخيرة */
+    .table-custom tbody tr:last-child td {
+        border-bottom: none;
+    }
     </style>
 </head>
 <body>
@@ -380,56 +407,60 @@ $count_unpaid = $result_unpaid->fetch_assoc()['count_unpaid'] ?? 0;
 
         <?php if ($res->num_rows > 0): ?>
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>رقم الطلب</th>
-                            <th>اسم المريض</th>
-                            <th>تاريخ الطلب</th>
-                            <th>التكلفة الإجمالية</th>
-                            <th>الحالة</th>
-                            <th>الإجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php while ($row = $res->fetch_assoc()): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($row['request_id']) ?></td>
-                            <td><?= htmlspecialchars($row['fname']) ?></td>
-                            <td><?= htmlspecialchars(date("d-m-Y H:i", strtotime($row['request_date']))) ?></td>
-                            <td><?= htmlspecialchars(number_format($row['total_cost'], 2)) ?> <span class="text-muted">ريال يمني</span></td>
-                            <td>
-                                <span class="badge bg-warning text-dark badge-status">جديد</span>
-                            </td>
-                            <td>
-                                <!-- زر يفتح مودال التفاصيل -->
-                                <button 
-                                    class="btn btn-info btn-sm" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#detailsModal" 
-                                    data-requestid="<?= htmlspecialchars($row['request_id']) ?>"
-                                >
-                                    <i class="fas fa-eye"></i> تفاصيل
-                                </button>
-                                <!-- زر تأكيد الدفع -->
-                                <form method="POST" action="" class="d-inline">
-                                    <input type="hidden" name="request_id" value="<?= htmlspecialchars($row['request_id']) ?>">
-                                    <button type="submit" name="confirm_payment" class="btn btn-success btn-sm" onclick="return confirm('هل أنت متأكد من تأكيد الدفع لهذا الطلب؟');">
-                                        <i class="fas fa-check-circle"></i> تأكيد الدفع
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php else: ?>
-            <div class="alert alert-info text-center">
-                <i class="fas fa-clipboard-list fa-2x" style="color:var(--secondary-color);"></i>
-                <h4 class="mt-3">لا توجد طلبات جديدة حالياً.</h4>
-                <p>يرجى المحاولة لاحقاً.</p>
-            </div>
+        <table class="table table-hover table-custom">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>اسم المريض</th>
+                    <th>تاريخ الطلب</th>
+                    <th>التكلفة الإجمالية</th>
+                    <th>الحالة</th>
+                    <th>الإجراءات</th>
+                    <th>رقم الطلب</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            <?php while ($row = $res->fetch_assoc()): ?>
+                <tr>
+                    <td class="text-center"><?= htmlspecialchars($row['pat_id']) ?></td>
+                    <td dir="rtl" class="text-center"><?= htmlspecialchars($row['fname']) ?></td>
+                    <td class="text-center"><?= htmlspecialchars(date("d-m-Y H:i", strtotime($row['request_date']))) ?></td>
+                    <td class="text-center"><?= htmlspecialchars(number_format($row['total_cost'], 2)) ?> <span class="text-muted">ريال يمني</span></td>
+                    <td>
+                        <span class="badge bg-warning text-dark badge-status">جديد</span>
+                    </td>
+                    <td class="text-center" >
+                        <!-- زر يفتح مودال التفاصيل -->
+                        <button 
+                            class="btn btn-info btn-sm" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#detailsModal" 
+                            data-requestid="<?= htmlspecialchars($row['request_id']) ?>"
+                        >
+                            <i class="fas fa-eye"></i> تفاصيل
+                        </button>
+                        <!-- زر تأكيد الدفع -->
+                        <form method="POST" action="" class="d-inline">
+                            <input type="hidden" name="request_id" value="<?= htmlspecialchars($row['request_id']) ?>">
+                            <button type="submit" name="confirm_payment" class="btn btn-success btn-sm" onclick="return confirm('هل أنت متأكد من تأكيد الدفع لهذا الطلب؟');">
+                                <i class="fas fa-check-circle"></i> تأكيد الدفع
+                            </button>
+                        </form>
+                        <td class="text-center"><?= htmlspecialchars($row['request_id']) ?></td>
+
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
+<?php else: ?>
+    <div class="alert alert-info text-center">
+        <i class="fas fa-clipboard-list fa-2x" style="color:var(--secondary-color);"></i>
+        <h4 class="mt-3">لا توجد طلبات جديدة حالياً.</h4>
+        <p>يرجى المحاولة لاحقاً.</p>
+    </div>
         <?php endif; ?>
     </div>
 
