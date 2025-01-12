@@ -49,25 +49,30 @@ $conn->close();
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
     <style>
-        @page {
-            margin: 0;
-            /* تعطيل الهوامش الافتراضية للصفحة */
-        }
+         @page {
+        size: A4 portrait; /* حجم الصفحة A4 بوضع عمودي */
+        margin: 0; /* إلغاء الهوامش الافتراضية */
+    }
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f8f9fa;
-            padding: 20px;
-            /* إضافة مسافة داخلية مخصصة للطباعة */
-        }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+        width: 100%;
+    }
 
-        .invoice {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-size: 14px;
-        }
+    .invoice {
+        height: 50%; /* تخصيص النصف العلوي فقط */
+        width: 100%; /* تغطية العرض بالكامل */
+        padding: 20px;
+        margin: 0;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 14px;
+        box-sizing: border-box; /* لضمان عرض الفاتورة بشكل صحيح */
+    }
+
 
         .invoice-header {
             border-bottom: 1px solid #0d6efd;
@@ -123,19 +128,24 @@ $conn->close();
         }
 
         @media print {
-            .btn-print {
-                display: none;
-            }
-
-            body {
-                margin: 0;
-            }
-
-            .invoice {
-                box-shadow: none;
-                border: none;
-            }
+        .btn-print {
+            display: none; /* إخفاء زر الطباعة */
         }
+
+        .invoice {
+            box-shadow: none;
+            border: none;
+            position: absolute;
+            top: 0; /* تثبيت المحتوى في أعلى الصفحة */
+            width: 100%; /* تغطية العرض بالكامل */
+            filter: saturate(1.5); /* زيادة التشبع بمقدار 1.5 */
+        }
+
+        body {
+            -webkit-print-color-adjust: exact; /* تمكين الطباعة بالألوان الدقيقة */
+            print-color-adjust: exact;
+        }
+    }
 
         /* تحسين استجابة التصميم للشاشات الصغيرة */
         @media (max-width: 576px) {
