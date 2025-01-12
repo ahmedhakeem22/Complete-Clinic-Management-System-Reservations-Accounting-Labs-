@@ -256,17 +256,19 @@ $res = $conn->query($sql);
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <th>رقم الطلب</th>
+                                    <th>معرف المريض</th>
                                     <th>اسم المريض</th>
                                     <th>تاريخ الطلب</th>
                                     <th>الحالة</th>
                                     <th>إجراءات</th>
+                                    <th class="text-center">رقم الطلب</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php while ($row = $res->fetch_assoc()): ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($row['request_id']) ?></td>
+                                        <td ><?= htmlspecialchars($row['pat_id']) ?></td>
                                         <td><?= htmlspecialchars($row['fname']) ?></td>
                                         <td><?= htmlspecialchars(date("d-m-Y H:i", strtotime($row['request_date']))) ?></td>
                                         <td>
@@ -282,6 +284,8 @@ $res = $conn->query($sql);
                                                 <i class="bi bi-eye-fill"></i> عرض
                                             </button>
                                         </td>
+                                        <td class="text-center"><?= htmlspecialchars($row['request_id']) ?></td>
+
                                     </tr>
                                 <?php endwhile; ?>
                             </tbody>
