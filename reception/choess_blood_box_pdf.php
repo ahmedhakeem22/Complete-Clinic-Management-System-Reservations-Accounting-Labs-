@@ -49,87 +49,114 @@ if (!$bill) {
     <!-- Google Fonts (Cairo) -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
     <style>
-        @page {
-            margin: 0; 
-        }
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-        .invoice {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-size: 14px;
-        }
-        .invoice-header {
-            border-bottom: 1px solid #0d6efd;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .invoice-footer {
-            border-top: 1px solid #0d6efd;
-            padding-top: 10px;
-            margin-top: 15px;
-            font-size: 12px;
-        }
-        .logo {
-            max-width: 120px;
-        }
-        .invoice-title-main {
-            color: #0d6efd;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            font-weight: bold;
-            text-align: center;
-            width: 100%;
-        }
-        .table th {
-            background-color: #0d6efd;
-            color: #ffffff;
-            font-size: 13px;
-            padding: 8px;
-        }
-        .table td {
-            font-size: 13px;
-            padding: 8px;
-        }
+    @page {
+        size: A4 portrait; /* حجم الصفحة A4 بوضع عمودي */
+        margin: 0; /* إلغاء الهوامش الافتراضية */
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+        width: 100%;
+    }
+
+    .invoice {
+        height: 50%; /* تخصيص النصف العلوي فقط */
+        width: 100%; /* تغطية العرض بالكامل */
+        padding: 20px;
+        margin: 0;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 14px;
+        box-sizing: border-box; /* لضمان عرض الفاتورة بشكل صحيح */
+    }
+
+    .invoice-header {
+        border-bottom: 1px solid #0d6efd;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .invoice-footer {
+        border-top: 1px solid #0d6efd;
+        padding-top: 10px;
+        margin-top: 15px;
+        font-size: 12px;
+    }
+
+    .logo {
+        max-width: 120px;
+    }
+
+    .invoice-title-main {
+        color: #0d6efd;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+    }
+
+    .table th {
+        background-color: #0d6efd;
+        color: #ffffff;
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .table td {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .btn-print {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    .text-primary {
+        color: #0d6efd !important;
+        font-size: 16px;
+    }
+
+    @media print {
         .btn-print {
-            margin-top: 15px;
-            font-size: 14px;
+            display: none; /* إخفاء زر الطباعة */
         }
-        .text-primary {
-            color: #0d6efd !important;
-            font-size: 16px;
+
+        .invoice {
+            box-shadow: none;
+            border: none;
+            position: absolute;
+            top: 0; /* تثبيت المحتوى في أعلى الصفحة */
+            width: 100%; /* تغطية العرض بالكامل */
+            filter: saturate(1.5); /* زيادة التشبع بمقدار 1.5 */
         }
-        @media print {
-            .btn-print {
-                display: none;
-            }
-            body {
-                margin: 0;
-            }
-            .invoice {
-                box-shadow: none;
-                border: none;
-            }
+
+        body {
+            -webkit-print-color-adjust: exact; /* تمكين الطباعة بالألوان الدقيقة */
+            print-color-adjust: exact;
         }
-        @media (max-width: 576px) {
-            .invoice-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .text-end {
-                text-align: left !important;
-                margin-top: 10px;
-            }
+    }
+
+    @media (max-width: 576px) {
+        .invoice-header {
+            flex-direction: column;
+            align-items: flex-start;
         }
-    </style>
+
+        .text-end {
+            text-align: left !important;
+            margin-top: 10px;
+        }
+    }
+</style>
+
 </head>
 <body>
 <div class="container">
@@ -152,7 +179,9 @@ if (!$bill) {
                 <div class="col-md-6">
                     <h5 class="text-primary"><i class="bi bi-person-fill"></i> بيانات المريض</h5>
                     <p><strong>اسم المريض:</strong> <?php echo htmlspecialchars($bill['patient_name']); ?></p>
+                    <p><strong>المعرف :</strong> <?php echo htmlspecialchars($bill['pat_id']); ?></p>
                     <p><strong>رقم الطلب:</strong> <?php echo htmlspecialchars($bill['request_id']); ?></p>
+
                 </div>
                 <div class="col-md-6 text-end">
                     <h5 class="text-primary"><i class="bi bi-cash-stack"></i> تفاصيل الدفع</h5>
