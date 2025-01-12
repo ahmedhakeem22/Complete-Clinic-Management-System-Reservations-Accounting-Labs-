@@ -4,12 +4,13 @@
 include 'includes/templates/header.php';
 include 'includes/templates/navbar.php';
 include '../includes/db.php';
+include 'includes/functions.php'; // استدعاء دوال المساعدة
 
-// Set the timezone
+// تعيين المنطقة الزمنية وتاريخ الجلسة الحالية
 date_default_timezone_set("Asia/Aden");
 $pat_date = date("Y-m-d");
 
-// Define the usage options array
+// تعريف خيارات الاستخدام للدواء
 $usageOptions = [
     1  => 'One tablet before breakfast',
     2  => 'Half tablet before breakfast',
@@ -27,113 +28,74 @@ $usageOptions = [
     14 => 'Half tablet before bedtime',
     15 => 'One tablet weekly',
     16 => 'Twice a week',
-    // Add more options as needed
 ];
 
-// Handle displaying patient information
 $pat_idd = 0;
+$previous_date = "";
+
+// عند الضغط على زر "Fetch" لجلب بيانات المريض
 if (isset($_POST['show_det'])) {
-  $pat_idd = $_POST['pat_id'];
-
-  // Search for patient information
-  $r = mysqli_query($conn, "SELECT fname, age, phone, soc_sts, chel_num FROM patinte WHERE pat_id = $pat_idd ");
+    $pat_idd = (int)$_POST['pat_id'];
+    $r = fetch_patient_details($conn, $pat_idd);
+    $previous_date = fetch_previous_session_date($conn, $pat_idd);
 }
 
-// Function to sanitize data
-function test_input($data)
-{
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-
-// Handle adding a new session
+// معالجة إضافة جلسة جديدة
 if (isset($_POST['addsess'])) {
-
-  $pat_id = $_POST['pat_id'];
-  $date_pev = $_POST['date_pev'];
-  $date_next = $_POST['date_next'];
-  $main_com = $_POST['main_com'];
-  $period_ill = $_POST['period_ill'];
-  $curr_hist = $_POST['curr_hist'];
-  $last_hist = $_POST['last_hist'];
-  $fam_hist = $_POST['fam_hist'];
-  $work_hist = $_POST['work_hist'];
-  $sex_hist = $_POST['sex_hist'];
-  $person_hist = $_POST['person_hist'];
-  $appear = $_POST['appear'];
-  $behav = $_POST['behav'];
-  $speech = $_POST['speech'];
-  $mood = $_POST['mood'];
-  $killer = $_POST['killer'];
-  $thin_shep = $_POST['thin_shep'];
-  $thin_con = $_POST['thin_con'];
-  $percep = $_POST['percep'];
-  $memory = $_POST['memory'];
-  $ability = $_POST['ability'];
-  $insight = $_POST['insight'];
-  $fores = $_POST['fores'];
-  $degree = $_POST['degree'];
-  $basic_dig = $_POST['basic_dig'];
-  $diff_dig = $_POST['diff_dig'];
-
-  if (empty($_POST["pat_id"])) {
-    $Pat_fname = "Patient ID is Required";
-    echo $Pat_fname;
-  } else {
-
-    $stmt = $conn->prepare("INSERT INTO session (pat_id, date_now, date_pev, date_next, main_com, period_ill, sex_hist, person_hist, curr_hist, last_hist, fam_hist, work_hist, basic_dig, diff_dig, appear, behav, mood, killer, thin_shep, thin_con, percep, memory, ability, insight, fores, degree, speech)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("isssssssssssssssssssssssss", 
-        $pat_id, 
-        $pat_date, 
-        $date_pev, 
-        $date_next, 
-        $main_com, 
-        $period_ill, 
-        $sex_hist, 
-        $person_hist, 
-        $curr_hist, 
-        $last_hist, 
-        $fam_hist, 
-        $work_hist, 
-        $basic_dig, 
-        $diff_dig, 
-        $appear, 
-        $behav, 
-        $mood, 
-        $killer, 
-        $thin_shep, 
-        $thin_con, 
-        $percep, 
-        $memory, 
-        $ability, 
-        $insight, 
-        $fores, 
-        $degree, 
-        $speech
-    );
-    $stmt->execute();
+    $pat_id    = (int)$_POST['pat_id'];
+    $date_pev  = !empty($_POST['date_pev']) ? $_POST['date_pev'] : $pat_date;
+    $date_next = !empty($_POST['date_next']) ? $_POST['date_next'] : $pat_date;
     
-    // عرض إشعار النجاح
-    echo "<script>showSuccessMessage('تم إضافة الجلسة بنجاح!');</script>";
+    // تجميع بيانات الجلسة في مصفوفة
+    $sessionParams = [
+        'pat_id'      => $pat_id,
+        'date_now'    => $pat_date,
+        'date_pev'    => $date_pev,
+        'date_next'   => $date_next,
+        'main_com'    => $_POST['main_com'],
+        'period_ill'  => $_POST['period_ill'],
+        'sex_hist'    => $_POST['sex_hist'],
+        'person_hist' => $_POST['person_hist'],
+        'curr_hist'   => $_POST['curr_hist'],
+        'last_hist'   => $_POST['last_hist'],
+        'fam_hist'    => $_POST['fam_hist'],
+        'work_hist'   => $_POST['work_hist'],
+        'basic_dig'   => $_POST['basic_dig'],
+        'diff_dig'    => $_POST['diff_dig'],
+        'appear'      => $_POST['appear'],
+        'behav'       => $_POST['behav'],
+        'mood'        => $_POST['mood'],
+        'killer'      => $_POST['killer'],
+        'thin_shep'   => $_POST['thin_shep'],
+        'thin_con'    => $_POST['thin_con'],
+        'percep'      => $_POST['percep'],
+        'memory'      => $_POST['memory'],
+        'ability'     => $_POST['ability'],
+        'insight'     => $_POST['insight'],
+        'fores'       => $_POST['fores'],
+        'degree'      => $_POST['degree'],
+        'speech'      => $_POST['speech']
+    ];
     
-    // Close the statement
-    $stmt->close();
-  }
+    if (empty($pat_id)) {
+        echo "Patient ID is Required";
+    } else {
+        if(add_new_session($conn, $sessionParams)){
+            echo "<script>showSuccessMessage('تم إضافة الجلسة بنجاح!');</script>";
+        }
+    }
 }
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>New Session</title>
-    <!-- Bootstrap CSS -->
+    <!-- استدعاء Bootstrap & CSS خارجي -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Bootstrap Multiselect CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
     <style>
         body {
@@ -143,51 +105,36 @@ $conn->close();
     </style>
 </head>
 <body>
-
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
   <main>
-
     <div>
-
       <table class="table table-striped table-bordered table-hover" cellspacing="15" cellpadding="0">
-
         <tr>
           <td> 
             <label for="no.p1" style="background-color:#009933;" class="form-control"> 
               <strong style="color:white;">Patient No.:</strong> 
             </label>
             <label> 
-              <input type="number" name="pat_id" class="form-control" />
+            <input type="number" name="pat_id" class="form-control" value="<?php echo htmlspecialchars($pat_idd); ?>" />
             </label>
-
             <label> 
               <input style="width:100px; background-color:orange;" class="btn btn-primary form-control"
-                  type="submit" value="Fetch" title="Patient Information" name="show_det" />
+                     type="submit" value="Fetch" title="Patient Information" name="show_det" />
             </label>
           </td>
-
-          <td colspan='4'>
-          </td>
+          <td colspan='4'></td>
         </tr>
-        <tr>
-          <?php
-          if ($pat_idd > 0) {
-            while ($row = mysqli_fetch_array($r)) {
-
-              echo "<tr>";
-              echo "<td> Name: " . htmlspecialchars($row['fname']) . "</td>";
-              echo "<td> Age: " . htmlspecialchars($row['age']) . "</td>";
-              echo "<td> Social Status: " . htmlspecialchars($row['soc_sts']) . "</td>";
-              echo "<td> Phone: " . htmlspecialchars($row['phone']) . "</td>";
-              echo "<td> Number of Children: " . htmlspecialchars($row['chel_num']) . "</td>";
-              echo "</tr>";
-
-            }
-          }
-
-          ?>
-        </tr>
-
+        <?php if($pat_idd > 0 && isset($r)): ?>
+          <?php while($row = $r->fetch_assoc()): ?>
+            <tr>
+              <td> Name: <?php echo htmlspecialchars($row['fname']); ?> </td>
+              <td> Age: <?php echo htmlspecialchars($row['age']); ?> </td>
+              <td> Social Status: <?php echo htmlspecialchars($row['soc_sts']); ?> </td>
+              <td> Phone: <?php echo htmlspecialchars($row['phone']); ?> </td>
+              <td> Number of Children: <?php echo htmlspecialchars($row['chel_num']); ?> </td>
+            </tr>
+          <?php endwhile; ?>
+        <?php endif; ?>
         <tr>
           <td>
             <label for="current" style="background-color:#4d4d4d;" class="form-control"> 
@@ -195,15 +142,12 @@ $conn->close();
             </label>
             <label style="color:black;"> <?php echo htmlspecialchars($pat_date); ?> </label>
           </td>
-
           <td>
             <label for="previous" style="background-color:#4d4d4d;" class="form-control"> 
               <strong style="color:white;">Previous Session Date:</strong> 
             </label>
-            <input type="date" id="previousdate" name="date_pev" class="form-control" />
+            <label style="color:black;"> <?php echo htmlspecialchars($previous_date); ?> </label>
           </td>
-
-
           <td colspan='3'>
             <label for="next" style="background-color:#4d4d4d;" class="form-control"> 
               <strong style="color:white;">Next Session Date:</strong> 
@@ -214,10 +158,8 @@ $conn->close();
       </table>
     </div>
 
-
+    <!-- القسم الخاص بتفاصيل الجلسة -->
     <table class="table table-striped table-bordered table-hover table-active" cellspacing="15" cellpadding="0">
-
-
       <tr>
         <td colspan='2'>
           <label style="background-color:#007ce2;" class="form-control"> 
@@ -231,12 +173,8 @@ $conn->close();
           </label>
           <textarea id="illness" cols="123" rows="3" name="period_ill" class="form-control"></textarea>
         </td>
-
       </tr>
-
-
       <tr>
-
         <td colspan='2'>
           <label for="disease" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Current Illness History:</strong>
@@ -251,13 +189,11 @@ $conn->close();
         </td>
       </tr>
       <tr>
-      </tr>
-      <tr>
         <td>
-        <label for="family" style="background-color:#007ce2;" class=" form-control "> 
-          <strong style="color:white;">Family History:</strong>
-        </label>
-        <textarea id="family" cols="55" rows="3" name="fam_hist"></textarea>
+          <label for="family" style="background-color:#007ce2;" class="form-control">
+            <strong style="color:white;">Family History:</strong>
+          </label>
+          <textarea id="family" cols="55" rows="3" name="fam_hist" class="form-control"></textarea>
         </td>
         <td>
           <label for="work" style="background-color:#007ce2;" class="form-control"> 
@@ -271,7 +207,6 @@ $conn->close();
           </label>
           <textarea cols="55" rows="3" name="sex_hist" class="form-control"></textarea>
         </td>
-
         <td>
           <label for="Personal" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Personal History:</strong>
@@ -279,7 +214,6 @@ $conn->close();
           <textarea cols="55" rows="3" name="person_hist" class="form-control"></textarea>
         </td>
       </tr>
-
       <tr>
         <td colspan='4'>
           <label class="form-control" style="background-color:#196619;"> 
@@ -306,96 +240,80 @@ $conn->close();
           </label>
           <textarea cols="55" rows="3" name="speech" class="form-control"></textarea>
         </td>
-
         <td>
-          <label for="Mood and affect" style="background-color:#007ce2;" class="form-control"> 
+          <label for="Mood" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Mood/Affect:</strong>
           </label>
           <textarea cols="55" rows="3" name="mood" class="form-control"></textarea>
         </td>
       </tr>
-
-      <tr>
-      </tr>
-
       <tr>
         <td>
-          <label for="killing" style="background-color:#007ce2;" class="form-control"> 
+          <label for="killer" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Suicidal/Homicidal Thoughts/Plans:</strong>
           </label>
           <textarea cols="55" rows="3" name="killer" class="form-control"></textarea>
         </td>
-
         <td>
-          <label for="Thinking" style="background-color:#007ce2;" class="form-control"> 
+          <label for="thin_shep" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Thought Form:</strong>
           </label>
           <textarea cols="55" rows="3" name="thin_shep" class="form-control"></textarea>
         </td>
-
         <td>
-          <label for="content" style="background-color:#007ce2;" class="form-control"> 
+          <label for="thin_con" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Thought Content:</strong>
           </label>
           <textarea cols="55" rows="3" name="thin_con" class="form-control"></textarea>
         </td>
-
         <td>
-          <label for="perception" style="background-color:#007ce2;" class="form-control"> 
+          <label for="percep" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Perception:</strong>
           </label>
           <textarea cols="55" rows="3" name="percep" class="form-control"></textarea>
         </td>
       </tr>
-
       <tr>
         <td>
-          <label for="Memory" style="background-color:#007ce2;" class="form-control"> 
+          <label for="memory" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Memory:</strong>
           </label>
           <textarea cols="55" rows="3" name="memory" class="form-control"></textarea>
         </td>
-
         <td>
-          <label for="judge" style="background-color:#007ce2;" class="form-control"> 
+          <label for="ability" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Judgment:</strong>
           </label>
           <textarea cols="55" rows="3" name="ability" class="form-control"></textarea>
         </td>
-
         <td>
           <label for="insight" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Insight:</strong>
           </label>
           <textarea cols="55" rows="3" name="insight" class="form-control"></textarea>
         </td>
-
         <td>
-          <label for="Foresight" style="background-color:#007ce2;" class="form-control"> 
+          <label for="fores" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Cognitive Perception:</strong>
           </label>
           <textarea cols="55" rows="3" name="fores" class="form-control"></textarea>
         </td>
       </tr>
-
       <tr>
         <td style="width:200px;">
           <label for="degree" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Fullton Degree:</strong>
-            <pre></pre>
           </label>
           <input type="number" id="degree" name="degree" class="form-control" />
         </td>
-
         <td>
-          <label for="Basic" style="background-color:#007ce2;" class="form-control"> 
+          <label for="basic_dig" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Preliminary Diagnosis:</strong>
           </label>
           <textarea cols="55" rows="3" name="basic_dig" class="form-control"></textarea>
         </td>
-
         <td colspan='2'>
-          <label for="Differential" style="background-color:#007ce2;" class="form-control"> 
+          <label for="diff_dig" style="background-color:#007ce2;" class="form-control"> 
             <strong style="color:white;">Differential Diagnosis:</strong>
           </label>
           <textarea cols="125" rows="3" name="diff_dig" class="form-control"></textarea>
@@ -403,27 +321,22 @@ $conn->close();
       </tr>
     </table>
 
+    <!-- جدول الأزرار لنماذج النوافذ المنبثقة -->
     <table class="table table-striped table-bordered table-hover table-active table-dark" cellspacing="15" cellpadding="0">
       <tr>
         <td>
           <input class="btn btn-success form-control" type="submit" value="Add Session" title="Add Session" name="addsess" />
         </td>
-
-        <!-- زر (Blood Tests) لفتح النافذة المنبثقة الخاصة باختبارات الدم -->
         <td>
           <button type="button" class="btn btn-danger form-control" data-toggle="modal" data-target="#bloodModal" title="Blood Laboratory Tests">
             Blood
           </button>
         </td>
-
-        <!-- زر (Medical Description) لفتح النافذة المنبثقة الخاصة بوصفة الدواء -->
         <td>
           <button type="button" class="btn btn-warning form-control" data-toggle="modal" data-target="#medicalModal" title="Medical Prescription">
             Medical Description
           </button>
         </td>
-
-        <!-- زر (Psychological) لفتح النافذة المنبثقة الخاصة بالاختبارات النفسية -->
         <td>
           <button type="button" class="btn btn-info form-control" data-toggle="modal" data-target="#psychModal" title="Psychological Tests">
             Psychological
@@ -431,10 +344,11 @@ $conn->close();
         </td>
       </tr>
     </table>
-
   </main>
 </form>
-<!-- Modal Window for Medical Prescription -->
+
+<!-- نوافذ (Modal) -->
+<!-- Modal الخاص بالوصفة الطبية -->
 <div class="modal fade" id="medicalModal" tabindex="-1" role="dialog" aria-labelledby="medicalModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -447,6 +361,10 @@ $conn->close();
         </div>
         <div class="modal-body">
           <?php include 'medi.php'; ?>
+          <!-- تأكد بوجود عنصر لحاوية الأدوية داخل النموذج -->
+          <div id="drugs-container"></div>
+          <!-- زر لإضافة دواء جديد -->
+          <button type="button" id="add-drug-med" class="btn btn-info mt-2">Add Medication</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -457,8 +375,7 @@ $conn->close();
   </div>
 </div>
 
-
-<!-- Modal Window for Psychological Tests -->
+<!-- Modal الخاص بالاختبارات النفسية -->
 <div class="modal fade" id="psychModal" tabindex="-1" role="dialog" aria-labelledby="psychModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -481,7 +398,7 @@ $conn->close();
   </div>
 </div>
 
-<!-- Modal Window for Blood Tests -->
+<!-- Modal الخاص بالفحوصات الدموية -->
 <div class="modal fade" id="bloodModal" tabindex="-1" role="dialog" aria-labelledby="bloodModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -504,221 +421,20 @@ $conn->close();
   </div>
 </div>
 
-<!-- حاوية Toasts -->
+<!-- حاوية Toast لإظهار الإشعارات -->
 <div aria-live="polite" aria-atomic="true" style="position: fixed; top: 20px; right: 20px; min-height: 200px; z-index: 1060;">
-  <div id="toast-container">
-    <!-- سيتم إضافة Toasts هنا ديناميكيًا -->
-  </div>
+  <div id="toast-container"></div>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // معالجة إرسال نموذج الفحوصات الدموية
-    document.getElementById('submitBloodTests').addEventListener('click', function() {
-        const formElement = document.getElementById('bloodTestsForm');
-        const formData = new FormData(formElement);
 
-        fetch('store_blood_request.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                showSuccessMessage('تم إرسال الطلب بنجاح!');
-                $('#bloodModal').modal('hide');
-            } else {
-                alert('حدث خطأ: ' + data.message);
-            }
-        })
-        .catch(err => {
-            alert('تعذّر إرسال الطلب، تحقق من الاتصال. ' + err);
-        });
-    });
-
-    // معالجة إرسال نموذج الوصفة الطبية
-    document.getElementById('medicalForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // منع الإرسال الافتراضي للنموذج
-
-        const formElement = document.getElementById('medicalForm');
-        const formData = new FormData(formElement);
-
-        fetch('sale.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                showSuccessMessage('تم إضافة الوصفة الطبية بنجاح!');
-                $('#medicalModal').modal('hide');
-            } else {
-                alert('حدث خطأ: ' + data.message);
-            }
-        })
-        .catch(err => {
-            alert('تعذّر إرسال الوصفة الطبية، تحقق من الاتصال. ' + err);
-        });
-    });
-});
+<!-- تضمين متغيرات جافاسكريبت بالـ JSON -->
+<script type="application/json" id="usageOptions">
+    <?php echo json_encode($usageOptions); ?>
 </script>
 
-
-<script>
-  // Close the modal after form submission
-  document.querySelectorAll('.modal-form').forEach(form => {
-    form.addEventListener('submit', function (e) {
-      const modal = form.closest('.modal');
-      $(modal).modal('hide'); // Close the modal
-    });
-  });
-</script>
-
-<!-- دالة عرض Toast كإشعار عائم -->
-<script>
-    // دالة في الصفحة الرئيسية يمكن استدعاؤها من النافذة المنبثقة
-    function showSuccessMessage(msg) {
-        // إنشاء عنصر Toast
-        var toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.setAttribute('role', 'alert');
-        toast.setAttribute('aria-live', 'assertive');
-        toast.setAttribute('aria-atomic', 'true');
-        toast.setAttribute('data-delay', '5000'); // مدة عرض الـ Toast بالمللي ثانية
-
-        // محتويات الـ Toast
-        toast.innerHTML = `
-            <div class="toast-header">
-                <strong class="mr-auto text-success">نجاح</strong>
-                <small>الآن</small>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="إغلاق">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                ${msg}
-            </div>
-        `;
-
-        // إضافة الـ Toast إلى الحاوية
-        document.getElementById('toast-container').appendChild(toast);
-
-        // تفعيل Toast باستخدام jQuery
-        $(toast).toast('show');
-
-        // إزالة الـ Toast من الـ DOM بعد انتهاء عرضه
-        $(toast).on('hidden.bs.toast', function () {
-            $(this).remove();
-        });
-    }
-</script>
-
-<!-- Bootstrap and jQuery JS -->
+<!-- استدعاء ملفات الجافاسكريبت الخارجية -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Bootstrap Multiselect JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
-
-<!-- JavaScript for the Modal Window (for Medical Prescription multi-check usage) -->
-<script>
-    $(document).ready(function() {
-        let drugIndex = 1;
-
-        // Define the usage options array in JavaScript
-        const usageOptions = <?php echo json_encode($usageOptions); ?>;
-
-        // Function to add a new medication in the medication form inside the modal window
-        $('#add-drug-med').click(function() {
-            const newIndex = drugIndex;
-            drugIndex++;
-
-            let usageHTML = '';
-            $.each(usageOptions, function(value, label) {
-                usageHTML += `<label style="margin-right:10px;">
-                                <input type="checkbox" name="usage[${newIndex}][]" value="${value}">
-                                ${label}
-                              </label>`;
-            });
-
-            const drugItem = `
-                <div class="drug-item border p-3 mb-3">
-                    <h5 class="mb-3">Medication #${drugIndex}</h5>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label>Medication Name</label>
-                            <input type="text" name="med_name[]" class="form-control" placeholder="Name" required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label>Quantity</label>
-                            <input type="number" name="quantity[]" class="form-control" placeholder="Quantity" required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label>Usage Method</label>
-                            <div class="usage-options">
-                                ${usageHTML}
-                            </div>
-                        </div>
-                    </div>
-                    <span class="remove-drug" style="cursor:pointer; color:red;">&times; Remove Medication</span>
-                </div>
-            `;
-            $('#drugs-container').append(drugItem);
-        });
-
-        // Function to remove a medication in the medication form inside the modal window
-        $('#drugs-container').on('click', '.remove-drug', function() {
-            $(this).closest('.drug-item').remove();
-            // Update medication numbers after removal
-            drugIndex = 0;
-            $('.drug-item').each(function() {
-                drugIndex++;
-                $(this).find('h5').text(`Medication #${drugIndex}`);
-                // Update the names of the usage method fields
-                $(this).find('.usage-options input').each(function() {
-                    const nameParts = $(this).attr('name').split('[');
-                    nameParts[1] = drugIndex - 1;
-                    $(this).attr('name', `usage[${drugIndex - 1}][]`);
-                });
-            });
-        });
-    });
-</script>  
-<script>
-    // دالة عرض Toast كإشعار عائم
-    function showSuccessMessage(msg) {
-        // إنشاء عنصر Toast
-        var toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.setAttribute('role', 'alert');
-        toast.setAttribute('aria-live', 'assertive');
-        toast.setAttribute('aria-atomic', 'true');
-        toast.setAttribute('data-delay', '5000'); // مدة عرض الـ Toast بالمللي ثانية
-
-        // محتويات الـ Toast
-        toast.innerHTML = `
-            <div class="toast-header">
-                <strong class="mr-auto text-success">نجاح</strong>
-                <small>الآن</small>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="إغلاق">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                ${msg}
-            </div>
-        `;
-
-        // إضافة الـ Toast إلى الحاوية
-        document.getElementById('toast-container').appendChild(toast);
-
-        // تفعيل Toast باستخدام jQuery
-        $(toast).toast('show');
-
-        // إزالة الـ Toast من الـ DOM بعد انتهاء عرضه
-        $(toast).on('hidden.bs.toast', function () {
-            $(this).remove();
-        });
-    }
-</script>
-
+<script src="includes/js/myjs.js"></script>
 </body>
 </html>
