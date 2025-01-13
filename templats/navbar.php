@@ -26,12 +26,12 @@
           User
         </a>
         <div  class="dropdown-menu navdrob" aria-labelledby="navbarDropdown" >
-          <a class="dropdown-item" href="doctor"  target="_blank">Doctor</a>
-          <a class="dropdown-item" href="reception"  target="_blank">Resiption</a>
-		<a class="dropdown-item" href="nafsi"  target="_blank">المختبر النفسي</a>
+          <a class="dropdown-item" href="doctor/index.php"  target="_blank">Doctor</a>
+          <a class="dropdown-item" href="reception/index.php"  target="_blank">Resiption</a>
+		<a class="dropdown-item" href="nafsi/index.php"  target="_blank">المختبر النفسي</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="blood"  target="_blank">مختبر الدم</a>
-            <a class="dropdown-item" href="pharm"  target="_blank">الصيدلية</a>
+          <a class="dropdown-item" href="blood/index.php"  target="_blank">مختبر الدم</a>
+            <a class="dropdown-item" href="pharm/index.php"  target="_blank">الصيدلية</a>
         </div>
       </li> 
       
