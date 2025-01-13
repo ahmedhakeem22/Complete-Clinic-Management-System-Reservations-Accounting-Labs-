@@ -18,22 +18,9 @@
 
       </main>
 
-<!--
-<div class="footer">
+
         <p>&copy; <?php echo date('Y'); ?> Business login form. All Rights Reserved | Design by Mayuri K.</p>
-        <!--
-<p id="demo"></p>
-
-            <script>
-            var d = new Date();
-            document.getElementById("demo").innerHTML = d;
-            </script>
-            
-            
-    </div>
-
-      </footer>
--->
+      
       
 
 </body>
